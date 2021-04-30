@@ -90,15 +90,18 @@ function Registration() {
         console.log("errors: ", errors)
 
         if(e.target.checkValidity()){
-            if(details.email === mailDePrueba){ // cambiar por checkIfEmailExists
-                alert("maquina ya estás registrado")
-                history.push('/login')
-              
-            }
-           console.log("Usuario registrado"); 
-           model.newUser( details.email, details.pass, details.nickname );
-           history.push('/home')
-        } 
+            model.checkIfEmailExists(details.email).then(response => {
+                if (response === true) {
+                    alert("maquina ya estás registrado")
+                    history.push('/login')
+                }
+                else {
+                    console.log("Usuario registrado"); 
+                    model.newUser( details.email, details.pass, details.nickname );
+                    history.push('/home')
+                }
+            })
+        }
     };
 
     
