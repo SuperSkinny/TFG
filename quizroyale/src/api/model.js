@@ -1,4 +1,4 @@
-const Parse = require('parse')
+const Parse = require('parse/node')
 
 Parse.initialize("iUK8d7l3m0kCeFWjQsijVwTy0SRV8nYNlB2P7b2S", "7yOd2JKg8xXZVGZnPOyrUdHyXTJDE7zIhGc77OOB");
 Parse.serverURL = 'https://parseapi.back4app.com/';
@@ -25,44 +25,48 @@ function newUser( email, password, nickname ) {
  * @param {String} email 
  * @param {String} password 
  */
-function getUserByEmailAndPassword(email, password) {
+async function getUserByEmailAndPassword(email, password) {
     const User = Parse.Object.extend('Users')
     const queryGetUserByEmailAndPassword = new Parse.Query(User)
 
     queryGetUserByEmailAndPassword.equalTo('email', email)
     queryGetUserByEmailAndPassword.equalTo('password', password)
 
-    queryGetUserByEmailAndPassword.first().then(function(userFound) {
-        if (userFound) {
-            console.log('Usuario encontrado ' + userFound.get('email') + ' ' + userFound.get('password') + ' ' + userFound.get('nickname'))
+    try {
+        const response = await queryGetUserByEmailAndPassword.first()
+        
+        if (response !== undefined) {
+            return response.toJSON()
         } else {
-            console.log('No se ha encontrado ningun usuario')
+            return null
         }
-    }).catch(function(error) {
-        console.log("Error: " + error.code + " " + error.message)  
-    })
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
 }
 
 /**
  * Devuelve true si encuentra el email dado y en caso contrario false
  * @param {String} email 
  */
-function checkIfEmailExists(email) {
+async function checkIfEmailExists(email) {
     const User = Parse.Object.extend('Users')
     const queryCheckIfEmailExists = new Parse.Query(User)
 
     queryCheckIfEmailExists.equalTo('email', email)
 
-    //TODO: comprobar si hay algo (usuarios) en el array o no, YA ESTA HECHO JIJI
-    queryCheckIfEmailExists.first().then(function(response) {
-        if (response) {
-            console.log('Email encontrado')
+    try {
+        const response = await queryCheckIfEmailExists.first()
+
+        if (response !== undefined) {
+        // if (!!response) {
+            return true
         } else {
-            console.log('No se ha encontrado ningun email')
+            return false
         }
-    }).catch(function(error) {
-        console.log("Error: " + error.code + " " + error.message)  
-    })
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
 }
 
 /**
@@ -159,7 +163,9 @@ function newContact(name, email, issue, text) {
  * Obtiene todas las puntuaciones de una categoria dada
  * @param {String} category 
  */
-function getAllScoresOfACategory(category) {
+async function getAllScoresOfACategory(category) {
+    let scores = []
+    
     const Score = Parse.Object.extend('Scores')
     const queryGetAllScoresOfACategory = new Parse.Query(Score)
 
@@ -167,24 +173,30 @@ function getAllScoresOfACategory(category) {
     queryGetAllScoresOfACategory.descending('updatedAt')
     queryGetAllScoresOfACategory.addDescending('average_time')
 
-    queryGetAllScoresOfACategory.find().then(function(categoryFound) {
-        if (categoryFound) {
-            categoryFound.forEach(score => {
-                console.log(score.get('score') + ' ' + score.get('average_time'))
+    try {
+        const response = await queryGetAllScoresOfACategory.find()
+
+        // Chequear que si pones mal la categoria devuelve []
+        if (response !== undefined) {
+            response.forEach(score => {
+                scores.push(score.toJSON())
             })
+            return scores
         } else {
-            console.log('No se ha encontrado ninguna categoria')
+            return null
         }
-    }).catch(function(error) {
-        console.log("Error: " + error.code + " " + error.message)
-    })
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
 }
 
 /**
  * Dado un id de usuario obtiene todas sus puntuaciones
  * @param {String} userId 
  */
-function getAllScoresOfUser(userId) {
+async function getAllScoresOfUser(userId) {
+    let scores = []
+
     const User = Parse.Object.extend('Users')
     const userWithId = new User()
     userWithId.id = userId
@@ -194,17 +206,20 @@ function getAllScoresOfUser(userId) {
 
     queryGetAllScoresOfUser.equalTo('user_id', userWithId)
 
-    queryGetAllScoresOfUser.findAll().then(function(userFound) {
-        if (userFound) {
-            userFound.forEach(score => {
-                console.log(score.get('score') + ' ' + score.get('average_time') + ' ' + score.get('category'))
+    try {
+        const response = await queryGetAllScoresOfUser.findAll()
+        
+        if (response !== undefined) {
+            response.forEach(score => {
+                scores.push(score.toJSON())
             })
+            return scores
         } else {
-            console.log('No se ha encontrado ningun usuario')
+            return null
         }
-    }).catch(function(error) {
-        console.log("Error: " + error.code + " " + error.message)
-    })
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
 }
 
 /**
@@ -238,6 +253,44 @@ function setNewScore(userId, score, averageTime, category) {
     })
 }
 
+function getAllQuestionsAndAnswersByCategory(category) {
+    // const Category = Parse.Object.extend('Categories')
+    // const categoryWithCategory = new Category()
+    // categoryWithCategory.category = category
+
+    // const queryGetCategoryIDByCategory = new Parse.Query(Category)
+    // queryGetCategoryIDByCategory.equalTo('category', categoryWithCategory)
+
+    // queryGetAllQuestionsOfACategory.findAll().then(function)
+
+    // const Question = Parse.Object.extend('Questions')
+    // const queryGetAllQuestionsOfACategory = new Parse.Query(Question)
+
+    // queryGetAllQuestionsOfACategory.equalTo('category', categoryWithCategory)
+
+    // queryGetAllQuestionsOfACategory.findAll().then(function(response) {
+    //     if (response)
+    //         console.log(response)
+    // }).catch(function(error) {
+    //     console.log("Error: " + error.code + " " + error.message)  
+    // })
+
+    // const QuestionsAnswers = Parse.Object.extend('Questions_Answers')
+    // const queryGetAllQuestionsAndAnswersByCategory = new Parse.Query(QuestionsAnswers)
+    
+    // queryGetAllQuestionsAndAnswersByCategory.equalTo('question_id', )
+
+    // queryGetAllQuestionsAndAnswersByCategory.findAll().then(function(question) {
+    //     if (question) {
+            
+    //     } else {
+
+    //     }
+    // }).catch(function(error) {
+    //     console.log("Error: " + error.code + " " + error.message)  
+    // })
+}
+
 exports.newUser = newUser
 exports.getUserByEmailAndPassword = getUserByEmailAndPassword
 exports.checkIfEmailExists = checkIfEmailExists
@@ -248,3 +301,4 @@ exports.newContact = newContact
 exports.getAllScoresOfACategory = getAllScoresOfACategory
 exports.getAllScoresOfUser = getAllScoresOfUser
 exports.setNewScore = setNewScore
+exports.getAllQuestionsAndAnswersByCategory = getAllQuestionsAndAnswersByCategory
