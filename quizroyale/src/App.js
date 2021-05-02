@@ -9,6 +9,7 @@ import { MemoryRouter } from 'react-router'
 
 import LoginForm from './components/login';
 import Registration from './components/registration'
+import Profile from './components/profile'
 import Contact from './screens/contact';
 import Home from './screens/home';
 import Navbar from './navigation/navbar';
@@ -43,6 +44,9 @@ function App() {
                     </Route>
                     <Route path={"/registration"} >
                         <Registration />
+                    </Route>
+                    <Route path={"/profile"} >
+                        <Profile />
                     </Route>
                     <Route path={"/preGame"}>
                         <PreGame />

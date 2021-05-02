@@ -1,24 +1,26 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useHistory} from 'react-router-dom'
-import { getUserByEmailAndPassword } from '../api/model';
+import { model } from '../api/model';
 
 function LoginForm(){
     const [details, setDetails] = useState({email: "", pass: ""});
     const [errors] = useState({error: ""})
     let history = useHistory();
-    const mailDePrueba = 'test@quizroyale.com'
+   
     const submitHandler = e => {
         e.preventDefault();
-        if(details.email !== mailDePrueba){ // cambiar por checkIfEmailExists
-            errors.error = "no estás registrado"
-            alert('no estás registrado')
-            history.push('/registration')
-        }
-        else{
-            getUserByEmailAndPassword(details.email, details.pass)
-            history.push('/home')   
-        }
+        model.checkIfEmailExists(details.email).then(response => {
+            if(response === true){ 
+                errors.error = "no estás registrado"
+                alert('no estás registrado')
+                history.push('/registration')
+            }
+            else{
+                model.getUserByEmailAndPassword(details.email, details.pass)
+                history.push('/home')   // hay que gestionar el inicio de sesión en algún momento para ir a home con la sesión iniciada
+            }
+        })
         
     }
 

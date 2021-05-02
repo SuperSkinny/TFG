@@ -4,9 +4,11 @@ import model, { checkIfEmailExists } from '../api/model'
 import {useHistory} from 'react-router-dom'
 
 
-function Registration() {
-    const [details, setDetails] = useState({nickname:"", email: "", pass: "", pass2: ""});
+function Profile(){
+    const [details, setDetails] = useState({nickname:"", email: "", pass: "", pass2: ""})
     const [errors] = useState({errorNickname:"", email: "", pass: "", pass2: ""})
+    const uploadedImage = React.useRef(null)
+    const imageUploader = React.useRef(null)
     const nicknamePattern = /^[A-Za-z\d]{2,15}$/
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
     const passPattern = /^[\S]{6,20}$/
@@ -36,6 +38,19 @@ function Registration() {
         setDetails({...details, pass2: e.target.value})
                 
     }
+
+    const handleImageUpload = e => {
+        const [file] = e.target.files;
+        if (file) {
+          const reader = new FileReader();
+          const { current } = uploadedImage;
+          current.file = file;
+          reader.onload = e => {
+            current.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      };
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -107,15 +122,58 @@ function Registration() {
     
     return (
         <div className="container" >
-            <span className="generalTitle" style={ { fontSize: 40 } }>Registro</span>
+            <span className="generalTitle" style={ { fontSize: 40 } }>Perfil</span>
             <form className="needs-validation" noValidate onSubmit={submitHandler}>
+                <div className="form-group">
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "left",
+                            justifyContent: "left"
+                        }}
+                        >
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            ref={imageUploader}
+                            style={{
+                            display: "none"
+                            }}
+                        />
+                        <div
+                            style={{
+                            height: "150px",
+                            width: "150px",
+                            borderRadius: 15
+                            }}
+                            onClick={() => imageUploader.current.click()}
+                        >
+                            <img
+                            ref={uploadedImage}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                position: "center",
+                                borderRadius: 15
+                            }}
+                            />
+                        </div>
+                        {console.log(uploadedImage)}
+                        {uploadedImage.current.accessKey === "" ? 
+                            (<p>Añade una imagen</p>)
+                            :(<p>Cambia tu imagen</p>)
+                        }
+                        </div>
+                    </div>
                 <div className="form-group">
                     <div className="mb-3">
                         {/* <label htmlFor="regNickname" className="form-label">Nickname: </label> */}
                         <input 
                             type="text" 
                             className="form-control" 
-                            id="regNickname" 
+                            id="proNickname" 
                             placeholder="Nickname"
                             minLength="2"
                             maxLength="15"
@@ -140,7 +198,7 @@ function Registration() {
                         <input 
                             type="text" 
                             className="form-control" 
-                            id="regEmail" 
+                            id="proEmail" 
                             placeholder="Correo electrónico"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                             required
@@ -164,7 +222,7 @@ function Registration() {
                         <input 
                             type="password" 
                             className="form-control" 
-                            id="regPass" 
+                            id="proPass" 
                             placeholder="Contraseña"
                             minLength="6"
                             maxLength="20"
@@ -190,7 +248,7 @@ function Registration() {
                         <input 
                             type="password" 
                             className="form-control" 
-                            id="regRepitePass" 
+                            id="proRepitePass" 
                             placeholder="Repite contraseña"
                             minLength="6"
                             maxLength="20"
@@ -209,35 +267,18 @@ function Registration() {
                         : ("")
                     } 
                 </div>
-                
-                <div className="form group">
-                    <div className="mb-3">
-                        <input 
-                            className="form-check-input" 
-                            type="checkbox" 
-                            id="checkTerms" 
-                            required
-                        />
-                        <label 
-                            className="form-check-label" 
-                            htmlFor="chekTerms"
-                        >
-                            <small>Acepto los términos y condiciones</small>
-                        </label>
-                    </div>
-                    
-                </div>
-
+                                
                 <input 
                     type="submit" 
                     className="generalButton" 
-                    value="Regístrate"
+                    value="Guardar"
 
                 />
             </form>
             
         </div>
     )
+
 }
 
-export default Registration
+export default Profile
