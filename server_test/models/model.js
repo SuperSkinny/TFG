@@ -295,7 +295,7 @@ async function getCategories() {
 
         if (response.length !== 0) {
             response.forEach(category => {
-                categories.push(category)
+                categories.push(category.toJSON())
             })
         } else {
             return null
