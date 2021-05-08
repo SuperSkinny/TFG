@@ -9,37 +9,23 @@ import Game from '../screens/game';
 export default class PreGame extends Component {
   constructor(props) {
     super(props);
-    this.state = { gameStarted: false };
+    this.state = { 
+      gameStarted: false, 
+      gameMode: []
+    };
   }
 
-  // componentDidMount() {
-  //   const gameMode = model.getCategories()
-  //   console.log(gameMode)
-  // }
-
-  // gameMode = model.getCategories()
-  // .then(response => {
-  //   response.forEach(category => {
-  //     console.log(category)
-  //   })
-  // })
-
-  gameMode = [
-    { name: "Novato", text: "Selección de preguntas fáciles para echar unas risas con tus coleguitas..." },
-    { name: "Viciao", text: "Selección de preguntas moderadas para ver si eres el listo de tu grupo de amigos..." },
-    { name: "Hacker", text: "Selección de preguntas para frustrarte y dejar de tener amigos si juegas con ellos." },
-  ]
+  async componentDidMount() {
+    this.setState({gameMode: this.gameMode = await model.getCategories()})
+  }
   
   handleGameScreen = (gameModeName) => {
     this.setState({gameStarted: !this.gameStarted});
     this.setState({gameModeName: gameModeName});
-    // this.gameModeName = gameModeName;
-    // console.log("Dificultad: "+gameModeName)
-    // console.log("HandleGame:"+gameStarted)
   }
 
   render() {
-    const { gameStarted, gameModeName } = this.state
+    const { gameStarted, gameModeName, gameMode } = this.state
 
     return (
       <React.Fragment>
@@ -52,11 +38,11 @@ export default class PreGame extends Component {
             </div>
             <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
               <React.Fragment>
-                {this.gameMode.map(({ name, text }) => 
+                {gameMode.map(({ category, description }) => 
                 <GameModeComponent
-                  key={name}
-                  gameMode={name}
-                  modeDescription={text}
+                  key={category}
+                  gameMode={category}
+                  modeDescription={description}
                   onGameModeButtonPress={(gameModeName) => {this.handleGameScreen(gameModeName)}}
                 />
                 )}
