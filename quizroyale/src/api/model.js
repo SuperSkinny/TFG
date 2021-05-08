@@ -24,6 +24,7 @@ function newUser( email, password, nickname ) {
  * Devuelve el usuario dado su email y contraseña. En caso de no encontrarlo no devuelve nada
  * @param {String} email 
  * @param {String} password 
+ * @returns {JSON}
  */
 async function getUserByEmailAndPassword(email, password) {
     const User = Parse.Object.extend('Users')
@@ -48,6 +49,7 @@ async function getUserByEmailAndPassword(email, password) {
 /**
  * Devuelve true si encuentra el email dado y en caso contrario false
  * @param {String} email 
+ * @returns {boolean}
  */
 async function checkIfEmailExists(email) {
     const User = Parse.Object.extend('Users')
@@ -59,7 +61,6 @@ async function checkIfEmailExists(email) {
         const response = await queryCheckIfEmailExists.first()
 
         if (response !== undefined) {
-        // if (!!response) {
             return true
         } else {
             return false
@@ -67,6 +68,29 @@ async function checkIfEmailExists(email) {
     } catch {
         console.log('No se ha podido completar la petición')
     }
+}
+
+/**
+ * Dado un id de usuario cambia su email actual por el nuevo pasado
+ * @param {String} userId 
+ * @param {String} newEmail 
+ */
+function changeUserEmail(userId, newEmail) {
+    const User = Parse.Object.extend('Users')
+    const queryChangeUserEmail = new Parse.Query(User)
+
+    queryChangeUserEmail.equalTo('objectId', userId)
+
+    queryChangeUserEmail.first().then(function(userFound) {
+        if (userFound) {
+            userFound.set('email', newEmail)
+            userFound.save()
+        } else {
+            console.log('No se ha encontrado ningun usuario')
+        }
+    }).catch(function(error) {
+        console.log("Error: " + error.code + " " + error.message)  
+    })
 }
 
 /**
@@ -162,6 +186,7 @@ function newContact(name, email, issue, text) {
 /**
  * Obtiene todas las puntuaciones de una categoria dada
  * @param {String} category 
+ * @returns {Array}
  */
 async function getAllScoresOfACategory(category) {
     let scores = []
@@ -176,23 +201,24 @@ async function getAllScoresOfACategory(category) {
     try {
         const response = await queryGetAllScoresOfACategory.find()
 
-        // Chequear que si pones mal la categoria devuelve []
-        if (response !== undefined) {
+        if (response.length !== 0) {
             response.forEach(score => {
                 scores.push(score.toJSON())
             })
-            return scores
         } else {
             return null
         }
     } catch {
         console.log('No se ha podido completar la petición')
     }
+
+    return scores
 }
 
 /**
  * Dado un id de usuario obtiene todas sus puntuaciones
  * @param {String} userId 
+ * @returns {Array}
  */
 async function getAllScoresOfUser(userId) {
     let scores = []
@@ -209,17 +235,18 @@ async function getAllScoresOfUser(userId) {
     try {
         const response = await queryGetAllScoresOfUser.findAll()
         
-        if (response !== undefined) {
+        if (response.length !== 0) {
             response.forEach(score => {
                 scores.push(score.toJSON())
             })
-            return scores
         } else {
             return null
         }
     } catch {
         console.log('No se ha podido completar la petición')
     }
+
+    return scores
 }
 
 /**
@@ -253,47 +280,182 @@ function setNewScore(userId, score, averageTime, category) {
     })
 }
 
-function getAllQuestionsAndAnswersByCategory(category) {
-    // const Category = Parse.Object.extend('Categories')
-    // const categoryWithCategory = new Category()
-    // categoryWithCategory.category = category
+/**
+ * Devuelve todas las categorias existentes
+ * @returns {Array}
+ */
+async function getCategories() {
+    const Category = Parse.Object.extend('Categories')
+    const getCategories = new Parse.Query(Category)
 
-    // const queryGetCategoryIDByCategory = new Parse.Query(Category)
-    // queryGetCategoryIDByCategory.equalTo('category', categoryWithCategory)
+    let categories = []
 
-    // queryGetAllQuestionsOfACategory.findAll().then(function)
+    try {
+        const response = await getCategories.findAll()
 
-    // const Question = Parse.Object.extend('Questions')
-    // const queryGetAllQuestionsOfACategory = new Parse.Query(Question)
+        if (response.length !== 0) {
+            response.forEach(category => {
+                categories.push(category.toJSON())
+            })
+        } else {
+            return null
+        } 
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
 
-    // queryGetAllQuestionsOfACategory.equalTo('category', categoryWithCategory)
+    return categories
+}
 
-    // queryGetAllQuestionsOfACategory.findAll().then(function(response) {
-    //     if (response)
-    //         console.log(response)
-    // }).catch(function(error) {
-    //     console.log("Error: " + error.code + " " + error.message)  
-    // })
+/**
+ * Dado un id de categoria devuelve un array con todas las preguntas de esa categoria
+ * @param {String} categoryId 
+ * @returns {Array}
+ */
+async function getAllQuestionsByCategory(categoryId) {
+    const Question = Parse.Object.extend('Questions')
+    const getAllQuestionsByCategory = new Parse.Query(Question)
 
-    // const QuestionsAnswers = Parse.Object.extend('Questions_Answers')
-    // const queryGetAllQuestionsAndAnswersByCategory = new Parse.Query(QuestionsAnswers)
+    const Category = Parse.Object.extend('Categories')
+    const categoryWithId = new Category()
+    categoryWithId.id = categoryId
+
+    getAllQuestionsByCategory.equalTo('category', categoryWithId)
+
+    let questions = []
+
+    try {
+        const response = await getAllQuestionsByCategory.findAll()
+
+        if (response.length !== 0) {
+            response.forEach(question => {
+                questions.push(question.toJSON())
+            })
+        } else {
+            return null
+        }
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
+
+    return questions
+}
+
+/**
+ * Dado un id de pregunta devuelve un array con todas las respuestas de esa pregunta
+ * @param {String} questionId 
+ * @returns {Array}
+ */
+async function getAllAnswersByQuestion(questionId) {
+    const Answer = Parse.Object.extend('Answers')
+    const getAllAnswersByQuestion = new Parse.Query(Answer)
+
+    const Question = Parse.Object.extend('Questions')
+    const questionWithId = new Question()
+    questionWithId.id = questionId
+
+    getAllAnswersByQuestion.equalTo('question', questionWithId)
+
+    let answers = []
+
+    try {
+        const response = await getAllAnswersByQuestion.findAll()
+
+        if (response.length !== 0) {
+            response.forEach(answer => {
+                answers.push(answer.toJSON())
+            })
+        } else {
+            return null
+        }
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
+
+    return answers
+}
+
+/**
+ * Dado una categoria devuelve un array con todas las preguntas y sus respuestas de esa categoria
+ * @param {*} category 
+ * @returns {Array}
+ */
+async function getAllQuestionsAndAnswersByCategory(category) {
+    const Category = Parse.Object.extend('Categories')
+    const getCategoryId = new Parse.Query(Category)
+
+    getCategoryId.equalTo('category', category)
     
-    // queryGetAllQuestionsAndAnswersByCategory.equalTo('question_id', )
+    let categoryId
 
-    // queryGetAllQuestionsAndAnswersByCategory.findAll().then(function(question) {
-    //     if (question) {
-            
-    //     } else {
+    try {
+        const response = await getCategoryId.first()
 
-    //     }
-    // }).catch(function(error) {
-    //     console.log("Error: " + error.code + " " + error.message)  
-    // })
+        if (response !== undefined) {
+            categoryId = response.id
+        } else {
+            return null
+        }
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
+
+    let questionsId = []
+    let questions = []
+
+    try {
+        const response = await getAllQuestionsByCategory(categoryId)
+
+        if (response.length !== 0) {
+            response.forEach(question => {
+                questionsId.push(question.objectId)
+                questions.push(question.question)
+            })
+        } else {
+            return null
+        }
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
+
+    let answersArray = []
+    let answers = []
+    var i
+
+    try {
+        for (i = 0; i < questionsId.length; i++) {
+            const response = await getAllAnswersByQuestion(questionsId[i])
+
+            if (response.length !== 0) {
+                response.forEach(answer => {
+                    answersArray.push(answer)
+                })
+                answers.push(answersArray)
+                answersArray = [] 
+            } else {
+                return null
+            }
+        }
+    } catch {
+        console.log('No se ha podido completar la petición')
+    }
+
+    let questionsAndAnswers = []
+    var j
+
+    for (j = 0; j < questionsId.length; j++) {
+        var questionAndAnswers = {}
+        questionAndAnswers[questions[j]] = answers[j]
+        questionsAndAnswers.push(questionAndAnswers)
+    }
+
+    return questionsAndAnswers
 }
 
 exports.newUser = newUser
 exports.getUserByEmailAndPassword = getUserByEmailAndPassword
 exports.checkIfEmailExists = checkIfEmailExists
+exports.changeUserEmail = changeUserEmail
 exports.changeUserNickname = changeUserNickname
 exports.changeUserPassword = changeUserPassword
 exports.changeUserPicture = changeUserPicture
@@ -301,4 +463,7 @@ exports.newContact = newContact
 exports.getAllScoresOfACategory = getAllScoresOfACategory
 exports.getAllScoresOfUser = getAllScoresOfUser
 exports.setNewScore = setNewScore
+exports.getCategories = getCategories
+exports.getAllQuestionsByCategory = getAllQuestionsByCategory
+exports.getAllAnswersByQuestion = getAllAnswersByQuestion
 exports.getAllQuestionsAndAnswersByCategory = getAllQuestionsAndAnswersByCategory
