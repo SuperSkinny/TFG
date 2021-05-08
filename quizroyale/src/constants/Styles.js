@@ -1,1 +1,0 @@
-export const DEFAULT_NAVBAR_HEIGHT = 56;
