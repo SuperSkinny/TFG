@@ -377,7 +377,7 @@ async function getAllAnswersByQuestion(questionId) {
 
 /**
  * Dado una categoria devuelve un array con todas las preguntas y sus respuestas de esa categoria
- * @param {*} category 
+ * @param {String} category 
  * @returns {Array}
  */
 async function getAllQuestionsAndAnswersByCategory(category) {
