@@ -7,15 +7,18 @@ export default class GameComponent extends Component {
 
   render() {
     const { gameModeQuestion, onGameGoBack } = this.props;
+    if (!gameModeQuestion){
+        return null;
+    }
     const { question, answer1, answer2, answer3 } = gameModeQuestion;
     
-    let answerStyle = false;
+    // let answerStyle = false;
 
-    const handleResponse = (answer) => {
-        if (answer === true) {
-            this.answerStyle = true;
-        }
-    }
+    // const handleResponse = (answer) => {
+    //     if (answer === true) {
+    //         this.answerStyle = true;
+    //     }
+    // }
 
     return (
         <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
@@ -27,7 +30,7 @@ export default class GameComponent extends Component {
             <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                 <button 
                     onClick={ ()=> {
-                        handleResponse(answer1.valor)
+                        // handleResponse(answer1.valor)
                     }}
                     className="gameButton"
                     // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
