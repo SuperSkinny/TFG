@@ -19,6 +19,7 @@ import Footer from './components/footer';
 import PreGame from './screens/preGame';
 import Game from './screens/game';
 import PostGame from './screens/postGame';
+import Countdown from './components/countdown';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
                     </Route>
                     <Route path={"/profile"} >
                         <Profile />
+                    </Route>
+                    <Route path={"/countdown"} >
+                        <Countdown />
                     </Route>
                     <Route path={"/preGame"}>
                         <PreGame />

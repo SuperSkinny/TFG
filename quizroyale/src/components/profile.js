@@ -13,7 +13,7 @@ function Profile(){
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
     const passPattern = /^[\S]{6,20}$/
     let history = useHistory()
-    const mailDePrueba = 'test@quizroyale.com'
+    
     
     const nicknameCheckHandler = (e) => {
                   
@@ -107,12 +107,12 @@ function Profile(){
         if(e.target.checkValidity()){
             model.checkIfEmailExists(details.email).then(response => {
                 if (response === true) {
-                    alert("maquina ya estás registrado")
-                    history.push('/login')
+                    alert("maquina, este correo no vale porque ya está registrado")
+                    
                 }
                 else {
-                    console.log("Usuario registrado"); 
-                    model.newUser( details.email, details.pass, details.nickname );
+                    console.log("correo cambiado"); 
+                    model.changeUserEmail()
                     history.push('/home')
                 }
             })
@@ -161,12 +161,12 @@ function Profile(){
                             />
                         </div>
                         {console.log(uploadedImage)}
-                        {uploadedImage.current.accessKey === "" ? 
+                        {!uploadedImage /*|| uploadedImage.current.accessKey === ""*/ ? 
                             (<p>Añade una imagen</p>)
                             :(<p>Cambia tu imagen</p>)
                         }
-                        </div>
                     </div>
+                </div>
                 <div className="form-group">
                     <div className="mb-3">
                         {/* <label htmlFor="regNickname" className="form-label">Nickname: </label> */}
@@ -215,6 +215,31 @@ function Profile(){
                         : ("")
                     } 
                 </div>
+                <div className="form-group">
+                    <div className="mb-3">
+                        {/* <label htmlFor="regPass" className="form-label">Contraseña: </label> */}
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            id="proPass" 
+                            placeholder="Contraseña antigua"
+                            minLength="6"
+                            maxLength="20"
+                            pattern="[\S]{6,20}"
+                            required
+                            onChange={passCheckHandler}
+                            style={ { borderRadius: 15 }}
+                        />
+                    </div>
+                    {(errors.pass !== "") ? 
+                        (<p>
+                            <small style={ { color: "red"} }>
+                                {errors.pass}
+                            </small>
+                        </p>)
+                        : ("")
+                    } 
+                </div>
                 
                 <div className="form-group">
                     <div className="mb-3">
@@ -223,7 +248,7 @@ function Profile(){
                             type="password" 
                             className="form-control" 
                             id="proPass" 
-                            placeholder="Contraseña"
+                            placeholder="Contraseña nueva"
                             minLength="6"
                             maxLength="20"
                             pattern="[\S]{6,20}"
@@ -249,7 +274,7 @@ function Profile(){
                             type="password" 
                             className="form-control" 
                             id="proRepitePass" 
-                            placeholder="Repite contraseña"
+                            placeholder="Repite la contraseña nueva"
                             minLength="6"
                             maxLength="20"
                             pattern="[\S]{6,20}" 
