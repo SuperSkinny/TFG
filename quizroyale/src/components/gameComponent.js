@@ -9,7 +9,13 @@ export default class GameComponent extends Component {
     const { gameModeQuestion, onGameGoBack } = this.props;
     const { question, answer1, answer2, answer3 } = gameModeQuestion;
     
-    console.log("Question: "+question )
+    let answerStyle = false;
+
+    const handleResponse = (answer) => {
+        if (answer === true) {
+            this.answerStyle = true;
+        }
+    }
 
     return (
         <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
@@ -19,7 +25,13 @@ export default class GameComponent extends Component {
                 </span>
             </div>
             <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
-                <button className="gameButton" >
+                <button 
+                    onClick={ ()=> {
+                        handleResponse(answer1.valor)
+                    }}
+                    className="gameButton"
+                    // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
+                >
                     {answer1} 
                 </button>
                 <button className="gameButton" >
@@ -30,6 +42,9 @@ export default class GameComponent extends Component {
                 </button>
             </div>
             
+            <div className="progressBarContainer">
+                <div className="progressBar" style={{ width: "25%" }} ></div>
+            </div>
             <div style={ { marginTop: 30 } }>
                 <button 
                     type="button" 

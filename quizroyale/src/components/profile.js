@@ -160,12 +160,13 @@ function Profile(){
                             }}
                             />
                         </div>
-                        {console.log(uploadedImage)}
-                        {!uploadedImage /*|| uploadedImage.current.accessKey === ""*/ ? 
+                        {/* {console.log(uploadedImage)}
+                        {uploadedImage.current.accessKey === "" ? 
                             (<p>Añade una imagen</p>)
                             :(<p>Cambia tu imagen</p>)
-                        }
-                    </div>
+                        } */}
+                        </div>
+                    
                 </div>
                 <div className="form-group">
                     <div className="mb-3">

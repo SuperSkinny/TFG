@@ -19,7 +19,7 @@ export default class Game extends Component {
 
     if(gameModeName === "Novato"){
       gameModeObj = easyMode;
-    }else if (gameModeName === "Viciao"){
+    }else if (gameModeName === "Viciado"){
       gameModeObj = mediumMode;
     }else if (gameModeName === "Hacker"){
       gameModeObj = hardMode;
