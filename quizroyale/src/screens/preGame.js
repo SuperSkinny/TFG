@@ -11,7 +11,7 @@ export default class PreGame extends Component {
     super(props);
     this.state = { 
       gameStarted: false, 
-      gameMode: []
+      gameMode: [], 
     };
   }
 
