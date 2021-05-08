@@ -16,7 +16,7 @@ export default class PreGame extends Component {
   }
 
   async componentDidMount() {
-    this.setState({gameMode: this.gameMode = await model.getCategories()})
+    this.setState({gameMode: await model.getCategories()})
   }
   
   handleGameScreen = (gameModeName) => {
