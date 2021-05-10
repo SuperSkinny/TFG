@@ -444,8 +444,13 @@ async function getAllQuestionsAndAnswersByCategory(category) {
     var j
 
     for (j = 0; j < questionsId.length; j++) {
-        var questionAndAnswers = {}
-        questionAndAnswers[questions[j]] = answers[j]
+        var questionAndAnswers = {
+            question: questions[j],
+            answer1: answers[j][0],
+            answer2: answers[j][1],
+            answer3: answers[j][2],
+        }
+        // questionAndAnswers[questions[j]] = answers[j]
         questionsAndAnswers.push(questionAndAnswers)
     }
 
