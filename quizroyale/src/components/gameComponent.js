@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 
 export default class GameComponent extends Component {
 
-
   render() {
     const { gameModeQuestion, onGameGoBack } = this.props;
+    console.log(gameModeQuestion)
     if (!gameModeQuestion){
         return null;
     }
-    const { question, answer1, answer2, answer3 } = gameModeQuestion;
+
+    // const { question } = gameModeQuestion;
     
     // let answerStyle = false;
 
@@ -24,7 +25,7 @@ export default class GameComponent extends Component {
         <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <div>
                 <span className="generalTitle" >
-                    {question}
+                    {gameModeQuestion.question}
                 </span>
             </div>
             <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
@@ -35,13 +36,13 @@ export default class GameComponent extends Component {
                     className="gameButton"
                     // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
                 >
-                    {answer1} 
+                    {gameModeQuestion.answer1.answer} 
                 </button>
                 <button className="gameButton" >
-                    {answer2}
+                    {gameModeQuestion.answer2.answer}
                 </button>
                 <button type="button"  className="gameButton">
-                    {answer3}
+                    {gameModeQuestion.answer3.answer}
                 </button>
             </div>
             
