@@ -3,6 +3,7 @@ import model from '../api/model'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/styles/styles.css';
 import GameComponent from '../components/gameComponent';
+import LoadScreen from '../components/loadScreen';
 
 export default class Game extends Component {
 
@@ -12,6 +13,7 @@ export default class Game extends Component {
       questions_answers: [],
       points: 0,
       lifeBar: 100,
+      gameStarted: false,
       gameEnded: false,
     }
   }
@@ -19,18 +21,22 @@ export default class Game extends Component {
   async componentDidMount() {
     console.log('Entro a did mount')
     this.setState({questions_answers: await model.getAllQuestionsAndAnswersByCategory(this.props.gameModeName)})
+    // this.setState({gameStarted: true})
   }
-  
-  // componentDidUpdate(prevProps) {
-  //   if(this.props.questions_answers !== prevProps.questions_answers) {
-  //     this.logicForQuestionsAndAnswers(prevProps.questions_answers)
-  //   }
-  // }
 
   getRandomQuestionAndAnswers(questions_answers) {
     var randomQuestion = Math.floor(Math.random() * questions_answers.length)
 
     return questions_answers[randomQuestion]
+  }
+
+  handleGameStart() {
+    console.log('Handle game start')
+    // for(var i = 0; i < 5; i++) {
+    //   console.log('Contador: ' + i)
+    // }
+
+    this.setState({gameStarted: true})
   }
 
   handleResponse(answer, question) {
@@ -49,13 +55,21 @@ export default class Game extends Component {
       })
     }
   }
-
+  
   render() {
-    const { onGameGoBack } = this.props;
-    const { questions_answers, points, gameEnded } = this.state;
+    const { onGameGoBack, handleGameStart } = this.props;
+    const { questions_answers, points, gameStarted, gameEnded, lifeBar } = this.state;
 
-    if(questions_answers.length === 0) {
-      console.log('Entrada a null')
+    console.log('Primer render')
+    // if(!gameStarted) {
+    //   this.handleGameStart()
+    //   return null
+    // }
+    console.log('Despues de gameStarted')
+    console.log('Longitud del array: ' + questions_answers.length)
+    
+    if(gameStarted && questions_answers.length === 0) {
+      console.log('Condicion de parada')
       return null
     }
 
@@ -66,22 +80,29 @@ export default class Game extends Component {
 
     return (
       <React.Fragment>
-        {!gameEnded ? (
         <div>
-          <div>
-            Hola
-            {points}
-          </div>
-          <GameComponent
-            gameModeQuestion={questionAndAnswers}
-            // TODO: hay que resetear el juego aquí cuando salimos
-            onGameGoBack={onGameGoBack}
-            onResponsePress={ (answer, question) => this.handleResponse(answer, question)}
-          />
+          { !gameStarted && (
+            <LoadScreen
+              handleGameStart={ () => this.handleGameStart()}
+            />
+          ) }
+          { gameStarted  && (
+            <div>
+              <div>
+                Puntuacion:
+                {points}
+              </div>
+              <GameComponent
+                gameModeQuestion={questionAndAnswers}
+                lifeBar={lifeBar}
+                // TODO: hay que resetear el juego aquí cuando salimos
+                onGameGoBack={onGameGoBack}
+                onResponsePress={ (answer, question) => this.handleResponse(answer, question)}
+              />
+            </div>
+            
+          )}
         </div>
-        ) : (<div>Se ha acabado</div>) 
-        }
-        
       </React.Fragment>
     )
   }
