@@ -11,8 +11,10 @@ export default class LoadScreen extends Component {
         return (
             <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <Countdown 
+                    className="generalTitle"
                     onComplete={handleGameStart}
-                    date={Date.now() + 5000}/>
+                    date={Date.now() + 5000}
+                    />
             </div>
         );
     }
