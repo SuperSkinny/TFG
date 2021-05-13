@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default class GameComponent extends Component {
 
     render() {
-        const { gameModeQuestion, onGameGoBack, onResponsePress } = this.props;
+        const { gameModeQuestion, onGameGoBack, onResponsePress, lifeBar } = this.props;
         console.log(gameModeQuestion)
         if (!gameModeQuestion){
             return null;
@@ -51,7 +51,7 @@ export default class GameComponent extends Component {
                 </div>
                 
                 <div className="progressBarContainer">
-                    <div className="progressBar" style={{ width: "25%" }} ></div>
+                    <div className="progressBar" style={{ width: `${lifeBar}%` }} ></div>
                 </div>
                 <div style={ { marginTop: 30 } }>
                     <button 
