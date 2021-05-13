@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useHistory} from 'react-router-dom'
-import { model } from '../api/model';
+import model from '../api/model';
 
 function LoginForm(){
     const [details, setDetails] = useState({email: "", pass: ""});
@@ -13,10 +13,11 @@ function LoginForm(){
         model.checkIfEmailExists(details.email).then(response => {
             if(response === true){ 
                 errors.error = "no estás registrado"
-                alert('no estás registrado')
+                alert('estas registrado')
                 history.push('/registration')
             }
             else{
+                alert('no estas registrado')
                 model.getUserByEmailAndPassword(details.email, details.pass)
                 history.push('/home')   // hay que gestionar el inicio de sesión en algún momento para ir a home con la sesión iniciada
             }

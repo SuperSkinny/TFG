@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import model, { checkIfEmailExists } from '../api/model'
+import model from '../api/model'
 import {useHistory} from 'react-router-dom'
 
 
