@@ -101,6 +101,12 @@ html, body {
   padding-left: 25px;
 }
 
+.userPoints {
+  padding-left: 25px;
+  font-weight: bold;
+  color: #E06482;
+}
+
 .progressBarContainer {
   margin-top: 20px;
   height: 20px;
