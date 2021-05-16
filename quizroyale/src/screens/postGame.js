@@ -5,6 +5,8 @@ import '../assets/styles/styles.css'
 
 export default class PostGame extends Component {
   render() {
+    const { gameModeName, points } = this.props
+
     return (
       <div  style={ { display: "flex", justifyContent: 'center' }}>
 
@@ -17,7 +19,7 @@ export default class PostGame extends Component {
           <div style={ { display: "flex", flexDirection: "row", marginBottom: 20 }}>
             <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
                 <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
-                <div className="cardResult" >235</div>
+                <div className="cardResult" >{points}</div>
             </div>
             <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginLeft: 20 }}>
                 <span className="cardTitle" style={ { marginBottom: 8 } }>Tiempo</span>

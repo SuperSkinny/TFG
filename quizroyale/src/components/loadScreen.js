@@ -13,7 +13,7 @@ export default class LoadScreen extends Component {
                 <Countdown 
                     className="generalTitle"
                     onComplete={handleGameStart}
-                    date={Date.now() + 5000}
+                    date={Date.now() + 3000}
                     />
             </div>
         );
