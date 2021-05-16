@@ -98,7 +98,7 @@ export default class Game extends Component {
     return (
       <React.Fragment>
         <div>
-          { !gameStarted && !gameEnded && questions_answers.length && (
+          { !gameStarted && !gameEnded && !!questions_answers.length && (
             <LoadScreen
               handleGameStart={ () => this.handleGameStart()}
             />
