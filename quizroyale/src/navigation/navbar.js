@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
+import { Button }  from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import LoginForm from '../components/login'
+import Registration from '../components/registration'
 
 
 const Navbar = props => {
   const [ isNavCollapsed, setIsNavCollapsed ] = useState( true );
+  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow2, setModalShow2] = React.useState(false);
+ 
 
   const handleNavCollapse = () => {
     setIsNavCollapsed(!isNavCollapsed);
@@ -30,10 +36,29 @@ const Navbar = props => {
             </li>
           
             <li className="nav-item" >
-              <Link className="nav-link" aria-current="page" to={'/login'} >Iniciar sesión</Link>
+            <Link
+              className="nav-link"
+              onClick={() => setModalShow(true)}
+            >
+              Iniciar sesión
+            </Link>
+            <LoginForm
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to={'/registration'}>Registro</Link>
+              <Link 
+                className="nav-link" 
+                onClick={() => setModalShow2(true)}
+              >
+                Registro
+              </Link>
+              <Registration
+                show={modalShow2}
+                onHide={() => setModalShow2(false)}
+              />
+
             </li>
           </ul>
         </div>

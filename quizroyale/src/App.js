@@ -49,9 +49,6 @@ function App() {
                     <Route path={"/profile"} >
                         <Profile />
                     </Route>
-                    <Route path={"/countdown"} >
-                        <Countdown />
-                    </Route>
                     <Route path={"/preGame"}>
                         <PreGame />
                     </Route>

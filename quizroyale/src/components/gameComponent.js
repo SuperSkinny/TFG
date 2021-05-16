@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from "react-router-dom";
+import Countdown from 'react-countdown';
 
 export default class GameComponent extends Component {
 
@@ -17,6 +18,9 @@ export default class GameComponent extends Component {
 
         return (
             <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <div>
+                    <Countdown></Countdown>
+                </div>
                 <div>
                     <span className="generalTitle" >
                         {gameModeQuestion.question}

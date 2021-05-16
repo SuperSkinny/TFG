@@ -24,8 +24,10 @@ function Countdown() {
     }
     
     return(
-        <div onLoad = {handleCountdown}>
-            {num}
+        <div onLoad =  {handleCountdown}>
+            <span className="generalTitle">
+                {num}
+            </span>
         </div>
     )
 }
