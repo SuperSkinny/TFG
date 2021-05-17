@@ -188,22 +188,26 @@ function newContact(name, email, issue, text) {
  * @param {String} category 
  * @returns {Array}
  */
-async function getAllScoresOfACategory(category) {
+async function getBestThreeScoresOfACategory(category) {
     let scores = []
     
     const Score = Parse.Object.extend('Scores')
     const queryGetAllScoresOfACategory = new Parse.Query(Score)
 
     queryGetAllScoresOfACategory.equalTo('category', category)
-    queryGetAllScoresOfACategory.descending('updatedAt')
-    queryGetAllScoresOfACategory.addDescending('average_time')
+    queryGetAllScoresOfACategory.descending('score')
+    queryGetAllScoresOfACategory.addAscending('average_time')
 
     try {
         const response = await queryGetAllScoresOfACategory.find()
 
         if (response.length !== 0) {
+            var contador = 1
             response.forEach(score => {
-                scores.push(score.toJSON())
+                if (contador <= 3) {
+                    scores.push(score.toJSON())
+                    contador++
+                }
             })
         } else {
             return null
@@ -465,7 +469,7 @@ exports.changeUserNickname = changeUserNickname
 exports.changeUserPassword = changeUserPassword
 exports.changeUserPicture = changeUserPicture
 exports.newContact = newContact
-exports.getAllScoresOfACategory = getAllScoresOfACategory
+exports.getBestThreeScoresOfACategory = getBestThreeScoresOfACategory
 exports.getAllScoresOfUser = getAllScoresOfUser
 exports.setNewScore = setNewScore
 exports.getCategories = getCategories
