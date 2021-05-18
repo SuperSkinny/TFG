@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import model from '../api/model'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/styles/styles.css'
+import { Link } from "react-router-dom";
 
 import GameModeComponent from '../components/gameModeComponent';
 import Game from '../screens/game';
@@ -53,6 +54,20 @@ export default class PreGame extends Component {
               <span className="generalTitle" >
                 La suerte sonrie a los valientes...
               </span>
+            </div>
+            <div style={ {  } }>
+              <Link 
+                to={"/"}
+                type="button" 
+                className="playButton"
+                style={ {  marginTop: 25, marginBottom: 30, maxWidth: 150, textDecoration: "none" } }
+                // onClick={ () => {
+                //   onPress()
+                //   console.log("A JUGAR!")
+                // }}
+              >
+                Salir
+              </Link>
             </div>
           </div>
         ) : (

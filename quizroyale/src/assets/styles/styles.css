@@ -5,7 +5,8 @@ html, body {
 }
 
 #root {
-  height: calc( 100% - 56px);
+  /* height: calc( 100% - 56px); */
+  height: 100%;
 }
 
 

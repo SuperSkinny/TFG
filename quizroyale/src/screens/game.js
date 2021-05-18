@@ -122,6 +122,7 @@ export default class Game extends Component {
             <PostGame
               gameModeName={gameModeName}
               points={points}
+              onGameGoBack={onGameGoBack}
             />
           )}
         </div>

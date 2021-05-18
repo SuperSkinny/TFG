@@ -5,8 +5,16 @@ import RankingComponent from '../components/rankingComponent';
 
 
 export default class PostGame extends Component {
+
+    
     render() {
-        const { gameModeName, points } = this.props
+        const { gameModeName, points, onGameGoBack } = this.props
+        let msg;
+        if ( points <= 1 ) {
+            msg = "Para ser un novato no lo has hecho nada mal..."
+        }else{
+            msg = "Enhorabuena! Has roto el marcador!"
+        }
 
         return (
             <div  style={ { display: "flex", justifyContent: 'center' }}>
@@ -14,7 +22,7 @@ export default class PostGame extends Component {
                 <div style={ { display: "flex", flexDirection: "column", alignItems: "center", width: 700, marginLeft:14, marginRight: 14 }}>
                     <div>
                         <span className="generalTitle" >
-                            Para ser un novato no lo has hecho nada mal...
+                            {msg}
                         </span>
                     </div>
                     <div style={ { display: "flex", flexDirection: "row", marginBottom: 20 }}>
@@ -29,7 +37,20 @@ export default class PostGame extends Component {
                     </div>   
                     <RankingComponent
                         category={gameModeName}
-                    />   
+                    />  
+                    <div style={ { marginTop: 30 } }>
+                    <button 
+                        type="button" 
+                        className="generalButton"
+                        onClick={ () => {
+                            // TODO: hay que resetear el juego aquí cuando salimos
+                            //console.log("SALIR A PREGAME")
+                            onGameGoBack()
+                        }}
+                    >
+                        Salir
+                    </button>
+                </div> 
                 </div>
             </div>
         )

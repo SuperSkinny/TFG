@@ -5,7 +5,7 @@ export default class RankingComponent extends Component {
 
     render() {
         const { category } = this.props;
-
+        // console.log("el location este: "+ this.props.location)
         return (
             <div style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>
                 <span className="cardTitle" style={{ marginTop: 10}}>
