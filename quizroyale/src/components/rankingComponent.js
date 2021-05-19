@@ -4,12 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export default class RankingComponent extends Component {
 
     render() {
-        const { category } = this.props;
-        // console.log("el location este: "+ this.props.location)
+        const { scores } = this.props;
+
+        if (!scores){
+            return null;
+        }
+
         return (
             <div style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>
                 <span className="cardTitle" style={{ marginTop: 10}}>
-                    {category}
+                    { scores[0].category }
                 </span>          
                 <div  className="tableResult">
                     
@@ -20,10 +24,10 @@ export default class RankingComponent extends Component {
                         </span>
                         </div>
                         <span className="userName">
-                        Guillermo Piñero
+                            XD
                         </span>
                         <span className="userPoints">
-                        7635
+                            { scores[0].score }
                         </span>
                     </div>
                     <div className="row">
@@ -36,7 +40,7 @@ export default class RankingComponent extends Component {
                         Guillermo Piñero
                         </span>
                         <span className="userPoints">
-                        765
+                            { scores[1].score }
                         </span>
                     </div>
                     <div className="row">
@@ -49,7 +53,7 @@ export default class RankingComponent extends Component {
                         Guillermo Piñero
                         </span>
                         <span className="userPoints" style={{display: "flex", alignSelf: "flex-end"}}>
-                        635
+                            { scores[2].score }
                         </span>
                     </div>
                     <div style={ { display: "flex", justifyContent: "center", alignItems: "center", height: 25 } }>
