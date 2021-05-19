@@ -10,9 +10,11 @@ export default class PostGame extends Component {
     render() {
         const { gameModeName, points, onGameGoBack } = this.props
         let msg;
-        if ( points <= 1 ) {
+        if ( points <= 7 ) {
+            msg = "Más suerte la próxima vez, si te atreves..."
+        } else if ( points > 7 && points <= 14) {
             msg = "Para ser un novato no lo has hecho nada mal..."
-        }else{
+        } else if ( points > 14 ) {
             msg = "Enhorabuena! Has roto el marcador!"
         }
 
