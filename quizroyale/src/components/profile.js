@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import model, { checkIfEmailExists } from '../api/model'
+import model, { checkIfEmailExists, getUserByEmailAndPassword } from '../api/model'
 import {useHistory} from 'react-router-dom'
 
 
 function Profile(){
-    const [details, setDetails] = useState({nickname:"", email: "", pass: "", pass2: ""})
-    const [errors] = useState({errorNickname:"", email: "", pass: "", pass2: ""})
+    const [details, setDetails] = useState({nickname:"", email: "", oldPass: "", pass: "", pass2: ""})
+    const [errors] = useState({errorNickname:"", email: "", oldPass: "", pass: "", pass2: ""})
     const uploadedImage = React.useRef(null)
     const imageUploader = React.useRef(null)
     const nicknamePattern = /^[A-Za-z\d]{2,15}$/
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
     const passPattern = /^[\S]{6,20}$/
     let history = useHistory()
+    let setImage = false
+    let image
+
+    const user = getUserByEmailAndPassword('christian@quizroyale.com', '123456').then()
     
     
     const nicknameCheckHandler = (e) => {
@@ -27,6 +31,12 @@ function Profile(){
               
     }
 
+    const oldPassCheckHandler = (e) => {
+       
+            setDetails({...details, oldPass: e.target.value})
+               
+    }
+    
     const passCheckHandler = (e) => {
        
             setDetails({...details, pass: e.target.value})
@@ -47,76 +57,93 @@ function Profile(){
           current.file = file;
           reader.onload = e => {
             current.src = e.target.result;
+            image = file
+            setImage = true
           };
+          
           reader.readAsDataURL(file);
+          
+          
         }
       };
 
     const submitHandler = (e) => {
-        e.preventDefault();
-        e.target.className += " was-validated"
-        console.log("details", details)       
-        
-        if(details.nickname === ""){
-            /*setErrors({...errors, errorNickname: "Debes introducir un nickname."})*/
-            errors.errorNickname = "Debes introducir un nickname"
-            console.log("nickname = vacio", errors)
-        }
-        else if(!details.nickname.match(nicknamePattern)){
-            //setErrors({...errors, errorNickname: "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."})
-            errors.errorNickname = "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."
-            console.log("nickname = no cumple patrón")
-        }
-        else{
-            //setErrors({...errors, nickname: ""})
-            errors.errorNickname = ""
-            console.log("no hay error")
-        }
+         getUserByEmailAndPassword('christian@quizroyale.com', '123456').then(user =>{
+              console.log(user)
 
-        if(details.email === ""){
-           errors.email= "Debes introducir un correo electrónico."
-        }
-        else if(!details.email.match(emailPattern)){
-            errors.email = "El formato del correo electrónico no es válido."
-        }
-        else{
-            errors.email = ""
-        }
 
-        if(details.pass === ""){
-            errors.pass = "Debes introducir una contraseña."
-        }
-        else if(!details.pass.match(passPattern)){
-            errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
-        }
-        else{
-            errors.pass = ""
-        }
+              //e.preventDefault();
+              e.target.className += " was-validated"
+              
+              
+              if(!details.nickname.match(nicknamePattern)){
+                  //setErrors({...errors, errorNickname: "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."})
+                  errors.errorNickname = "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."
+                  console.log("nickname = no cumple patrón")
+              }
+              else{
+                  //setErrors({...errors, nickname: ""})
+                  errors.errorNickname = ""
+                  console.log("no hay error")
+              }
+      
+              if(!details.email.match(emailPattern)){
+                  errors.email = "El formato del correo electrónico no es válido."
+              }
+              else{
+                  errors.email = ""
+              }
+      
+              if(!details.pass.match(passPattern)){
+                  errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
+              }
+              else{
+                  errors.pass = ""
+              }
+      
+              if(details.pass2 === ""){
+                  errors.pass2 = "Por favor, repite la contraseña."
+              }
+              else if(details.pass2 !== details.pass){
+                  errors.pass2 = "La contraseña no coincide."
+              }
+              else{
+                  errors.pass2 = ""
+              }
+              console.log("errors: ", errors)
+      
+              if(e.target.checkValidity()){
+                 
+                  if(details.nickname !== ''){
+                      model.changeUserNickname(user.objectId, details.nickname)
+                  }
+                  
+                  if(details.email !== '' ){
+                       model.checkIfEmailExists(details.email).then(response => {
+                          if (response === true) {
+                              alert("maquina, este correo no vale porque ya está registrado")
+                              
+                          }
+                          else {
+                              console.log("correo cambiado"); 
+                              model.changeUserEmail(user.objectId, details.email)
+                          }
+                      })
+                  }
+                  
+                  if(details.pass !== '' && details.pass === details.pass2 && details.oldPass === user.password ){
+                      model.changeUserPassword(user.objectId, details.pass)
+                  }
+      
+                  if(setImage === true){
+                      model.changeUserPicture(user.objectId, image)
+                  }
+              }
 
-        if(details.pass2 === ""){
-            errors.pass2 = "Por favor, repite la contraseña."
-        }
-        else if(details.pass2 !== details.pass){
-            errors.pass2 = "La contraseña no coincide."
-        }
-        else{
-            errors.pass2 = ""
-        }
-        console.log("errors: ", errors)
 
-        if(e.target.checkValidity()){
-            model.checkIfEmailExists(details.email).then(response => {
-                if (response === true) {
-                    alert("maquina, este correo no vale porque ya está registrado")
-                    
-                }
-                else {
-                    console.log("correo cambiado"); 
-                    model.changeUserEmail()
-                    history.push('/home')
-                }
+
             })
-        }
+        
     };
 
     
@@ -228,7 +255,7 @@ function Profile(){
                             maxLength="20"
                             pattern="[\S]{6,20}"
                             required
-                            onChange={passCheckHandler}
+                            onChange={oldPassCheckHandler}
                             style={ { borderRadius: 15 }}
                         />
                     </div>
