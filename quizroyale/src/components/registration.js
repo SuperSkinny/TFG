@@ -96,24 +96,13 @@ function Registration(props) {
         if(e.target.checkValidity()){
             model.checkIfEmailExists(details.email).then(response => {
                 if (response === true) {
-                    setModalShow2(true)
-                    return(
-                        <LoginForm
-                            show={modalShow2}
-                            onHide={() => setModalShow2(false)}
-                        />
-                    )
+                    props.onFail()
+                   
                 }
                 else {
                     model.newUser( details.email, details.pass, details.nickname );
-                    setModalShow(true)
-                    return(
-                        <UserRegistered
-                            show={modalShow}
-                            onHide={() => setModalShow(false)}
-                        />
-                    )
-                    
+                    props.onSuccess()
+                  
                                    
                 }
             })

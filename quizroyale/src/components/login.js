@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useHistory} from 'react-router-dom'
-import { model } from '../api/model';
+import model from '../api/model';
 import  { Modal } from 'react-bootstrap';
 
 function LoginForm(props){
@@ -14,12 +14,13 @@ function LoginForm(props){
         model.checkIfEmailExists(details.email).then(response => {
             if(response === true){ 
                 errors.error = "no estás registrado"
-                alert('no estás registrado')
-                history.push('/registration')
+                alert('login')
+                model.getUserByEmailAndPassword(details.email, details.pass)
             }
             else{
-                model.getUserByEmailAndPassword(details.email, details.pass)
-                history.push('/home')   // hay que gestionar el inicio de sesión en algún momento para ir a home con la sesión iniciada
+                alert('no login')
+                
+                //history.push('/home')   // hay que gestionar el inicio de sesión en algún momento para ir a home con la sesión iniciada
             }
         })
         

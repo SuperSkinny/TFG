@@ -12,25 +12,19 @@ function UserRegistered(props) {
     }
 
     return (
-        <Modal
+    <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
     >
-        <Modal.Body>
+        <Modal.Header closeButton>
             <div className="container">
-                <span>Registrado con éxito</span>
+                <span className="cardTitle">
+                    Registrado con éxito
+                </span>
             </div>
-            <div className="container">
-                <Button
-                    variant="success"
-                    onClick={clickHandler}
-                >
-                    Ir al inicio
-                </Button>
-            </div>
-        </Modal.Body>
+        </Modal.Header>
     </Modal>
     )
 }

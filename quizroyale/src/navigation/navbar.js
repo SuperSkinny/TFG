@@ -4,13 +4,24 @@ import { Button }  from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import LoginForm from '../components/login'
 import Registration from '../components/registration'
+import UserRegistered from '../components/userRegistered'
 
 
 const Navbar = props => {
   const [ isNavCollapsed, setIsNavCollapsed ] = useState( true );
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
+  const [modalShow3, setModalShow3] = React.useState(false);
  
+  const toggleModal1 = () => {
+    setModalShow2(false)
+    setModalShow3(true)
+  }
+
+  const toggleModal2 = () => {
+    setModalShow2(false)
+    setModalShow(true)
+  }
 
   const handleNavCollapse = () => {
     setIsNavCollapsed(!isNavCollapsed);
@@ -36,27 +47,33 @@ const Navbar = props => {
             </li>
           
             <li className="nav-item" >
-            <Link
+            <button
               className="nav-link"
               onClick={() => setModalShow(true)}
             >
               Iniciar sesión
-            </Link>
+            </button>
             <LoginForm
               show={modalShow}
               onHide={() => setModalShow(false)}
             />
             </li>
             <li className="nav-item">
-              <Link 
+              <button 
                 className="nav-link" 
                 onClick={() => setModalShow2(true)}
               >
                 Registro
-              </Link>
+              </button>
               <Registration
                 show={modalShow2}
                 onHide={() => setModalShow2(false)}
+                onSuccess={toggleModal1}
+                onFail={toggleModal2}
+              />
+              <UserRegistered
+                show={modalShow3}
+                onHide={() => setModalShow3(false)}
               />
 
             </li>
