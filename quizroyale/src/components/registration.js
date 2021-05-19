@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'react-bootstrap'
 import model, { checkIfEmailExists } from '../api/model'
 import {useHistory} from 'react-router-dom'
+import UserRegistered from './userRegistered'
+import LoginForm from './login'
 
 
 function Registration(props) {
@@ -12,7 +14,8 @@ function Registration(props) {
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
     const passPattern = /^[\S]{6,20}$/
     let history = useHistory()
-    const mailDePrueba = 'test@quizroyale.com'
+    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow2, setModalShow2] = React.useState(false);
     
     const nicknameCheckHandler = (e) => {
                   
@@ -93,13 +96,25 @@ function Registration(props) {
         if(e.target.checkValidity()){
             model.checkIfEmailExists(details.email).then(response => {
                 if (response === true) {
-                    alert("maquina ya estás registrado")
-                    history.push('/login')
+                    setModalShow2(true)
+                    return(
+                        <LoginForm
+                            show={modalShow2}
+                            onHide={() => setModalShow2(false)}
+                        />
+                    )
                 }
                 else {
-                    console.log("Usuario registrado"); 
                     model.newUser( details.email, details.pass, details.nickname );
-                    history.push('/home')
+                    setModalShow(true)
+                    return(
+                        <UserRegistered
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                    )
+                    
+                                   
                 }
             })
         }
