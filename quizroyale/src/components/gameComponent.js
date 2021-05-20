@@ -1,37 +1,78 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link } from "react-router-dom";
-import Countdown from 'react-countdown';
 
 export default class GameComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            // modalOpen: false,
+            classAnswer: "gameButton",
+        }
+      }
+
+
+    handleOpen() {
+        console.log("Modal accionado");
+        this.setState({ 
+          modalOpen: true, 
+        }
+        ,() => {setTimeout(() => this.handleClose(), 2000)}
+        );
+    };
+
+    handleClose() {
+        this.setState({ 
+            classAnswer: "gameButton",
+        });
+    };
+
+    handleResponse(answer) {
+        console.log("Entra aquí?: "+ answer)
+        if (answer === true) {
+            console.log("Es correcta")
+            this.setState({
+                classAnswer: "gameButtonCorrect",
+                },
+                () => {setTimeout(() => this.handleClose(), 2000)}
+            );
+        } else {
+            console.log("NO Es correcta")
+            this.setState({
+                classAnswer: "gameButtonFail"},
+                () => {setTimeout(() => this.handleClose(), 2000)}
+            ); 
+        }
+    }
 
     render() {
         const { gameModeQuestion, onGameGoBack, onResponsePress, lifeBar } = this.props;
+        
         console.log(gameModeQuestion)
         if (!gameModeQuestion){
             return null;
         }
-
-        // const { question } = gameModeQuestion;
         
-        // let answerStyle = false;
+        
+        
 
         return (
-            <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <div>
-                    <Countdown></Countdown>
-                </div>
+            <div style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                
                 <div>
                     <span className="generalTitle" >
                         {gameModeQuestion.question}
                     </span>
                 </div>
+                {/* {this.state.modalOpen && (
+                    <div className="gameButton" style={{backgroundColor: "lightGreen", color: "white"}}>MAMARRACHOOOOO</div>
+                ) } */}
                 <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                     <button 
                         onClick={ ()=> {
                             onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question)
+                            this.handleResponse(gameModeQuestion.answer1.correct)
                         }}
-                        className="gameButton"
+                        className={`${this.state.classAnswer}`}
                         // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
                     >
                         {gameModeQuestion.answer1.answer} 
@@ -39,16 +80,18 @@ export default class GameComponent extends Component {
                     <button
                         onClick={ ()=> {
                             onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question)
+                            this.handleResponse(gameModeQuestion.answer2.correct)
                         }} 
-                        className="gameButton" 
+                        className={`${this.state.classAnswer}`} 
                     >
                         {gameModeQuestion.answer2.answer}
                     </button>
                     <button
                         onClick={ ()=> {
                             onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question)
+                            this.handleResponse(gameModeQuestion.answer3.correct)
                         }} 
-                        className="gameButton" 
+                        className={`${this.state.classAnswer}`} 
                     >
                         {gameModeQuestion.answer3.answer}
                     </button>
