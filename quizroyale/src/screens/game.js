@@ -12,7 +12,7 @@ export default class Game extends Component {
         super(props);
         this.state = { 
         questions_answers: [],
-        points: 0,
+        // points: 0,
         lifeBar: 100,
         gameStarted: false,
         gameEnded: false,
@@ -78,8 +78,8 @@ export default class Game extends Component {
     
     
     render() {
-        const { onGameGoBack, gameModeName } = this.props;
-        const { questions_answers, points, gameStarted, gameEnded, lifeBar, spinner } = this.state;
+        const { onGameGoBack, gameModeName, points } = this.props;
+        const { questions_answers, gameStarted, gameEnded, lifeBar, spinner } = this.state;
 
         console.log('Primer render')
 
@@ -88,42 +88,43 @@ export default class Game extends Component {
         
         return (
         <React.Fragment>
-            <div className="content" style={ { display: "flex", justifyContent: "center", alignItems: 'center' }}>
-            { spinner && (
-                <div className="spinner-grow text-secondary" role="status">
-                <span className="sr-only">Loading...</span>
-                </div>
-                // <div className="spinner-border text-secondary" role="status">
-                //   <span className="sr-only">Loading...</span>
-                // </div>
-            )}
-            { !gameStarted && !gameEnded && !!questions_answers.length && (
-                <LoadScreen
-                    handleGameStart={ () => this.handleGameStart()}
-                />
-            )}
-            { gameStarted && !gameEnded  && (
-                <div>
-                <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
-                    <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
-                    <div className="cardResult" >{points}</div>
-                </div>
-                <GameComponent
-                    gameModeQuestion={questionAndAnswers}
-                    lifeBar={lifeBar}
-                    // TODO: hay que resetear el juego aquí cuando salimos
+            <div className="componentContent" >
+                { spinner && (
+                    <div className="spinner-grow text-secondary" role="status">
+                    <span className="sr-only">Loading...</span>
+                    </div>
+                    // <div className="spinner-border text-secondary" role="status">
+                    //   <span className="sr-only">Loading...</span>
+                    // </div>
+                )}
+                { !gameStarted && !gameEnded && !!questions_answers.length && (
+                    <LoadScreen
+                        handleGameStart={ () => this.handleGameStart()}
+                    />
+                )}
+                { gameStarted && !gameEnded  && (
+                    <div>
+                    {/* <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
+                        <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
+                        <div className="cardResult" >{points}</div>
+                    </div> */}
+                    <GameComponent
+                        gameModeQuestion={questionAndAnswers}
+                        lifeBar={lifeBar}
+                        // TODO: hay que resetear el juego aquí cuando salimos
+                        onGameGoBack={onGameGoBack}
+                        onResponsePress={ (answer, question) => this.handleResponse(answer, question)}
+                        points={points}
+                    />
+                    </div>
+                )}
+                { !gameStarted && gameEnded && (
+                    <PostGame
+                    gameModeName={gameModeName}
+                    points={points}
                     onGameGoBack={onGameGoBack}
-                    onResponsePress={ (answer, question) => this.handleResponse(answer, question)}
-                />
-                </div>
-            )}
-            { !gameStarted && gameEnded && (
-                <PostGame
-                gameModeName={gameModeName}
-                points={points}
-                onGameGoBack={onGameGoBack}
-                />
-            )}
+                    />
+                )}
             </div>
         </React.Fragment>
         )

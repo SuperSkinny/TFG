@@ -19,66 +19,49 @@ import Footer from './components/footer';
 import PreGame from './screens/preGame';
 import Game from './screens/game';
 import PostGame from './screens/postGame';
-import Countdown from './components/countdown';
 
 
 function App() {
-    // console.log("el site d elos huevos"+site)
-    // const withNavBar = () => {
-        
-    //     if ( site !== "/tutorial" || site === "/home" ) {
-    //         return (
-    //             <Navbar />
-    //         )
-    //     }else{
-    //         return null;
-    //     }
-    // }
+    
     return (
         <MemoryRouter>
             <Router >
-                {/* {withNavBar()} */}
-                
                 <div className="content">
                     <Switch>
-                        <Route path={"/tutorial"}>
+                        <Route exact path={"/tutorial"}>
                             <Navbar />
-                            <Tutorial
-                                site={"/tutorial"}
-                            />
+                            <Tutorial/>
                         </Route>
-                        <Route path={"/ranking"}>
+                        <Route exact path={"/ranking"}>
                             <Navbar />  
                             <Ranking />
                         </Route>
-                        <Route path={"/contact"}>
+                        <Route exact path={"/contact"}>
                             <Navbar />
                             <Contact />
                         </Route>
-                        <Route path={"/login"} >
+                        {/* <Route exact path={"/login"} >
                             <LoginForm />
-                        </Route>
-                        <Route path={"/registration"} >
+                        </Route> */}
+                        {/* <Route exact path={"/registration"} >
                             <Registration />
-                        </Route>
-                        <Route path={"/profile"} >
+                        </Route> */}
+                        <Route exact path={"/profile"} >
                             <Navbar />
                             <Profile />
                         </Route>
-                        <Route path={"/preGame"}>
+                        <Route exact path={"/preGame"}>
                             <PreGame />
                         </Route>
-                        <Route path={"/game"}>
+                        {/* <Route exact path={"/game"}>
                             <Game />
-                        </Route>
-                        <Route path={"/postGame"}>
+                        </Route> */}
+                        {/* <Route exact path={"/postGame"}>
                             <PostGame />
-                        </Route>
-                        <Route site={"/tutorial"} path={"/"} >
-                        {/* <div className="content"> */}
+                        </Route> */}
+                        <Route path={"/"} >
                             <Navbar />
                             <Home />
-                        {/* </div> */}
                         </Route>
                     </Switch>
                 </div>

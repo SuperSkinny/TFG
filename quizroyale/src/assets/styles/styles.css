@@ -1,11 +1,19 @@
 
 /* GENERAL -------------------------------------- */ 
-html, body {
+html {
+  height: 100%;
+  /* max-height: 100vh; */
+}
+
+body {
+  
+  /* max-height: 100vh;  */
   height: 100%;
 }
 
 #root {
   /* height: calc( 100% - 56px); */
+  /* max-height: 100vh; */
   height: 100%;
 }
 
@@ -225,15 +233,51 @@ html, body {
 
 /* CONTENT -------------------------------------- */ 
 
-.content {
-  height: 100%;
+
+@media only screen and (min-width: 811px) { 
+  .content {
+    height: 100%;
+  }
+  .componentContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  } 
+
+  .columnContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 }
 
+@media only screen and (max-width: 810px) {
+  /* For tablets: */
+  .content {
+    min-height:100vh;
+    position:relative;
+  }
+  .componentContent {
+    display: flex;
+    justify-content: center;
+  }
+  .columnContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 
 
 /* FOOTER -------------------------------------- */ 
 /* footer {
+
+  align-self: flex-end;
   position: absolute;
   bottom: 0;
   width: 100%;
