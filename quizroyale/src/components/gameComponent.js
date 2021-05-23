@@ -7,6 +7,7 @@ export default class GameComponent extends Component {
         this.state = {
             ifAnswer: false,
             points: 0,
+            lifeBar: 100,
         }
       }
 
@@ -44,7 +45,9 @@ export default class GameComponent extends Component {
     //     }
     // }
 
-    handelResponse(answer) {
+    handleResponse(answer) {
+        const { onResponsePress, gameModeQuestion } = this.props
+        console.log('Aqui se resta vida o se suma puntos')
         if (answer === true) {
             this.setState({ 
                 ifAnswer: true,
@@ -53,9 +56,11 @@ export default class GameComponent extends Component {
         } else {
             console.log("respuesta incorrecta")
             this.setState({ 
-                ifAnswer: true, 
+                ifAnswer: true,
+                lifeBar: this.state.lifeBar - 25,
             }, () => {setTimeout(() => this.handleRestart(), 2000)})
         }
+        onResponsePress(gameModeQuestion.question, this.state.points, this.state.lifeBar)
     }
 
     handleAnswerOne() {
@@ -86,7 +91,7 @@ export default class GameComponent extends Component {
     }
 
     render() {
-        const { gameModeQuestion, onGameGoBack, onResponsePress, lifeBar } = this.props;
+        const { gameModeQuestion, onGameGoBack, onResponsePress } = this.props;
         
         console.log(gameModeQuestion)
         if (!gameModeQuestion){
@@ -110,9 +115,8 @@ export default class GameComponent extends Component {
                 <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                     <button 
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question)
+                            this.handleResponse(gameModeQuestion.answer1.correct)
                             // this.handleResponse(gameModeQuestion.answer1.correct)
-                            this.handelResponse(gameModeQuestion.answer1.correct)
                         }}
                         className={( this.state.ifAnswer ? `${this.handleAnswerOne()}` : "gameButton")}
                         // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
@@ -121,9 +125,9 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question)
+                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question, this.state.lifeBar)
                             // this.handleResponse(gameModeQuestion.answer2.correct)
-                            this.handelResponse(gameModeQuestion.answer2.correct)
+                            this.handleResponse(gameModeQuestion.answer2.correct)
                         }} 
                         // className={`${this.state.classAnswer}`}
                         className={( this.state.ifAnswer ? `${this.handleAnswerTwo()}` : "gameButton")} 
@@ -132,9 +136,9 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question)
+                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question, this.state.lifeBar)
                             // this.handleResponse(gameModeQuestion.answer3.correct)
-                            this.handelResponse(gameModeQuestion.answer3.correct)
+                            this.handleResponse(gameModeQuestion.answer3.correct)
                         }} 
                         className={( this.state.ifAnswer ? `${this.handleAnswerThree()}` : "gameButton")} 
                     >
@@ -143,7 +147,7 @@ export default class GameComponent extends Component {
                 </div>
                 
                 <div className="progressBarContainer">
-                    <div className="progressBar" style={{ width: `${lifeBar}%` }} ></div>
+                    <div className="progressBar" style={{ width: `${this.state.lifeBar}%` }} ></div>
                 </div>
                 <div style={ { marginTop: 30 } }>
                     <button 

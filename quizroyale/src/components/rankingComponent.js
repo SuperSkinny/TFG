@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import model from '../api/model';
 
 export default class RankingComponent extends Component {
 
-    render() {
-        const { scores } = this.props;
+    constructor(props) {
+        super(props);
 
-        if (!scores){
-            return null;
+        this.state = { 
+            scores: [],
         }
+    }
+
+    async componentDidMount() {
+        this.setState({
+            scores: await model.getBestThreeScoresOfACategory(this.props.gameModeName),
+        })
+    }
+
+    render() {
+        const { scores } = this.state
 
         return (
+            <>
+            {!!scores.length && (
             <div style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>
                 <span className="cardTitle" style={{ marginTop: 10}}>
                     { scores[0].category }
@@ -24,7 +37,7 @@ export default class RankingComponent extends Component {
                         </span>
                         </div>
                         <span className="userName">
-                            XD
+                            { scores[0].name }
                         </span>
                         <span className="userPoints">
                             { scores[0].score }
@@ -37,7 +50,7 @@ export default class RankingComponent extends Component {
                         </span>
                         </div>
                         <span className="userName">
-                        Guillermo Piñero
+                            { scores[1].name }
                         </span>
                         <span className="userPoints">
                             { scores[1].score }
@@ -50,7 +63,7 @@ export default class RankingComponent extends Component {
                         </span>
                         </div>
                         <span className="userName">
-                        Guillermo Piñero
+                            { scores[2].name }
                         </span>
                         <span className="userPoints" style={{display: "flex", alignSelf: "flex-end"}}>
                             { scores[2].score }
@@ -74,6 +87,8 @@ export default class RankingComponent extends Component {
                     </div>
                 </div>  
             </div>
+            )}
+            </>
         );
     }
 }
