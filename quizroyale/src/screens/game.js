@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import model from '../api/model'
+import * as model from '../api/model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/styles/styles.css';
 import GameComponent from '../components/gameComponent';

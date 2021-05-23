@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import model from '../api/model';
+import * as model from '../api/model';
 
 export default class RankingComponent extends Component {
 

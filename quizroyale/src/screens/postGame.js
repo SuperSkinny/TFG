@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/styles/styles.css'
 import RankingComponent from '../components/rankingComponent';
-import model from '../api/model';
-
 
 export default class PostGame extends Component {
 
