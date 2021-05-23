@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import { MemoryRouter } from 'react-router'
 import Profile from './components/profile'
 import Contact from './screens/contact';
 import Home from './screens/home';
@@ -14,12 +13,10 @@ import Tutorial from './screens/tutorial';
 import Ranking from './screens/ranking';
 import Footer from './components/footer';
 import PreGame from './screens/preGame';
-import Game from './screens/game';
-import PostGame from './screens/postGame';
 import Landing from './screens/landing';
 import 'firebase/auth'
 import { useFirebaseApp, useUser } from 'reactfire'
-import { getAllQuestionsAndAnswersByCategory } from './api/model';
+
 
 function App() {
     

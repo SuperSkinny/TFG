@@ -8,7 +8,7 @@ export default class Tutorial extends Component {
   render() {
     return (
 
-      <div className="content" style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>  
+      <div  style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>  
         <div style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>
           <span className="homeTitle" >
             ¿Enserio?

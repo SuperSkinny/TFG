@@ -10,7 +10,7 @@ export default class Home extends Component {
     const { onPress } = this.props;
     
     return (
-      <div className="content" style={ { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" } }>
+      <div className="columnContent" >
         <span className="homeTitle" >¿Cuánto crees que sabes?</span>
         <span style={ { fontSize: 20, color: "#4F4F4F", textAlign: "center" } }>Compruébalo y deja tu marca en el ranking mundial.</span>
         <Link 

@@ -25,13 +25,20 @@ export default class PreGame extends Component {
     this.setState({gameModeName: gameModeName});
   }
 
+  handleText() {
+    var texts = [ "La suerte sonrie a los valientes...", "Igual no deberías...", "Inténtalo si te atreves"]
+    var randomText = Math.floor(Math.random() * texts.length)
+    return texts[randomText]
+  }
+
   render() {
     const { gameStarted, gameModeName, gameMode } = this.state
+    console.log("los textos: "+this.handleText())
 
     return (
       <React.Fragment>
         {!gameStarted ? (
-          <div className="content" style={ { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: 'center' }}>  
+          <div className="columnContent">  
             <div>
               <span className="generalTitle" >
                 Elije dificultad
@@ -52,7 +59,7 @@ export default class PreGame extends Component {
             </div>
             <div>
               <span className="generalTitle" >
-                La suerte sonrie a los valientes...
+                {this.handleText()}
               </span>
             </div>
             <div style={ {  } }>
