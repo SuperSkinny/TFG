@@ -1,30 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-import { Button }  from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import LoginForm from '../components/login'
-import Registration from '../components/registration'
-import UserRegistered from '../components/userRegistered'
-
+import 'firebase/auth'
+import { useFirebaseApp, useUser } from 'reactfire'
 
 const Navbar = props => {
   const [ isNavCollapsed, setIsNavCollapsed ] = useState( true );
-  const [modalShow, setModalShow] = React.useState(false);
-  const [modalShow2, setModalShow2] = React.useState(false);
-  const [modalShow3, setModalShow3] = React.useState(false);
- 
-  const toggleModal1 = () => {
-    setModalShow2(false)
-    setModalShow3(true)
-  }
-
-  const toggleModal2 = () => {
-    setModalShow2(false)
-    setModalShow(true)
-  }
+  const firebase = useFirebaseApp()
+  const user = firebase.auth().currentUser
 
   const handleNavCollapse = () => {
     setIsNavCollapsed(!isNavCollapsed);
+  }
+
+  const signOut = () => {
+    firebase.auth().signOut()
+
   }
 
   return (
@@ -45,39 +36,11 @@ const Navbar = props => {
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to={'/contact'}>Contacto</Link>
             </li>
-          
-            <li className="nav-item" >
-            <button
-              className="nav-link"
-              onClick={() => setModalShow(true)}
-            >
-              Iniciar sesión
-            </button>
-            <LoginForm
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-            </li>
             <li className="nav-item">
-              <button 
-                className="nav-link" 
-                onClick={() => setModalShow2(true)}
-              >
-                Registro
-              </button>
-              <Registration
-                show={modalShow2}
-                onHide={() => setModalShow2(false)}
-                onSuccess={toggleModal1}
-                onFail={toggleModal2}
-              />
-              <UserRegistered
-                show={modalShow3}
-                onHide={() => setModalShow3(false)}
-              />
-
+              <Link className="nav-link" aria-current="page" to={'../landing'} onClick={signOut}> Cerrar sesión </Link>
             </li>
           </ul>
+          <span>{user !== null ? (user.email) : ''}</span>
         </div>
       </div>
     </nav>

@@ -1,29 +1,32 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useHistory} from 'react-router-dom'
-import model from '../api/model';
 import  { Modal } from 'react-bootstrap';
+import 'firebase/auth'
+import { useFirebaseApp, useUser } from 'reactfire'
 
 function LoginForm(props){
     const [details, setDetails] = useState({email: "", pass: ""});
-    const [errors] = useState({error: ""})
-    let history = useHistory();
+    const [errors, setErrors] = useState();
+    const firebase = useFirebaseApp()
    
     const submitHandler = e => {
         e.preventDefault();
-        model.checkIfEmailExists(details.email).then(response => {
-            if(response === true){ 
-                errors.error = "no estás registrado"
-                alert('login')
-                model.getUserByEmailAndPassword(details.email, details.pass)
-            }
-            else{
-                alert('no login')
-                
-                //history.push('/home')   // hay que gestionar el inicio de sesión en algún momento para ir a home con la sesión iniciada
-            }
+         firebase.auth().signInWithEmailAndPassword(details.email, details.pass)
+         .then(()=>{
+            props.onSuccess()
+         })
+         .catch(function(error){
+            let errorCode = error.code
+            let errorMessage = error.message
+            if (errorCode === 'auth/wrong-password') {
+                setErrors('Contraseña incorrecta');
+              } 
+            else {
+                setErrors(errorMessage);          
+              }                 
         })
         
+
     }
 
     return(
@@ -37,7 +40,7 @@ function LoginForm(props){
                 <Modal.Title>
                     <div className="container">
                         <span className="generalTitle" style={ { fontSize: 40 } }>Iniciar sesión</span>
-                        {(errors.error != "") ? (<div className="error">{errors.error}</div>) : ""}
+                        
                     </div>
                 </Modal.Title>
             </Modal.Header>
@@ -67,6 +70,12 @@ function LoginForm(props){
                                 value={details.pass} 
                                 style={ { borderRadius: 15 }}
                             />
+                            {(errors) ? (<p>
+                                    <small style={ { color: "red"} }>
+                                        {errors}
+                                    </small>
+                                </p>)
+                                : ("")}
                         </div>
                         <p><small>Has olvidado la contraseña? Pues no pulses porque esto no hace nada todavía</small></p>
                         <input 

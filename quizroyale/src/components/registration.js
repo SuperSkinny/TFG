@@ -1,27 +1,15 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'react-bootstrap'
-import model, { checkIfEmailExists } from '../api/model'
-import {useHistory} from 'react-router-dom'
-import UserRegistered from './userRegistered'
-import LoginForm from './login'
+import 'firebase/auth'
+import { useFirebaseApp } from 'reactfire'
 
 
 function Registration(props) {
-    const [details, setDetails] = useState({nickname:"", email: "", pass: "", pass2: ""});
-    const [errors] = useState({errorNickname:"", email: "", pass: "", pass2: ""})
-    const nicknamePattern = /^[A-Za-z\d]{2,15}$/
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-    const passPattern = /^[\S]{6,20}$/
-    let history = useHistory()
-    const [modalShow, setModalShow] = React.useState(false);
-    const [modalShow2, setModalShow2] = React.useState(false);
-    
-    const nicknameCheckHandler = (e) => {
-                  
-            setDetails({...details, nickname: e.target.value})
-             
-    }
+    const [details, setDetails] = useState({email: "", pass: "", pass2: ""});
+    const [errors] = useState({email: "", pass: "", pass2: ""})
+    const firebase = useFirebaseApp()
+   
 
     const emailCheckHandler = (e) => {
        
@@ -41,46 +29,31 @@ function Registration(props) {
                 
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         e.target.className += " was-validated"
         console.log("details", details)       
         
-        if(details.nickname === ""){
-            /*setErrors({...errors, errorNickname: "Debes introducir un nickname."})*/
-            errors.errorNickname = "Debes introducir un nickname"
-            console.log("nickname = vacio", errors)
-        }
-        else if(!details.nickname.match(nicknamePattern)){
-            //setErrors({...errors, errorNickname: "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."})
-            errors.errorNickname = "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."
-            console.log("nickname = no cumple patrón")
-        }
-        else{
-            //setErrors({...errors, nickname: ""})
-            errors.errorNickname = ""
-            console.log("no hay error")
-        }
 
-        if(details.email === ""){
-           errors.email= "Debes introducir un correo electrónico."
-        }
-        else if(!details.email.match(emailPattern)){
-            errors.email = "El formato del correo electrónico no es válido."
-        }
-        else{
-            errors.email = ""
-        }
+        // if(details.email === ""){
+        //    errors.email= "Debes introducir un correo electrónico."
+        // }
+        // else if(!details.email.match(emailPattern)){
+        //     errors.email = "El formato del correo electrónico no es válido."
+        // }
+        // else{
+        //     errors.email = ""
+        // }
 
-        if(details.pass === ""){
-            errors.pass = "Debes introducir una contraseña."
-        }
-        else if(!details.pass.match(passPattern)){
-            errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
-        }
-        else{
-            errors.pass = ""
-        }
+        // if(details.pass === ""){
+        //     errors.pass = "Debes introducir una contraseña."
+        // }
+        // else if(!details.pass.match(passPattern)){
+        //     errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
+        // }
+        // else{
+        //     errors.pass = ""
+        // }
 
         if(details.pass2 === ""){
             errors.pass2 = "Por favor, repite la contraseña."
@@ -94,18 +67,27 @@ function Registration(props) {
         console.log("errors: ", errors)
 
         if(e.target.checkValidity()){
-            model.checkIfEmailExists(details.email).then(response => {
-                if (response === true) {
+        
+            firebase.auth().createUserWithEmailAndPassword(details.email, details.pass)
+            .then(() => {
+                props.onSuccess()
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                if (errorCode == 'auth/weak-password') {
+                  errors.pass = 'The password is too weak.';
+                } 
+                else if (errorCode == 'auth/email-already-in-use'){
+                    alert('Este correo ha sido registrado con anterioridad. Inicia sesión')
                     props.onFail()
-                   
                 }
                 else {
-                    model.newUser( details.email, details.pass, details.nickname );
-                    props.onSuccess()
-                  
-                                   
+                  errors.email = errorMessage;
                 }
-            })
+                console.log(error);
+              });
         }
     };
 
@@ -132,31 +114,6 @@ function Registration(props) {
             <Modal.Body>
                 <div className="container" >           
                     <form className="needs-validation" noValidate onSubmit={submitHandler}>
-                        <div className="form-group">
-                            <div className="mb-3">
-                                {/* <label htmlFor="regNickname" className="form-label">Nickname: </label> */}
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="regNickname" 
-                                    placeholder="Nickname"
-                                    minLength="2"
-                                    maxLength="15"
-                                    pattern= "[A-Za-z\d]{2,15}" 
-                                    required
-                                    onChange={nicknameCheckHandler}
-                                    style={ { borderRadius: 15 }}
-                                />
-                            </div>
-                            {(errors.errorNickname !== "") ? 
-                                (<p>
-                                    <small style={ { color: "red"} }>
-                                        {errors.errorNickname}
-                                    </small>
-                                </p>)
-                                : ("")
-                            }
-                        </div>
                         <div className="form-group">
                             <div className="mb-3">
                                 {/* <label htmlFor="regEmail" className="form-label">Correo electrónico: </label> */}

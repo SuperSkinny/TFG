@@ -6,9 +6,6 @@ import {
   Route
 } from "react-router-dom";
 import { MemoryRouter } from 'react-router'
-
-import LoginForm from './components/login';
-import Registration from './components/registration'
 import Profile from './components/profile'
 import Contact from './screens/contact';
 import Home from './screens/home';
@@ -19,73 +16,87 @@ import Footer from './components/footer';
 import PreGame from './screens/preGame';
 import Game from './screens/game';
 import PostGame from './screens/postGame';
-import Countdown from './components/countdown';
-
+import Landing from './screens/landing';
+import 'firebase/auth'
+import { useFirebaseApp, useUser } from 'reactfire'
+import { getAllQuestionsAndAnswersByCategory } from './api/model';
 
 function App() {
-    // console.log("el site d elos huevos"+site)
-    // const withNavBar = () => {
-        
-    //     if ( site !== "/tutorial" || site === "/home" ) {
-    //         return (
-    //             <Navbar />
-    //         )
-    //     }else{
-    //         return null;
-    //     }
-    // }
+    
+    const firebase = useFirebaseApp()
+    const user = useUser()
+    console.log('usuario' , user)
     return (
-        <MemoryRouter>
-            <Router >
-                {/* {withNavBar()} */}
-                
-                <div className="content">
-                    <Switch>
-                        <Route path={"/tutorial"}>
-                            <Navbar />
-                            <Tutorial
-                                site={"/tutorial"}
-                            />
-                        </Route>
-                        <Route path={"/ranking"}>
-                            <Navbar />  
-                            <Ranking />
-                        </Route>
-                        <Route path={"/contact"}>
-                            <Navbar />
-                            <Contact />
-                        </Route>
-                        <Route path={"/login"} >
-                            <LoginForm />
-                        </Route>
-                        <Route path={"/registration"} >
-                            <Registration />
-                        </Route>
-                        <Route path={"/profile"} >
-                            <Navbar />
-                            <Profile />
-                        </Route>
-                        <Route path={"/preGame"}>
-                            <PreGame />
-                        </Route>
-                        <Route path={"/game"}>
-                            <Game />
-                        </Route>
-                        <Route path={"/postGame"}>
-                            <PostGame />
-                        </Route>
-                        <Route site={"/tutorial"} path={"/"} >
-                        {/* <div className="content"> */}
-                            <Navbar />
-                            <Home />
-                        {/* </div> */}
-                        </Route>
-                    </Switch>
-                </div>
-                <Footer/>
-            </Router>
-        </MemoryRouter>
+        <>
 
+        <Router >
+            {/* {withNavBar()} */}
+            
+            <div className="content">
+                <Switch>
+                    <Route exact path={"/tutorial"}>
+                    {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <Navbar />
+                        <Tutorial />
+                        </>)}
+                    </Route>
+                    <Route exact path={"/ranking"}>
+                    {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <Navbar />
+                        <Ranking />
+                        </>)}
+                    </Route>
+                    <Route exact path={"/contact"}>
+                    {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <Navbar />
+                        <Contact />
+                        </>)}
+                    </Route>
+                    <Route exact path={"/profile"} >
+                    {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <Navbar />
+                        <Profile />
+                        </>)}
+                    </Route>
+                    <Route exact path={"/preGame"}>
+                    {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <PreGame />
+                        </>)}
+                    </Route>
+                    {/* <Route path={"/game"}>
+                        <Game />
+                    </Route>
+                    <Route path={"/postGame"}>
+                        <PostGame />
+                    </Route> */}
+                    <Route path={"/"} >
+                        {!user.data ? (<Landing/>) :
+                        
+                        (<>
+                        <Navbar />
+                        <Home />
+                        </>)}
+                    </Route>
+                </Switch>
+            </div>
+            <Footer/>
+        </Router>
+        
+        
+        
+           
+            
+        </>
     );
 }
 

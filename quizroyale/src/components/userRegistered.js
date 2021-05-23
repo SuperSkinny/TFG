@@ -1,15 +1,10 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+
 
 
 function UserRegistered(props) {
-    let history = useHistory()
-
-    const clickHandler = (e) => {
-        history.push('/home')
-    }
 
     return (
     <Modal
