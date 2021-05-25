@@ -45,7 +45,7 @@ export default class PreGame extends Component {
               </span>
             </div>
             <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
-              <React.Fragment>
+              
                 {gameMode.map(({ category, description }) => 
                 <GameModeComponent
                   key={category}
@@ -54,7 +54,7 @@ export default class PreGame extends Component {
                   onGameModeButtonPress={(gameModeName) => {this.handleGameScreen(gameModeName)}}
                 />
                 )}
-              </React.Fragment>
+              
               
             </div>
             <div>

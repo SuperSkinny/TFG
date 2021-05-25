@@ -90,8 +90,10 @@ export default class Game extends Component {
         <React.Fragment>
             <div className="componentContent" >
                 { spinner && (
-                    <div className="spinner-grow text-secondary" role="status">
-                    <span className="sr-only">Loading...</span>
+                    <div className="content" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <div className="spinner-grow text-secondary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
                     </div>
                     // <div className="spinner-border text-secondary" role="status">
                     //   <span className="sr-only">Loading...</span>

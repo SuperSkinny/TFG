@@ -10,50 +10,25 @@ export default class GameComponent extends Component {
         }
       }
 
-
-    // handleOpen() {
-    //     console.log("Modal accionado");
-    //     this.setState({ 
-    //       modalOpen: true, 
-    //     }
-    //     ,() => {setTimeout(() => this.handleClose(), 2000)}
-    //     );
-    // };
-
     handleRestart() {
         this.setState({ 
             ifAnswer: false,
+            disabledButton: false,
         });
     };
 
-    // handleResponse(answer) {
-    //     console.log("Entra aquí?: "+ answer)
-    //     if (answer === true) {
-    //         console.log("Es correcta")
-    //         this.setState({
-    //             classAnswer: "gameButtonCorrect",
-    //             },
-    //             () => {setTimeout(() => this.handleClose(), 2000)}
-    //         );
-    //     } else {
-    //         console.log("NO Es correcta")
-    //         this.setState({
-    //             classAnswer: "gameButtonFail"},
-    //             () => {setTimeout(() => this.handleClose(), 2000)}
-    //         ); 
-    //     }
-    // }
-
-    handelResponse(answer) {
+    handleResponse(answer) {
         if (answer === true) {
             this.setState({ 
                 ifAnswer: true,
-                points: this.state.points + 1, 
+                points: this.state.points + 1,
+                disabledButton: true,
             }, () => {setTimeout(() => this.handleRestart(), 2000)})
         } else {
             console.log("respuesta incorrecta")
             this.setState({ 
-                ifAnswer: true, 
+                ifAnswer: true,
+                disabledButton: true,
             }, () => {setTimeout(() => this.handleRestart(), 2000)})
         }
     }
@@ -104,39 +79,34 @@ export default class GameComponent extends Component {
                         {gameModeQuestion.question}
                     </span>
                 </div>
-                {/* {this.state.modalOpen && (
-                    <div className="gameButton" style={{backgroundColor: "lightGreen", color: "white"}}>MAMARRACHOOOOO</div>
-                ) } */}
                 <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                     <button 
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question)
-                            // this.handleResponse(gameModeQuestion.answer1.correct)
-                            this.handelResponse(gameModeQuestion.answer1.correct)
+                            onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question);
+                            this.handleResponse(gameModeQuestion.answer1.correct);
                         }}
                         className={( this.state.ifAnswer ? `${this.handleAnswerOne()}` : "gameButton")}
-                        // style={ !answerStyle ? { backgroundColor: "red" } : { backgroundColor: "green" }}
+                        disabled={this.state.disabledButton}
                     >
                         {gameModeQuestion.answer1.answer} 
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question)
-                            // this.handleResponse(gameModeQuestion.answer2.correct)
-                            this.handelResponse(gameModeQuestion.answer2.correct)
-                        }} 
-                        // className={`${this.state.classAnswer}`}
+                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question);
+                            this.handleResponse(gameModeQuestion.answer2.correct);
+                        }}
                         className={( this.state.ifAnswer ? `${this.handleAnswerTwo()}` : "gameButton")} 
+                        disabled={this.state.disabledButton}
                     >
                         {gameModeQuestion.answer2.answer}
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question)
-                            // this.handleResponse(gameModeQuestion.answer3.correct)
-                            this.handelResponse(gameModeQuestion.answer3.correct)
+                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question);
+                            this.handleResponse(gameModeQuestion.answer3.correct);
                         }} 
-                        className={( this.state.ifAnswer ? `${this.handleAnswerThree()}` : "gameButton")} 
+                        className={( this.state.ifAnswer ? `${this.handleAnswerThree()}` : "gameButton")}
+                        disabled={this.state.disabledButton} 
                     >
                         {gameModeQuestion.answer3.answer}
                     </button>
@@ -145,7 +115,7 @@ export default class GameComponent extends Component {
                 <div className="progressBarContainer">
                     <div className="progressBar" style={{ width: `${lifeBar}%` }} ></div>
                 </div>
-                <div style={ { marginTop: 30 } }>
+                <div style={ { marginTop: 30, marginBottom: 30 } }>
                     <button 
                         type="button" 
                         className="generalButton"
