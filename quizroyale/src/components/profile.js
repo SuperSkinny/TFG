@@ -1,331 +1,331 @@
-import React, { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import model, { checkIfEmailExists, getUserByEmailAndPassword } from '../api/model'
-import {useHistory} from 'react-router-dom'
+// import React, { useState } from 'react'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import * as model from '../api/model';
+// import {useHistory} from 'react-router-dom'
 
 
-function Profile(){
-    const [details, setDetails] = useState({nickname:"", email: "", oldPass: "", pass: "", pass2: ""})
-    const [errors] = useState({errorNickname:"", email: "", oldPass: "", pass: "", pass2: ""})
-    const uploadedImage = React.useRef(null)
-    const imageUploader = React.useRef(null)
-    const nicknamePattern = /^[A-Za-z\d]{2,15}$/
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-    const passPattern = /^[\S]{6,20}$/
-    let history = useHistory()
-    let setImage = false
-    let image
+// function Profile(){
+//     const [details, setDetails] = useState({nickname:"", email: "", oldPass: "", pass: "", pass2: ""})
+//     const [errors] = useState({errorNickname:"", email: "", oldPass: "", pass: "", pass2: ""})
+//     const uploadedImage = React.useRef(null)
+//     const imageUploader = React.useRef(null)
+//     const nicknamePattern = /^[A-Za-z\d]{2,15}$/
+//     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+//     const passPattern = /^[\S]{6,20}$/
+//     let history = useHistory()
+//     let setImage = false
+//     let image
 
-    const user = getUserByEmailAndPassword('christian@quizroyale.com', '123456').then()
+//     const user = getUserByEmailAndPassword('christian@quizroyale.com', '123456').then()
     
     
-    const nicknameCheckHandler = (e) => {
+//     const nicknameCheckHandler = (e) => {
                   
-            setDetails({...details, nickname: e.target.value})
+//             setDetails({...details, nickname: e.target.value})
              
-    }
+//     }
 
-    const emailCheckHandler = (e) => {
+//     const emailCheckHandler = (e) => {
        
-            setDetails({...details, email: e.target.value})
+//             setDetails({...details, email: e.target.value})
               
-    }
+//     }
 
-    const oldPassCheckHandler = (e) => {
+//     const oldPassCheckHandler = (e) => {
        
-            setDetails({...details, oldPass: e.target.value})
+//             setDetails({...details, oldPass: e.target.value})
                
-    }
+//     }
     
-    const passCheckHandler = (e) => {
+//     const passCheckHandler = (e) => {
        
-            setDetails({...details, pass: e.target.value})
+//             setDetails({...details, pass: e.target.value})
                
-    }
+//     }
 
-    const pass2CheckHandler = (e) => {
+//     const pass2CheckHandler = (e) => {
         
-        setDetails({...details, pass2: e.target.value})
+//         setDetails({...details, pass2: e.target.value})
                 
-    }
+//     }
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-          const reader = new FileReader();
-          const { current } = uploadedImage;
-          current.file = file;
-          reader.onload = e => {
-            current.src = e.target.result;
-            image = current.src
-            setImage = true
-          };
+//     const handleImageUpload = e => {
+//         const [file] = e.target.files;
+//         if (file) {
+//           const reader = new FileReader();
+//           const { current } = uploadedImage;
+//           current.file = file;
+//           reader.onload = e => {
+//             current.src = e.target.result;
+//             image = current.src
+//             setImage = true
+//           };
           
-          reader.readAsDataURL(file);
+//           reader.readAsDataURL(file);
           
           
-        }
-      };
+//         }
+//       };
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        e.target.className += " was-validated"
+//     const submitHandler = (e) => {
+//         e.preventDefault();
+//         e.target.className += " was-validated"
 
 
-        if(!details.nickname.match(nicknamePattern)){
-            //setErrors({...errors, errorNickname: "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."})
-            errors.errorNickname = "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."
-            console.log("nickname = no cumple patrón")
-        }
-        else {
-            //setErrors({...errors, nickname: ""})
-            errors.errorNickname = ""
-            console.log("no hay error")
-        }
+//         if(!details.nickname.match(nicknamePattern)){
+//             //setErrors({...errors, errorNickname: "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."})
+//             errors.errorNickname = "Solo letras y números. Debe tener una longitud entre 2 y 15 caracteres."
+//             console.log("nickname = no cumple patrón")
+//         }
+//         else {
+//             //setErrors({...errors, nickname: ""})
+//             errors.errorNickname = ""
+//             console.log("no hay error")
+//         }
 
-        if(!details.email.match(emailPattern)){
-            errors.email = "El formato del correo electrónico no es válido."
-        }
-        else {
-            errors.email = ""
-        }
+//         if(!details.email.match(emailPattern)){
+//             errors.email = "El formato del correo electrónico no es válido."
+//         }
+//         else {
+//             errors.email = ""
+//         }
 
-        if(!details.pass.match(passPattern)){
-            errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
-        }
-        else{
-            errors.pass = ""
-        }
+//         if(!details.pass.match(passPattern)){
+//             errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
+//         }
+//         else{
+//             errors.pass = ""
+//         }
 
-        if(details.pass2 === ""){
-            errors.pass2 = "Por favor, repite la contraseña."
-        }
-        else if(details.pass2 !== details.pass){
-            errors.pass2 = "La contraseña no coincide."
-        }
-        else{
-            errors.pass2 = ""
-        }
+//         if(details.pass2 === ""){
+//             errors.pass2 = "Por favor, repite la contraseña."
+//         }
+//         else if(details.pass2 !== details.pass){
+//             errors.pass2 = "La contraseña no coincide."
+//         }
+//         else{
+//             errors.pass2 = ""
+//         }
         
-        console.log("errors: ", errors)
+//         console.log("errors: ", errors)
 
-        if(e.target.checkValidity()){
-            getUserByEmailAndPassword('pedrini@quizroyale.com', '123456').then(user => {
-                console.log(user)
+//         if(e.target.checkValidity()){
+//             getUserByEmailAndPassword('pedrini@quizroyale.com', '123456').then(user => {
+//                 console.log(user)
 
-                if(details.nickname !== ''){
-                    model.changeUserNickname(user.objectId, details.nickname)
-                }
+//                 if(details.nickname !== ''){
+//                     model.changeUserNickname(user.objectId, details.nickname)
+//                 }
 
-                if(details.email !== '' ){
-                    model.checkIfEmailExists(details.email).then(response => {
-                        if (response === true) {
-                            alert("maquina, este correo no vale porque ya está registrado")
-                        }
-                        else {
-                            console.log("correo cambiado"); 
-                            model.changeUserEmail(user.objectId, details.email)
-                        }
-                    })
-                }
+//                 if(details.email !== '' ){
+//                     model.checkIfEmailExists(details.email).then(response => {
+//                         if (response === true) {
+//                             alert("maquina, este correo no vale porque ya está registrado")
+//                         }
+//                         else {
+//                             console.log("correo cambiado"); 
+//                             model.changeUserEmail(user.objectId, details.email)
+//                         }
+//                     })
+//                 }
 
-                if(details.pass !== '' && details.pass === details.pass2 && details.oldPass === user.password ){
-                model.changeUserPassword(user.objectId, details.pass)
-                }
+//                 if(details.pass !== '' && details.pass === details.pass2 && details.oldPass === user.password ){
+//                 model.changeUserPassword(user.objectId, details.pass)
+//                 }
 
-                if(setImage === true){
-                model.changeUserPicture(user.objectId, image)
-                }
-            })
-        }
-    };
+//                 if(setImage === true){
+//                 model.changeUserPicture(user.objectId, image)
+//                 }
+//             })
+//         }
+//     };
 
     
-    return (
-        <div className="container" >
-            <span className="generalTitle" style={ { fontSize: 40 } }>Perfil</span>
-            <form className="needs-validation" noValidate onSubmit={submitHandler}>
-                <div className="form-group">
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "left",
-                            justifyContent: "left"
-                        }}
-                        >
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            ref={imageUploader}
-                            style={{
-                            display: "none"
-                            }}
-                        />
-                        <div
-                            style={{
-                            height: "150px",
-                            width: "150px",
-                            borderRadius: 15
-                            }}
-                            onClick={() => imageUploader.current.click()}
-                        >
-                            <img
-                            ref={uploadedImage}
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                position: "center",
-                                borderRadius: 15
-                            }}
-                            />
-                        </div>
-                        {/* {console.log(uploadedImage)}
-                        {uploadedImage.current.accessKey === "" ? 
-                            (<p>Añade una imagen</p>)
-                            :(<p>Cambia tu imagen</p>)
-                        } */}
-                        </div>
+//     return (
+//         <div className="container" >
+//             <span className="generalTitle" style={ { fontSize: 40 } }>Perfil</span>
+//             <form className="needs-validation" noValidate onSubmit={submitHandler}>
+//                 <div className="form-group">
+//                     <div
+//                         style={{
+//                             display: "flex",
+//                             flexDirection: "column",
+//                             alignItems: "left",
+//                             justifyContent: "left"
+//                         }}
+//                         >
+//                         <input
+//                             type="file"
+//                             accept="image/*"
+//                             onChange={handleImageUpload}
+//                             ref={imageUploader}
+//                             style={{
+//                             display: "none"
+//                             }}
+//                         />
+//                         <div
+//                             style={{
+//                             height: "150px",
+//                             width: "150px",
+//                             borderRadius: 15
+//                             }}
+//                             onClick={() => imageUploader.current.click()}
+//                         >
+//                             <img
+//                             ref={uploadedImage}
+//                             style={{
+//                                 width: "100%",
+//                                 height: "100%",
+//                                 position: "center",
+//                                 borderRadius: 15
+//                             }}
+//                             />
+//                         </div>
+//                         {/* {console.log(uploadedImage)}
+//                         {uploadedImage.current.accessKey === "" ? 
+//                             (<p>Añade una imagen</p>)
+//                             :(<p>Cambia tu imagen</p>)
+//                         } */}
+//                         </div>
                     
-                </div>
-                <div className="form-group">
-                    <div className="mb-3">
-                        {/* <label htmlFor="regNickname" className="form-label">Nickname: </label> */}
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="proNickname" 
-                            placeholder="Nickname"
-                            minLength="2"
-                            maxLength="15"
-                            pattern= "[A-Za-z\d]{2,15}" 
-                            required
-                            onChange={nicknameCheckHandler}
-                            style={ { borderRadius: 15 }}
-                        />
-                    </div>
-                    {(errors.errorNickname !== "") ? 
-                        (<p>
-                            <small style={ { color: "red"} }>
-                                {errors.errorNickname}
-                            </small>
-                        </p>)
-                        : ("")
-                    }
-                </div>
-                <div className="form-group">
-                    <div className="mb-3">
-                        {/* <label htmlFor="regEmail" className="form-label">Correo electrónico: </label> */}
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="proEmail" 
-                            placeholder="Correo electrónico"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
-                            required
-                            onChange={emailCheckHandler}
-                            style={ { borderRadius: 15 }}
-                        />
-                    </div>
-                    {(errors.email !== "") ? 
-                        (<p>
-                            <small style={ { color: "red"} }>
-                                {errors.email}
-                            </small>
-                        </p>)
-                        : ("")
-                    } 
-                </div>
-                <div className="form-group">
-                    <div className="mb-3">
-                        {/* <label htmlFor="regPass" className="form-label">Contraseña: </label> */}
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            id="proPass" 
-                            placeholder="Contraseña antigua"
-                            minLength="6"
-                            maxLength="20"
-                            pattern="[\S]{6,20}"
-                            required
-                            onChange={oldPassCheckHandler}
-                            style={ { borderRadius: 15 }}
-                        />
-                    </div>
-                    {(errors.pass !== "") ? 
-                        (<p>
-                            <small style={ { color: "red"} }>
-                                {errors.pass}
-                            </small>
-                        </p>)
-                        : ("")
-                    } 
-                </div>
+//                 </div>
+//                 <div className="form-group">
+//                     <div className="mb-3">
+//                         {/* <label htmlFor="regNickname" className="form-label">Nickname: </label> */}
+//                         <input 
+//                             type="text" 
+//                             className="form-control" 
+//                             id="proNickname" 
+//                             placeholder="Nickname"
+//                             minLength="2"
+//                             maxLength="15"
+//                             pattern= "[A-Za-z\d]{2,15}" 
+//                             required
+//                             onChange={nicknameCheckHandler}
+//                             style={ { borderRadius: 15 }}
+//                         />
+//                     </div>
+//                     {(errors.errorNickname !== "") ? 
+//                         (<p>
+//                             <small style={ { color: "red"} }>
+//                                 {errors.errorNickname}
+//                             </small>
+//                         </p>)
+//                         : ("")
+//                     }
+//                 </div>
+//                 <div className="form-group">
+//                     <div className="mb-3">
+//                         {/* <label htmlFor="regEmail" className="form-label">Correo electrónico: </label> */}
+//                         <input 
+//                             type="text" 
+//                             className="form-control" 
+//                             id="proEmail" 
+//                             placeholder="Correo electrónico"
+//                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+//                             required
+//                             onChange={emailCheckHandler}
+//                             style={ { borderRadius: 15 }}
+//                         />
+//                     </div>
+//                     {(errors.email !== "") ? 
+//                         (<p>
+//                             <small style={ { color: "red"} }>
+//                                 {errors.email}
+//                             </small>
+//                         </p>)
+//                         : ("")
+//                     } 
+//                 </div>
+//                 <div className="form-group">
+//                     <div className="mb-3">
+//                         {/* <label htmlFor="regPass" className="form-label">Contraseña: </label> */}
+//                         <input 
+//                             type="password" 
+//                             className="form-control" 
+//                             id="proPass" 
+//                             placeholder="Contraseña antigua"
+//                             minLength="6"
+//                             maxLength="20"
+//                             pattern="[\S]{6,20}"
+//                             required
+//                             onChange={oldPassCheckHandler}
+//                             style={ { borderRadius: 15 }}
+//                         />
+//                     </div>
+//                     {(errors.pass !== "") ? 
+//                         (<p>
+//                             <small style={ { color: "red"} }>
+//                                 {errors.pass}
+//                             </small>
+//                         </p>)
+//                         : ("")
+//                     } 
+//                 </div>
                 
-                <div className="form-group">
-                    <div className="mb-3">
-                        {/* <label htmlFor="regPass" className="form-label">Contraseña: </label> */}
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            id="proPass" 
-                            placeholder="Contraseña nueva"
-                            minLength="6"
-                            maxLength="20"
-                            pattern="[\S]{6,20}"
-                            required
-                            onChange={passCheckHandler}
-                            style={ { borderRadius: 15 }}
-                        />
-                    </div>
-                    {(errors.pass !== "") ? 
-                        (<p>
-                            <small style={ { color: "red"} }>
-                                {errors.pass}
-                            </small>
-                        </p>)
-                        : ("")
-                    } 
-                </div>
+//                 <div className="form-group">
+//                     <div className="mb-3">
+//                         {/* <label htmlFor="regPass" className="form-label">Contraseña: </label> */}
+//                         <input 
+//                             type="password" 
+//                             className="form-control" 
+//                             id="proPass" 
+//                             placeholder="Contraseña nueva"
+//                             minLength="6"
+//                             maxLength="20"
+//                             pattern="[\S]{6,20}"
+//                             required
+//                             onChange={passCheckHandler}
+//                             style={ { borderRadius: 15 }}
+//                         />
+//                     </div>
+//                     {(errors.pass !== "") ? 
+//                         (<p>
+//                             <small style={ { color: "red"} }>
+//                                 {errors.pass}
+//                             </small>
+//                         </p>)
+//                         : ("")
+//                     } 
+//                 </div>
                 
-                <div className="form-group">
-                    <div className="mb-3">
-                    {/* <label htmlFor="regRepitePass" className="form-label">Repite contraseña: </label> */}
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            id="proRepitePass" 
-                            placeholder="Repite la contraseña nueva"
-                            minLength="6"
-                            maxLength="20"
-                            pattern="[\S]{6,20}" 
-                            required
-                            onChange={pass2CheckHandler}
-                            style={ { borderRadius: 15 }}    
-                        />
-                    </div>
-                    {(errors.pass2 !== "") ? 
-                        (<p>
-                            <small style={ { color: "red"} }>
-                                {errors.pass2}
-                            </small>
-                        </p>)
-                        : ("")
-                    } 
-                </div>
+//                 <div className="form-group">
+//                     <div className="mb-3">
+//                     {/* <label htmlFor="regRepitePass" className="form-label">Repite contraseña: </label> */}
+//                         <input 
+//                             type="password" 
+//                             className="form-control" 
+//                             id="proRepitePass" 
+//                             placeholder="Repite la contraseña nueva"
+//                             minLength="6"
+//                             maxLength="20"
+//                             pattern="[\S]{6,20}" 
+//                             required
+//                             onChange={pass2CheckHandler}
+//                             style={ { borderRadius: 15 }}    
+//                         />
+//                     </div>
+//                     {(errors.pass2 !== "") ? 
+//                         (<p>
+//                             <small style={ { color: "red"} }>
+//                                 {errors.pass2}
+//                             </small>
+//                         </p>)
+//                         : ("")
+//                     } 
+//                 </div>
                                 
-                <input 
-                    type="submit" 
-                    className="generalButton" 
-                    value="Guardar"
+//                 <input 
+//                     type="submit" 
+//                     className="generalButton" 
+//                     value="Guardar"
 
-                />
-            </form>
+//                 />
+//             </form>
             
-        </div>
-    )
+//         </div>
+//     )
 
-}
+// }
 
-export default Profile
+// export default Profile

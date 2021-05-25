@@ -9,7 +9,7 @@ Parse.serverURL = 'https://parseapi.back4app.com/';
  * @param {String} password 
  * @param {String} nickname 
  */
-function newUser( email, password, nickname ) {
+export const newUser = ( email, password, nickname ) => {
     const User = Parse.Object.extend('Users')
     const NewUser = new User()
 
@@ -26,7 +26,7 @@ function newUser( email, password, nickname ) {
  * @param {String} password 
  * @returns {JSON}
  */
-async function getUserByEmailAndPassword(email, password) {
+export const getUserByEmailAndPassword = async (email, password) => {
     const User = Parse.Object.extend('Users')
     const queryGetUserByEmailAndPassword = new Parse.Query(User)
 
@@ -51,7 +51,7 @@ async function getUserByEmailAndPassword(email, password) {
  * @param {String} email 
  * @returns {boolean}
  */
-async function checkIfEmailExists(email) {
+export const checkIfEmailExists = async (email) => {
     const User = Parse.Object.extend('Users')
     const queryCheckIfEmailExists = new Parse.Query(User)
 
@@ -75,7 +75,7 @@ async function checkIfEmailExists(email) {
  * @param {String} userId 
  * @param {String} newEmail 
  */
-function changeUserEmail(userId, newEmail) {
+export const changeUserEmail = (userId, newEmail) => {
     const User = Parse.Object.extend('Users')
     const queryChangeUserEmail = new Parse.Query(User)
 
@@ -98,7 +98,7 @@ function changeUserEmail(userId, newEmail) {
  * @param {String} userId 
  * @param {String} newNickname 
  */
-function changeUserNickname(userId, newNickname) {
+export const changeUserNickname = (userId, newNickname) => {
     const User = Parse.Object.extend('Users')
     const queryChangeUserNickname = new Parse.Query(User)
 
@@ -122,7 +122,7 @@ function changeUserNickname(userId, newNickname) {
  * @param {String} oldPassword 
  * @param {String} newPassword 
  */
-function changeUserPassword(userId, oldPassword, newPassword) {
+export const changeUserPassword = (userId, oldPassword, newPassword) => {
     const User = Parse.Object.extend('Users')
     const queryChangeUserPassword = new Parse.Query(User)
 
@@ -146,7 +146,7 @@ function changeUserPassword(userId, oldPassword, newPassword) {
  * @param {String} userId 
  * @param {File} newPicture 
  */
-function changeUserPicture(userId, newPicture) {
+export const changeUserPicture = (userId, newPicture) => {
     const User = Parse.Object.extend('Users')
     const queryChangeUserPicture = new Parse.Query(User)
 
@@ -171,7 +171,7 @@ function changeUserPicture(userId, newPicture) {
  * @param {String} issue 
  * @param {String} text 
  */
-function newContact(name, email, issue, text) {
+export const newContact = (name, email, issue, text) =>  {
     const Contact = Parse.Object.extend('Contact')
     const newContact = new Contact()
 
@@ -188,7 +188,7 @@ function newContact(name, email, issue, text) {
  * @param {String} category 
  * @returns {Array}
  */
-async function getBestThreeScoresOfACategory(category) {
+export const getBestThreeScoresOfACategory = async (category) => {
     let scores = []
     
     const Score = Parse.Object.extend('Scores')
@@ -224,7 +224,7 @@ async function getBestThreeScoresOfACategory(category) {
  * @param {String} userId 
  * @returns {Array}
  */
-async function getAllScoresOfUser(userId) {
+export const getAllScoresOfUser = async (userId) => {
     let scores = []
 
     const User = Parse.Object.extend('Users')
@@ -260,7 +260,7 @@ async function getAllScoresOfUser(userId) {
  * @param {Number} averageTime 
  * @param {String} category 
  */
-function setNewScore(userId, score, averageTime, category) {
+export const setNewScore = (userId, score, averageTime, category) => {
     const User = Parse.Object.extend('Users')
     const userWithId = new User()
     userWithId.id = userId
@@ -288,7 +288,7 @@ function setNewScore(userId, score, averageTime, category) {
  * Devuelve todas las categorias existentes
  * @returns {Array}
  */
-async function getCategories() {
+export const getCategories = async () => {
     const Category = Parse.Object.extend('Categories')
     const getCategories = new Parse.Query(Category)
 
@@ -316,7 +316,7 @@ async function getCategories() {
  * @param {String} categoryId 
  * @returns {Array}
  */
-async function getAllQuestionsByCategory(categoryId) {
+export const getAllQuestionsByCategory = async (categoryId) => {
     const Question = Parse.Object.extend('Questions')
     const getAllQuestionsByCategory = new Parse.Query(Question)
 
@@ -350,7 +350,7 @@ async function getAllQuestionsByCategory(categoryId) {
  * @param {String} questionId 
  * @returns {Array}
  */
-async function getAllAnswersByQuestion(questionId) {
+export const getAllAnswersByQuestion = async (questionId) => {
     const Answer = Parse.Object.extend('Answers')
     const getAllAnswersByQuestion = new Parse.Query(Answer)
 
@@ -384,7 +384,7 @@ async function getAllAnswersByQuestion(questionId) {
  * @param {String} category 
  * @returns {Array}
  */
-async function getAllQuestionsAndAnswersByCategory(category) {
+export const getAllQuestionsAndAnswersByCategory = async (category) => {
     const Category = Parse.Object.extend('Categories')
     const getCategoryId = new Parse.Query(Category)
 
@@ -461,18 +461,18 @@ async function getAllQuestionsAndAnswersByCategory(category) {
     return questionsAndAnswers
 }
 
-exports.newUser = newUser
-exports.getUserByEmailAndPassword = getUserByEmailAndPassword
-exports.checkIfEmailExists = checkIfEmailExists
-exports.changeUserEmail = changeUserEmail
-exports.changeUserNickname = changeUserNickname
-exports.changeUserPassword = changeUserPassword
-exports.changeUserPicture = changeUserPicture
-exports.newContact = newContact
-exports.getBestThreeScoresOfACategory = getBestThreeScoresOfACategory
-exports.getAllScoresOfUser = getAllScoresOfUser
-exports.setNewScore = setNewScore
-exports.getCategories = getCategories
-exports.getAllQuestionsByCategory = getAllQuestionsByCategory
-exports.getAllAnswersByQuestion = getAllAnswersByQuestion
-exports.getAllQuestionsAndAnswersByCategory = getAllQuestionsAndAnswersByCategory
+// exports.newUser = newUser
+// exports.getUserByEmailAndPassword = getUserByEmailAndPassword
+// exports.checkIfEmailExists = checkIfEmailExists
+// exports.changeUserEmail = changeUserEmail
+// exports.changeUserNickname = changeUserNickname
+// exports.changeUserPassword = changeUserPassword
+// exports.changeUserPicture = changeUserPicture
+// exports.newContact = newContact
+// exports.getBestThreeScoresOfACategory = getBestThreeScoresOfACategory
+// exports.getAllScoresOfUser = getAllScoresOfUser
+// exports.setNewScore = setNewScore
+// exports.getCategories = getCategories
+// exports.getAllQuestionsByCategory = getAllQuestionsByCategory
+// exports.getAllAnswersByQuestion = getAllAnswersByQuestion
+// exports.getAllQuestionsAndAnswersByCategory = getAllQuestionsAndAnswersByCategory

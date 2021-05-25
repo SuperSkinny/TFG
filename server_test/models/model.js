@@ -184,7 +184,7 @@ function newContact(name, email, issue, text) {
 }
 
 /**
- * Obtiene todas las puntuaciones de una categoria dada
+ * Obtiene todas las 3 mejores puntuaciones de una categoria dada
  * @param {String} category 
  * @returns {Array}
  */
@@ -221,20 +221,16 @@ async function getBestThreeScoresOfACategory(category) {
 
 /**
  * Dado un id de usuario obtiene todas sus puntuaciones
- * @param {String} userId 
+ * @param {String} UID 
  * @returns {Array}
  */
-async function getAllScoresOfUser(userId) {
+async function getAllScoresOfUser(UID) {
     let scores = []
-
-    const User = Parse.Object.extend('Users')
-    const userWithId = new User()
-    userWithId.id = userId
 
     const Score = Parse.Object.extend('Scores')
     const queryGetAllScoresOfUser = new Parse.Query(Score)
 
-    queryGetAllScoresOfUser.equalTo('user_id', userWithId)
+    queryGetAllScoresOfUser.equalTo('UID', UID)
 
     try {
         const response = await queryGetAllScoresOfUser.findAll()
@@ -255,21 +251,17 @@ async function getAllScoresOfUser(userId) {
 
 /**
  * Dado un id de usuario y su nueva puntuacion y tiempo medio, sobrescribe las actuales en la categoria dada
- * @param {String} userId 
+ * @param {String} UID 
  * @param {Number} score 
  * @param {Number} averageTime 
  * @param {String} category 
  */
-function setNewScore(userId, score, averageTime, category) {
-    const User = Parse.Object.extend('Users')
-    const userWithId = new User()
-    userWithId.id = userId
-
+function setNewScore(UID, score, averageTime, category) {
     const Score = Parse.Object.extend('Scores')
     const querySetNewScore = new Parse.Query(Score)
 
     querySetNewScore.equalTo('category', category)
-    querySetNewScore.equalTo('user_id', userWithId)
+    querySetNewScore.equalTo('UID', UID)
 
     querySetNewScore.first().then(function(userFound) {
         if (userFound) {
@@ -454,7 +446,7 @@ async function getAllQuestionsAndAnswersByCategory(category) {
             answer2: answers[j][1],
             answer3: answers[j][2],
         }
-        // questionAndAnswers[questions[j]] = answers[j]
+
         questionsAndAnswers.push(questionAndAnswers)
     }
 

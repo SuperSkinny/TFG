@@ -22,7 +22,15 @@ function App() {
     
     const firebase = useFirebaseApp()
     const user = useUser()
+    const user2 = firebase.auth().currentUser
     console.log('usuario' , user)
+    if (user2 != null) {
+        console.log('Nombre usuario: ', user2.displayName)
+        console.log('UID usuario: ' , user2.uid)
+        console.log('Email usuario: ', user2.email)
+    }
+    else
+        console.log('xd')
     return (
         <>
 

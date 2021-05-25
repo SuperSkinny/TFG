@@ -3,12 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/styles/styles.css'
 import RankingComponent from '../components/rankingComponent';
 
-
 export default class PostGame extends Component {
 
     
     render() {
         const { gameModeName, points, onGameGoBack } = this.props
+
+        console.log('Gamemodename ' + gameModeName)
+        
         let msg;
         if ( points <= 7 ) {
             msg = "Más suerte la próxima vez, si te atreves..."
@@ -20,11 +22,10 @@ export default class PostGame extends Component {
 
         return (
             <div  style={ { display: "flex", justifyContent: 'center' }}>
-
                 <div style={ { display: "flex", flexDirection: "column", alignItems: "center", width: 700, marginLeft:14, marginRight: 14 }}>
                     <div>
                         <span className="generalTitle" >
-                            {msg}
+                            { msg }
                         </span>
                     </div>
                     <div style={ { display: "flex", flexDirection: "row", marginBottom: 20 }}>
@@ -36,10 +37,10 @@ export default class PostGame extends Component {
                             <span className="cardTitle" style={ { marginBottom: 8 } }>Tiempo</span>
                             <div className="cardResult" >34.5</div>
                         </div>
-                    </div>   
+                    </div>
                     <RankingComponent
-                        category={gameModeName}
-                    />  
+                        gameModeName={gameModeName}
+                    />
                     <div style={ { marginTop: 30 } }>
                     <button 
                         type="button" 

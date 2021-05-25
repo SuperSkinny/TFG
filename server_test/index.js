@@ -4,7 +4,4 @@ const Model = require('./models/model')
 
 console.log('Area pruebas')
 // Model.checkIfEmailExists('pedrin@quizroyale.com')
-Model.getAllScoresOfUser('hl8iyxzgRi')
-.then(response => {
-    console.log(response)
-})
+// Model.setNewScore('jginJTtBsaR71H02cBia4aidXYJ3', 5, 1.2, 'Viciado')
