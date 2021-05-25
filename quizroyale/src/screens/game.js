@@ -73,19 +73,11 @@ export default class Game extends Component {
         <React.Fragment>
             <div className="componentContent" >
                 { spinner && (
-<<<<<<< HEAD
                     <div className="content" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
                         <div className="spinner-grow text-secondary" role="status">
                             <span className="sr-only">Loading...</span>
                         </div>
-=======
-                    <div className="spinner-grow text-secondary" role="status">
-                        <span className="sr-only">Loading...</span>
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
                     </div>
-                    // <div className="spinner-border text-secondary" role="status">
-                    //   <span className="sr-only">Loading...</span>
-                    // </div>
                 )}
                 { !gameStarted && !gameEnded && !!questions_answers.length && (
                     <LoadScreen

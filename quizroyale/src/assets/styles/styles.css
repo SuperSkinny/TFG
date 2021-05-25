@@ -33,7 +33,7 @@ body {
   border: solid 1px #C4C4C4;
   font-size: 1.2em;
   font-weight: bold;
-  color: #E06482;
+  color: #A69965;
 }
 
 .tableResult {
@@ -73,7 +73,7 @@ body {
 .userPoints {
   padding-left: 25px;
   font-weight: bold;
-  color: #E06482;
+  color: #A69965;
 }
 
 
@@ -83,7 +83,7 @@ body {
 
 
 .signOutButton {
-  background-color: #E06482;
+  background-color: #A69965;
   border: none;
   color: white;
   padding: 5px 18px;
@@ -96,7 +96,7 @@ body {
 
 .signOutButton:hover {
   color: White;
-  background-color: #e490a5;
+  background-color: #C1AF87;
 }
 
 
@@ -125,14 +125,14 @@ body {
     margin-top: 20px;
     height: 20px;
     width: 400px;
-    background-color: #e490a5;
+    background-color: #C1AF87;
     border-radius: 15px;
   }
   
   .progressBar {
     height: 20px;
     /* width: 100px; */
-    background-color: #E06482;
+    background-color: #A69965;
     border-radius: 15px;
   }
 
@@ -140,7 +140,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 3.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     line-height: 110%;
     margin: 20px 10px 20px 10px;
@@ -149,7 +149,7 @@ body {
   .homeTitle {
     display: flex;
     text-align: center;
-    color: #E06482;
+    color: #A69965;
     font-size: 5.5em;
     font-weight: bold;
   }
@@ -165,14 +165,14 @@ body {
     border-radius: 25px;
     background-color: #F2F2F2;
     font-size: 1.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     border: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .gameButton:hover {
     color: white;
-    background-color: #E06482;
+    background-color: #A69965;
   }
   
   .gameButtonCorrect {
@@ -213,7 +213,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 1.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     margin-bottom: 8px;
   }
@@ -235,7 +235,7 @@ body {
   }
 
   .generalButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -251,11 +251,11 @@ body {
   
   .generalButton:hover {
     color: white;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
   
   .playButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -271,7 +271,7 @@ body {
   
   .playButton:hover {
     color: White;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
 }
 
@@ -296,14 +296,14 @@ body {
     margin-top: 20px;
     height: 20px;
     width: 400px;
-    background-color: #e490a5;
+    background-color: #C1AF87;
     border-radius: 15px;
   }
   
   .progressBar {
     height: 20px;
     /* width: 100px; */
-    background-color: #E06482;
+    background-color: #A69965;
     border-radius: 15px;
   }
 
@@ -311,7 +311,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 3em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     line-height: 110%;
     margin: 20px 10px 20px 10px;
@@ -320,7 +320,7 @@ body {
   .homeTitle {
     display: flex;
     text-align: center;
-    color: #E06482;
+    color: #A69965;
     font-size: 4.5em;
     font-weight: bold;
   }
@@ -337,14 +337,14 @@ body {
     border-radius: 25px;
     background-color: #F2F2F2;
     font-size: 1.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     border: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .gameButton:hover {
     color: white;
-    background-color: #E06482;
+    background-color: #A69965;
   }
   
   .gameButtonCorrect {
@@ -385,7 +385,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 1.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     margin-bottom: 8px;
   }
@@ -405,7 +405,7 @@ body {
 
 
   .generalButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -421,11 +421,11 @@ body {
   
   .generalButton:hover {
     color: white;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
   
   .playButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -441,7 +441,7 @@ body {
   
   .playButton:hover {
     color: White;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
 }
 
@@ -466,15 +466,15 @@ body {
     margin: 25;
     margin-top: 20px;
     height: 20px;
-    width: 100%;
-    background-color: #e490a5;
+    width: 80%;
+    background-color: #C1AF87;
     border-radius: 15px;
   }
   
   .progressBar {
     height: 20px;
     /* width: 100px; */
-    background-color: #E06482;
+    background-color: #A69965;
     border-radius: 15px;
   }
 
@@ -482,7 +482,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 2.5em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     line-height: 110%;
     margin: 20px 10px 20px 10px;
@@ -491,7 +491,7 @@ body {
   .homeTitle {
     display: flex;
     text-align: center;
-    color: #E06482;
+    color: #A69965;
     font-size: 3.5em;
     font-weight: bold;
   }
@@ -510,11 +510,11 @@ body {
     border: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     background-color: #F2F2F2;
-    color: #E06482;
+    color: #A69965;
   }
   .gameButton:hover {
     color: white;
-    background-color: #E06482;
+    background-color: #A69965;
   }
   
   .gameButtonCorrect {
@@ -551,7 +551,7 @@ body {
     display: flex;
     text-align: center;
     font-size: 1.1em;
-    color: #E06482;
+    color: #A69965;
     font-weight: bold;
     margin-bottom: 8px;
   }
@@ -570,7 +570,7 @@ body {
 
 
   .generalButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     text-align: center;
@@ -585,11 +585,11 @@ body {
   
   .generalButton:hover {
     color: white;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
   
   .playButton {
-    background-color: #E06482;
+    background-color: #A69965;
     border: none;
     color: white;
     text-align: center;
@@ -604,7 +604,7 @@ body {
   
   .playButton:hover {
     color: White;
-    background-color: #e490a5;
+    background-color: #C1AF87;
   }
 
   /* FOOTER -------------------------------------- */ 

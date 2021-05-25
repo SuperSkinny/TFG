@@ -18,31 +18,9 @@ export default class GameComponent extends Component {
         });
     };
 
-<<<<<<< HEAD
-    handleResponse(answer) {
-=======
-    // handleResponse(answer) {
-    //     console.log("Entra aquí?: "+ answer)
-    //     if (answer === true) {
-    //         console.log("Es correcta")
-    //         this.setState({
-    //             classAnswer: "gameButtonCorrect",
-    //             },
-    //             () => {setTimeout(() => this.handleClose(), 2000)}
-    //         );
-    //     } else {
-    //         console.log("NO Es correcta")
-    //         this.setState({
-    //             classAnswer: "gameButtonFail"},
-    //             () => {setTimeout(() => this.handleClose(), 2000)}
-    //         ); 
-    //     }
-    // }
-
     handleResponse(answer) {
         const { onResponsePress, gameModeQuestion } = this.props
         console.log('Aqui se resta vida o se suma puntos')
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
         if (answer === true) {
             this.setState({ 
                 ifAnswer: true,
@@ -53,11 +31,8 @@ export default class GameComponent extends Component {
             console.log("respuesta incorrecta")
             this.setState({ 
                 ifAnswer: true,
-<<<<<<< HEAD
                 disabledButton: true,
-=======
                 lifeBar: this.state.lifeBar - 25,
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
             }, () => {setTimeout(() => this.handleRestart(), 2000)})
         }
         onResponsePress(gameModeQuestion.question, this.state.points, this.state.lifeBar)
@@ -112,13 +87,8 @@ export default class GameComponent extends Component {
                 <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                     <button 
                         onClick={ ()=> {
-<<<<<<< HEAD
                             onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question);
                             this.handleResponse(gameModeQuestion.answer1.correct);
-=======
-                            this.handleResponse(gameModeQuestion.answer1.correct)
-                            // this.handleResponse(gameModeQuestion.answer1.correct)
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
                         }}
                         className={( this.state.ifAnswer ? `${this.handleAnswerOne()}` : "gameButton")}
                         disabled={this.state.disabledButton}
@@ -127,17 +97,11 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-<<<<<<< HEAD
-                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question);
-                            this.handleResponse(gameModeQuestion.answer2.correct);
-                        }}
-=======
                             onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question, this.state.lifeBar)
                             // this.handleResponse(gameModeQuestion.answer2.correct)
                             this.handleResponse(gameModeQuestion.answer2.correct)
                         }} 
                         // className={`${this.state.classAnswer}`}
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
                         className={( this.state.ifAnswer ? `${this.handleAnswerTwo()}` : "gameButton")} 
                         disabled={this.state.disabledButton}
                     >
@@ -145,14 +109,9 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-<<<<<<< HEAD
-                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question);
-                            this.handleResponse(gameModeQuestion.answer3.correct);
-=======
                             onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question, this.state.lifeBar)
                             // this.handleResponse(gameModeQuestion.answer3.correct)
                             this.handleResponse(gameModeQuestion.answer3.correct)
->>>>>>> f3466a5e0e76d3dd83d8bdbecab47f1b63606edc
                         }} 
                         className={( this.state.ifAnswer ? `${this.handleAnswerThree()}` : "gameButton")}
                         disabled={this.state.disabledButton} 

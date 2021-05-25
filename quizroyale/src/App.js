@@ -40,43 +40,58 @@ function App() {
             <div className="content">
                 <Switch>
                     <Route exact path={"/tutorial"}>
-                    {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <Navbar />
-                        <Tutorial />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <Navbar />
+                                    <Tutorial />
+                                </>
+                            )
+                        }
                     </Route>
                     <Route exact path={"/ranking"}>
-                    {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <Navbar />
-                        <Ranking />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <Navbar />
+                                    <Ranking />
+                                </>
+                            )
+                        }
                     </Route>
                     <Route exact path={"/contact"}>
-                    {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <Navbar />
-                        <Contact />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <Navbar />
+                                    <Contact />
+                                </>
+                            )
+                        }
                     </Route>
                     <Route exact path={"/profile"} >
-                    {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <Navbar />
-                        <Profile />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <Navbar />
+                                    <Profile />
+                                </>
+                            )
+                        }
                     </Route>
                     <Route exact path={"/preGame"}>
-                    {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <PreGame />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <PreGame />
+                                </>
+                            )
+                        }
                     </Route>
                     {/* <Route path={"/game"}>
                         <Game />
@@ -85,12 +100,15 @@ function App() {
                         <PostGame />
                     </Route> */}
                     <Route path={"/"} >
-                        {!user.data ? (<Landing/>) :
-                        
-                        (<>
-                        <Navbar />
-                        <Home />
-                        </>)}
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <Navbar />
+                                    <Home />
+                                </>
+                            )
+                        }
                     </Route>
                 </Switch>
             </div>

@@ -21,7 +21,7 @@ const Navbar = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid" >
-        <Link className="navbar-brand" aria-current="page" style={ { color: "#E06482", fontSize:20, fontWeight: "bold" }} to={'/home'}>Quiz Royale</Link>
+        <Link className="navbar-brand" aria-current="page" style={ { color: "#A69965", fontSize:20, fontWeight: "bold" }} to={'/home'}>Quiz Royale</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded={!isNavCollapsed ? true : false} aria-label="Toggle navigation" onClick={handleNavCollapse}>
           <span className="navbar-toggler-icon"></span>
         </button>
