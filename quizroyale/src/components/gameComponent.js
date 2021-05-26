@@ -20,6 +20,8 @@ export default class GameComponent extends Component {
 
     handleResponse(answer) {
         const { onResponsePress, gameModeQuestion } = this.props
+        // TODO: Deberíamos hacer aquí el contador de preguntas para poder gestionar un error de estado de componente desmontado, también el condicional de la barra de vida
+        // let questions = 20;
         console.log('Aqui se resta vida o se suma puntos')
         if (answer === true) {
             this.setState({ 
@@ -66,7 +68,7 @@ export default class GameComponent extends Component {
     }
 
     render() {
-        const { gameModeQuestion, onGameGoBack, onResponsePress } = this.props;
+        const { gameModeQuestion, onGameGoBack } = this.props;
         
         console.log(gameModeQuestion)
         if (!gameModeQuestion){
@@ -87,7 +89,6 @@ export default class GameComponent extends Component {
                 <div  style={ { display: "flex", justifyContent: 'center', flexWrap: "wrap" }}>
                     <button 
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer1.correct, gameModeQuestion.question);
                             this.handleResponse(gameModeQuestion.answer1.correct);
                         }}
                         className={( this.state.ifAnswer ? `${this.handleAnswerOne()}` : "gameButton")}
@@ -97,11 +98,8 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer2.correct, gameModeQuestion.question, this.state.lifeBar)
-                            // this.handleResponse(gameModeQuestion.answer2.correct)
                             this.handleResponse(gameModeQuestion.answer2.correct)
                         }} 
-                        // className={`${this.state.classAnswer}`}
                         className={( this.state.ifAnswer ? `${this.handleAnswerTwo()}` : "gameButton")} 
                         disabled={this.state.disabledButton}
                     >
@@ -109,8 +107,6 @@ export default class GameComponent extends Component {
                     </button>
                     <button
                         onClick={ ()=> {
-                            onResponsePress(gameModeQuestion.answer3.correct, gameModeQuestion.question, this.state.lifeBar)
-                            // this.handleResponse(gameModeQuestion.answer3.correct)
                             this.handleResponse(gameModeQuestion.answer3.correct)
                         }} 
                         className={( this.state.ifAnswer ? `${this.handleAnswerThree()}` : "gameButton")}
@@ -129,7 +125,6 @@ export default class GameComponent extends Component {
                         className="generalButton"
                         onClick={ () => {
                             // TODO: hay que resetear el juego aquí cuando salimos
-                            //console.log("SALIR A PREGAME")
                             onGameGoBack()
                         }}
                     >
