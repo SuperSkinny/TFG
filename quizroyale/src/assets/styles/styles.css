@@ -19,48 +19,8 @@ body {
 
 
 /* TEXT -------------------------------------- */ 
-.homeTitle {
-  display: flex;
-  text-align: center;
-  color: #E06482;
-  font-size: 5.5em;
-  font-weight: bold;
-}
 
-.generalTitle {
-  display: flex;
-  text-align: center;
-  font-size: 3.5em;
-  color: #E06482;
-  font-weight: bold;
-  line-height: 110%;
-  margin: 20px 10px 20px 10px;
-}
 
-.cardTitle {
-  display: flex;
-  text-align: center;
-  font-size: 1.5em;
-  color: #E06482;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.preGameCard {
-  display: flex;
-  flex-wrap: wrap;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: space-around; */
-  justify-content: center;
-  padding: 20px 25px 25px 25px;
-  margin: 10px;
-  max-width: 250px;
-  min-width: 150px;
-  min-height: 200px;
-  border-radius: 25px;
-  background-color: #F2F2F2;
-}
 
 .cardResult {
   display: flex;
@@ -73,7 +33,7 @@ body {
   border: solid 1px #C4C4C4;
   font-size: 1.2em;
   font-weight: bold;
-  color: #E06482;
+  color: #A69965;
 }
 
 .tableResult {
@@ -113,125 +73,33 @@ body {
 .userPoints {
   padding-left: 25px;
   font-weight: bold;
-  color: #E06482;
+  color: #A69965;
 }
 
-.progressBarContainer {
-  margin-top: 20px;
-  height: 20px;
-  width: 400px;
-  background-color: #e490a5;
-  border-radius: 15px;
-}
 
-.progressBar {
-  height: 20px;
-  /* width: 100px; */
-  background-color: #E06482;
-  border-radius: 15px;
-}
 
 
 /* BUTTONS -------------------------------------- */ 
-.generalButton {
-  background-color: #E06482;
+
+
+.signOutButton {
+  background-color: #A69965;
   border: none;
   color: white;
-  padding: 8px 20px;
+  padding: 5px 18px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 1.2rem;
   font-weight: bold;
-  min-width: 150px;
   border-radius: 45px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-.generalButton:hover {
-  color: white;
-  background-color: #e490a5;
-}
-
-.playButton {
-  background-color: #E06482;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 25px;
-  font-weight: bold;
-  min-width: 180px;
-  border-radius: 45px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-}
-
-.playButton:hover {
+.signOutButton:hover {
   color: White;
-  background-color: #e490a5;
+  background-color: #C1AF87;
 }
 
-.gameButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-  margin: 10px;
-  width: 250px;
-  min-height: 100px;
-  border-radius: 25px;
-  background-color: #F2F2F2;
-  font-size: 1.5em;
-  color: #E06482;
-  font-weight: bold;
-  border: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-}
-.gameButton:hover {
-  color: white;
-  background-color: #E06482;
-}
 
-.gameButtonCorrect {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-  margin: 10px;
-  width: 250px;
-  min-height: 100px;
-  border-radius: 25px;
-  background-color: lightgreen;
-  font-size: 1.5em;
-  color: white;
-  font-weight: bold;
-  border: none;
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); */
-}
-
-.gameButtonFail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px;
-  margin: 10px;
-  width: 250px;
-  min-height: 100px;
-  border-radius: 25px;
-  background-color: lightcoral;
-  font-size: 1.5em;
-  color: white;
-  font-weight: bold;
-  border: none;
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); */
-}
-
-/* CONTENT -------------------------------------- */ 
 
 
 @media only screen and (min-width: 811px) { 
@@ -252,6 +120,159 @@ body {
     align-items: center;
     height: 100%;
   }
+
+  .progressBarContainer {
+    margin-top: 20px;
+    height: 20px;
+    width: 400px;
+    background-color: #C1AF87;
+    border-radius: 15px;
+  }
+  
+  .progressBar {
+    height: 20px;
+    /* width: 100px; */
+    background-color: #A69965;
+    border-radius: 15px;
+  }
+
+  .generalTitle {
+    display: flex;
+    text-align: center;
+    font-size: 3.5em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
+  }
+
+  .homeTitle {
+    display: flex;
+    text-align: center;
+    color: #A69965;
+    font-size: 5.5em;
+    font-weight: bold;
+  }
+  .gameButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+    font-size: 1.5em;
+    color: #A69965;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  .gameButton:hover {
+    color: white;
+    background-color: #A69965;
+  }
+  
+  .gameButtonCorrect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: lightgreen;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .gameButtonFail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: lightcoral;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+
+  .cardTitle {
+    display: flex;
+    text-align: center;
+    font-size: 1.5em;
+    color: #A69965;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .preGameCard {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    justify-content: center;
+    padding: 20px 25px 25px 25px;
+    margin: 10px;
+    max-width: 250px;
+    min-width: 150px;
+    min-height: 200px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+  }
+
+  .generalButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-width: 150px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .generalButton:hover {
+    color: white;
+    background-color: #C1AF87;
+  }
+  
+  .playButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 180px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .playButton:hover {
+    color: White;
+    background-color: #C1AF87;
+  }
 }
 
 @media only screen and (max-width: 810px) {
@@ -270,16 +291,329 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  .progressBarContainer {
+    margin-top: 20px;
+    height: 20px;
+    width: 400px;
+    background-color: #C1AF87;
+    border-radius: 15px;
+  }
+  
+  .progressBar {
+    height: 20px;
+    /* width: 100px; */
+    background-color: #A69965;
+    border-radius: 15px;
+  }
+
+  .generalTitle {
+    display: flex;
+    text-align: center;
+    font-size: 3em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
+  }
+
+  .homeTitle {
+    display: flex;
+    text-align: center;
+    color: #A69965;
+    font-size: 4.5em;
+    font-weight: bold;
+  }
+
+  .gameButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+    font-size: 1.5em;
+    color: #A69965;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  .gameButton:hover {
+    color: white;
+    background-color: #A69965;
+  }
+  
+  .gameButtonCorrect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: lightgreen;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .gameButtonFail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    margin: 10px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 25px;
+    background-color: lightcoral;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+
+  .cardTitle {
+    display: flex;
+    text-align: center;
+    font-size: 1.5em;
+    color: #A69965;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .preGameCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px 25px 25px 25px;
+    margin: 10px;
+    max-width: 250px;
+    min-width: 150px;
+    min-height: 200px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+  }
+
+
+  .generalButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-width: 150px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .generalButton:hover {
+    color: white;
+    background-color: #C1AF87;
+  }
+  
+  .playButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 180px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .playButton:hover {
+    color: White;
+    background-color: #C1AF87;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  /* For mobiles: */
+  .content {
+    min-height:100vh;
+    position:relative;
+  }
+  .componentContent {
+    display: flex;
+    justify-content: center;
+  }
+  .columnContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .progressBarContainer {
+    margin: 25;
+    margin-top: 20px;
+    height: 20px;
+    width: 80%;
+    background-color: #C1AF87;
+    border-radius: 15px;
+  }
+  
+  .progressBar {
+    height: 20px;
+    /* width: 100px; */
+    background-color: #A69965;
+    border-radius: 15px;
+  }
+
+  .generalTitle {
+    display: flex;
+    text-align: center;
+    font-size: 2.5em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
+  }
+
+  .homeTitle {
+    display: flex;
+    text-align: center;
+    color: #A69965;
+    font-size: 3.5em;
+    font-weight: bold;
+  }
+
+  .gameButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    height: 10px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    background-color: #F2F2F2;
+    color: #A69965;
+  }
+  .gameButton:hover {
+    color: white;
+    background-color: #A69965;
+  }
+  
+  .gameButtonCorrect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    background-color: lightgreen;
+    color: white;
+  }
+  
+  .gameButtonFail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    background-color: lightcoral;
+    color: white;
+  }
+
+  .cardTitle {
+    display: flex;
+    text-align: center;
+    font-size: 1.1em;
+    color: #A69965;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .preGameCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 20px 20px 20px;
+    margin: 10px;
+    width: 100%;
+    min-height: 200px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+  }
+
+
+  .generalButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 120px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .generalButton:hover {
+    color: white;
+    background-color: #C1AF87;
+  }
+  
+  .playButton {
+    background-color: #A69965;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    min-width: 140px;
+    border-radius: 45px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .playButton:hover {
+    color: White;
+    background-color: #C1AF87;
+  }
+
+  /* FOOTER -------------------------------------- */ 
+  .footerContent {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 
 
-/* FOOTER -------------------------------------- */ 
-/* footer {
 
-  align-self: flex-end;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 0px;
-} */
