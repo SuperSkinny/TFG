@@ -1,0 +1,605 @@
+{
+"results" : [
+
+  {
+    "objectId": "N5isvjtrRA",
+    "question": "¿Cuanto es 5-2+2?",
+    "createdAt": "2021-04-07T16:32:05.492Z",
+    "updatedAt": "2021-04-07T16:32:20.765Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "XoIR5P9ZLt",
+    "question": "¿En que año descubrió América Cristobal Colon?",
+    "createdAt": "2021-05-01T10:08:51.985Z",
+    "updatedAt": "2021-05-01T10:08:59.796Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "UaTBsBmBsi",
+    "question": "¿De qué país forma parte Hawaii?",
+    "createdAt": "2021-05-19T08:35:55.174Z",
+    "updatedAt": "2021-05-19T08:36:20.461Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "eXMseeh06r",
+    "question": "¿Cuál es el río más largo de España?",
+    "createdAt": "2021-05-19T08:39:48.908Z",
+    "updatedAt": "2021-05-19T08:39:58.370Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "coqkBjyOOu",
+    "question": "¿De qué color son las ‘cajas negras’ de los aviones?",
+    "createdAt": "2021-05-19T08:40:53.882Z",
+    "updatedAt": "2021-05-19T08:41:13.275Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "frTdw3CvlI",
+    "question": "¿Cuántos jugadores hay en un equipo de béisbol?",
+    "createdAt": "2021-05-19T08:42:28.709Z",
+    "updatedAt": "2021-05-19T08:42:38.395Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "2C5IVvhFiG",
+    "question": "¿En qué año se creó la World Wide Web?",
+    "createdAt": "2021-05-19T08:42:47.370Z",
+    "updatedAt": "2021-05-19T08:42:52.045Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "dH6JlNUCI9",
+    "question": "¿Cual es la capital de España?",
+    "createdAt": "2021-05-19T08:45:39.645Z",
+    "updatedAt": "2021-05-19T08:45:50.363Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "biMh2uMFOR",
+    "question": "¿De qué están hechos los pinceles de pelo de camello?",
+    "createdAt": "2021-05-19T08:46:18.384Z",
+    "updatedAt": "2021-05-19T08:46:30.611Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "VgkuaIt9K2",
+    "question": "¿Cuál es el único país que ha jugado en cada Copa del Mundo de fútbol? ",
+    "createdAt": "2021-05-19T08:46:20.689Z",
+    "updatedAt": "2021-05-19T08:46:45.760Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "MLG9uOv6Mj",
+    "question": "¿Donde se encuentra el museo del Prado?",
+    "createdAt": "2021-05-19T08:48:17.730Z",
+    "updatedAt": "2021-05-19T08:48:26.834Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "RZHlX2aBJf",
+    "question": "¿Cuál es el planeta más caliente del sistema solar?",
+    "createdAt": "2021-05-19T08:50:33.819Z",
+    "updatedAt": "2021-05-19T08:50:47.178Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "H1S5ATuPp0",
+    "question": "¿Quién es considerado como el Rey del Rock?",
+    "createdAt": "2021-05-19T08:51:01.422Z",
+    "updatedAt": "2021-05-19T08:51:07.480Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "Z071snckNp",
+    "question": "¿Qué animal da nombre a las Islas Canarias?",
+    "createdAt": "2021-05-19T08:51:15.541Z",
+    "updatedAt": "2021-05-19T08:51:25.833Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "NqPAScMczy",
+    "question": "¿Quién escribió la trilogía de \"El señor de los anillos\"?",
+    "createdAt": "2021-05-19T08:54:01.516Z",
+    "updatedAt": "2021-05-19T08:54:12.496Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "2SHEgNmTIM",
+    "question": "¿Cuál es el primer elemento en la tabla periódica?",
+    "createdAt": "2021-05-19T08:54:27.351Z",
+    "updatedAt": "2021-05-19T08:54:33.060Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "1ayAWCjB0x",
+    "question": "¿Cuánto duró la Guerra de los 100 años?",
+    "createdAt": "2021-05-19T08:56:14.425Z",
+    "updatedAt": "2021-05-19T08:56:23.359Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "ULTuEdlFtc",
+    "question": "¿Cuantas patas tiene una araña?",
+    "createdAt": "2021-05-19T08:57:22.302Z",
+    "updatedAt": "2021-05-19T08:57:28.802Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "IcerkNZy8N",
+    "question": "¿En cuántas películas interpretó Sean Connery a James Bond?",
+    "createdAt": "2021-05-19T08:59:06.149Z",
+    "updatedAt": "2021-05-19T08:59:19.154Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "PbOyhJHng6",
+    "question": "¿De qué isla es el futbolista Cristiano Ronaldo?",
+    "createdAt": "2021-05-19T08:59:47.641Z",
+    "updatedAt": "2021-05-19T08:59:55.767Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "eXI4k8sn9C",
+    "question": "¿Qué es eso que si tienes, quieres compartirlo, y si lo compartes, ya no lo tienes?",
+    "createdAt": "2021-05-19T09:00:38.069Z",
+    "updatedAt": "2021-05-19T09:00:47.404Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "KOkcQ7y8Id",
+    "question": "¿Cuanto dura un partido de fútbol?",
+    "createdAt": "2021-05-19T09:01:37.749Z",
+    "updatedAt": "2021-05-19T09:01:47.157Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "QDQ3x5Yy0z",
+    "question": "En 1893, ¿qué país se convirtió en el primero en dar a las mujeres el derecho al voto?",
+    "createdAt": "2021-05-19T09:03:39.898Z",
+    "updatedAt": "2021-05-19T09:03:45.428Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "Ocib2tseTx",
+    "question": "¿Qué va hacia arriba y hacia abajo, pero sigue estando en el mismo lugar?",
+    "createdAt": "2021-05-19T09:04:08.596Z",
+    "updatedAt": "2021-05-19T09:04:21.751Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "DHxHgwIfz4",
+    "question": "¿Como se llama en volleyball el jugador con la camiseta de color diferente?",
+    "createdAt": "2021-05-19T09:04:34.512Z",
+    "updatedAt": "2021-05-19T09:04:44.630Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "kBkSXJGDKH",
+    "question": "¿En qué mes celebran los rusos la Revolución de Octubre?",
+    "createdAt": "2021-05-19T09:06:30.755Z",
+    "updatedAt": "2021-05-19T09:06:46.679Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "mxRrGhkSwJ",
+    "question": "¿A qué velocidad viaja la luz?",
+    "createdAt": "2021-05-19T09:06:57.206Z",
+    "updatedAt": "2021-05-19T09:07:04.501Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "b2EbnRgHdJ",
+    "question": "¿Cuál es el libro más sagrado del judaísmo?",
+    "createdAt": "2021-05-19T09:07:15.999Z",
+    "updatedAt": "2021-05-19T09:07:21.784Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "hadSa7xCqb",
+    "question": "Las vacas son...",
+    "createdAt": "2021-05-19T09:09:19.087Z",
+    "updatedAt": "2021-05-19T09:09:24.736Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "DnerulKQXU",
+    "question": "¿Qué desierto es el más grande del mundo?",
+    "createdAt": "2021-05-19T09:09:41.998Z",
+    "updatedAt": "2021-05-19T09:09:46.792Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "NAqFvFGoFo",
+    "question": "¿Cuál era el primer nombre del Rey Jorge VI?",
+    "createdAt": "2021-05-19T09:10:01.189Z",
+    "updatedAt": "2021-05-19T09:10:11.042Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "GzQk7YjUKZ",
+    "question": "¿Qué significa »N« en la OTAN?",
+    "createdAt": "2021-05-19T09:12:20.314Z",
+    "updatedAt": "2021-05-19T09:12:25.687Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "q8JV0828we",
+    "question": "¿Quien inventó el teorema de Pitágoras?",
+    "createdAt": "2021-05-19T09:12:28.832Z",
+    "updatedAt": "2021-05-19T09:13:32.049Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "GQ4579cYEi",
+    "question": "Si tengo 5 peces y 3 de ellos se ahogan, ¿cuántos peces me quedan?",
+    "createdAt": "2021-05-19T09:13:47.020Z",
+    "updatedAt": "2021-05-19T09:13:54.802Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "zY5MGQeRye",
+    "question": "¿Qué compositor escribió la ópera La flauta mágica?",
+    "createdAt": "2021-05-19T09:15:07.846Z",
+    "updatedAt": "2021-05-19T09:15:13.017Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "yHL5TIddyN",
+    "question": "¿Cómo se llama el mar que se encuentra al este de España?",
+    "createdAt": "2021-05-19T09:15:34.706Z",
+    "updatedAt": "2021-05-19T09:18:04.077Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "MOGSnrRpsE",
+    "question": "¿Qué país fabrica los famosos “Panama Hats”?",
+    "createdAt": "2021-05-19T09:16:23.737Z",
+    "updatedAt": "2021-05-19T09:16:37.812Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "JOqpERcpTM",
+    "question": "¿Qué sencillo de los Beatles duró más tiempo en las listas, 19 semanas?",
+    "createdAt": "2021-05-19T09:17:43.210Z",
+    "updatedAt": "2021-05-19T09:17:52.233Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "PVkRuoKTih",
+    "question": "¿Cómo se llama el planeta donde habitamos?",
+    "createdAt": "2021-05-19T09:17:52.074Z",
+    "updatedAt": "2021-05-19T09:18:10.327Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "7vp9m3RgZX",
+    "question": "¿Cual es el número PI?",
+    "createdAt": "2021-05-19T09:20:11.538Z",
+    "updatedAt": "2021-05-19T09:20:18.988Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "DvTPJCQ5UK",
+    "question": "¿Qué libro de Harry Potter es el más largo de la serie?",
+    "createdAt": "2021-05-19T09:21:02.295Z",
+    "updatedAt": "2021-05-19T09:21:07.060Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "UtFUTmKs0v",
+    "question": "Nombre famosa pintora mexicana",
+    "createdAt": "2021-05-19T09:22:22.617Z",
+    "updatedAt": "2021-05-19T09:22:29.253Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "M76ayXr8Xf",
+    "question": "¿En qué siglo nació William Shakespeare?",
+    "createdAt": "2021-05-19T09:23:13.607Z",
+    "updatedAt": "2021-05-19T09:23:20.493Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "SJt702w3DU",
+    "question": "¿Quién fue el Presidente del Consejo de Ministros de Italia en 1862?",
+    "createdAt": "2021-05-19T09:23:16.149Z",
+    "updatedAt": "2021-05-19T09:23:28.924Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "Eq36TLyGkx",
+    "question": "¿Cuál es el nombre del padre de Miley Cyrus?",
+    "createdAt": "2021-05-19T09:28:26.305Z",
+    "updatedAt": "2021-05-19T09:28:31.345Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "HC9p8SpGB5",
+    "question": "¿Qué ciudad es la capital de Nigeria?",
+    "createdAt": "2021-05-19T09:28:41.731Z",
+    "updatedAt": "2021-05-19T09:28:52.750Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "89cAFo06wv",
+    "question": "¿Cuál es el nombre real de Pink?",
+    "createdAt": "2021-05-19T09:32:26.722Z",
+    "updatedAt": "2021-05-19T09:32:35.961Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "VRYTNBEJ2A",
+    "question": "¿Quién fue el compositor de la serie Dragon Ball?",
+    "createdAt": "2021-05-19T09:33:00.568Z",
+    "updatedAt": "2021-05-19T09:33:09.120Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "qqDLLjwooi",
+    "question": "En el cuerpo humano, ¿dónde puedes encontrar olecranon? ",
+    "createdAt": "2021-05-19T09:36:11.088Z",
+    "updatedAt": "2021-05-19T09:36:16.915Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "HCfCehyFKq",
+    "question": "¿A qué enfermedad se llamaba anteriormente “consumo”?",
+    "createdAt": "2021-05-19T09:39:07.591Z",
+    "updatedAt": "2021-05-19T09:39:15.270Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "WsK2ReuBgM",
+    "question": "¿Cuántos puntos de vida tiene Yhorm, el Gigante, de Dark Souls III en NG+?",
+    "createdAt": "2021-05-19T09:39:24.515Z",
+    "updatedAt": "2021-05-19T09:39:35.753Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "05ZHqBvpEE",
+    "question": "¿Qué cabello en el cuerpo humano se vuelve grisáceo?",
+    "createdAt": "2021-05-19T09:41:19.110Z",
+    "updatedAt": "2021-05-19T09:41:26.641Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "lf6wB8AB32",
+    "question": "¿Qué órgano produce la bilirrubina?",
+    "createdAt": "2021-05-19T09:43:33.353Z",
+    "updatedAt": "2021-05-19T09:43:46.048Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "AYVvPwkpWD",
+    "question": "¿De cuál de estas películas no es director Takeshi Kitano?",
+    "createdAt": "2021-05-19T09:44:13.118Z",
+    "updatedAt": "2021-05-19T09:44:30.571Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "HlZobcIls1",
+    "question": "¿De qué material fueron hechos los primeros dientes postizos? ",
+    "createdAt": "2021-05-19T09:46:33.396Z",
+    "updatedAt": "2021-05-19T09:46:38.074Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "G6AksbRamB",
+    "question": "¿De cuántos metros es el drive más largo registrado en golf?",
+    "createdAt": "2021-05-19T09:49:01.288Z",
+    "updatedAt": "2021-05-19T09:49:17.336Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "Kai2Inke96",
+    "question": "¿En qué lenguaje está programado el videojuego Dark Souls?",
+    "createdAt": "2021-05-19T09:53:54.244Z",
+    "updatedAt": "2021-05-19T09:54:12.063Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "pr2oAmqlQi",
+    "question": "¿Cuántas libras de tensión tiene una cuerda de .48mm afinada en E2 en una guitarra de 25,5\"?",
+    "createdAt": "2021-05-19T09:58:27.638Z",
+    "updatedAt": "2021-05-19T09:58:43.191Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "DEsyYqcIBJ",
+    "question": "¿De cuántos N/m es el par motor de un Bugatti Chiron?",
+    "createdAt": "2021-05-19T10:05:40.937Z",
+    "updatedAt": "2021-05-19T10:05:49.271Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  },
+  {
+    "objectId": "GGhee7Tw4U",
+    "question": "¿Cuántas teclas tiene el clásico sintetizador Formanta Polivoks?",
+    "createdAt": "2021-05-19T10:09:49.560Z",
+    "updatedAt": "2021-05-19T10:10:08.480Z",
+    "category": {
+      "__type": "Relation",
+      "className": "Categories"
+    }
+  }
+]
+}

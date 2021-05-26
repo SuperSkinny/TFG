@@ -1,0 +1,26 @@
+{
+"results" : [
+
+  {
+    "objectId": "fqnUHdjRTy",
+    "category": "Novato",
+    "createdAt": "2021-04-07T16:31:09.091Z",
+    "updatedAt": "2021-05-08T11:29:28.268Z",
+    "description": "Selección de preguntas fáciles para echar unas risas con tus coleguitas..."
+  },
+  {
+    "objectId": "g9CYtmkDC4",
+    "category": "Viciado",
+    "createdAt": "2021-05-02T10:37:09.588Z",
+    "updatedAt": "2021-05-08T11:29:47.169Z",
+    "description": "Selección de preguntas moderadas para ver si eres el listo de tu grupo de amigos..."
+  },
+  {
+    "objectId": "hA0oAh1lHT",
+    "category": "Hacker",
+    "createdAt": "2021-05-02T10:37:14.314Z",
+    "updatedAt": "2021-05-08T11:29:39.592Z",
+    "description": "Selección de preguntas para frustrarte y dejar de tener amigos si juegas con ellos."
+  }
+]
+}
