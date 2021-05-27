@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'firebase/auth'
+import { useFirebaseApp } from 'reactfire'
 import * as model from '../api/model';
 
 export default class RankingComponent extends Component {
@@ -9,17 +11,22 @@ export default class RankingComponent extends Component {
 
         this.state = { 
             scores: [],
+            scoreOfUser: [],
         }
     }
 
     async componentDidMount() {
         this.setState({
             scores: await model.getBestThreeScoresOfACategory(this.props.gameModeName),
+            scoreOfUser: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid ,this.props.gameModeName)
         })
     }
 
     render() {
-        const { scores } = this.state
+        const { scores, scoreOfUser } = this.state
+
+        if (scoreOfUser.length !== 0)
+            console.log('score of user: ', scoreOfUser)
 
         return (
             <>
@@ -75,14 +82,14 @@ export default class RankingComponent extends Component {
                     <div className="row">
                         <div className="divPosition">
                         <span className="position">
-                            1234 
+                            { scoreOfUser[0].position }
                         </span>
                         </div>
                         <span className="userName">
-                        Juan Gallego
+                            { scoreOfUser[0].name }
                         </span>
                         <span className="userPoints">
-                        35
+                            { scoreOfUser[0].score }
                         </span>
                     </div>
                 </div>  
