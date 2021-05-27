@@ -221,27 +221,33 @@ export const getBestThreeScoresOfACategory = async (category) => {
 
 /**
  * Dado un id de usuario obtiene todas sus puntuaciones
- * @param {String} userId 
+ * @param {String} UID 
+ * @param {String} category
  * @returns {Array}
  */
-export const getAllScoresOfUser = async (userId) => {
+ export const getScoreAndPositionOfUserByIdAndCategory = async (UID, category) => {
     let scores = []
 
-    const User = Parse.Object.extend('Users')
-    const userWithId = new User()
-    userWithId.id = userId
-
     const Score = Parse.Object.extend('Scores')
-    const queryGetAllScoresOfUser = new Parse.Query(Score)
+    const queryGetAllScoresOfCategory = new Parse.Query(Score)
 
-    queryGetAllScoresOfUser.equalTo('user_id', userWithId)
+    queryGetAllScoresOfCategory.equalTo('category', category)
+    queryGetAllScoresOfCategory.descending('score')
+    queryGetAllScoresOfCategory.addAscending('average_time')
+    
+    var position = 1
 
     try {
-        const response = await queryGetAllScoresOfUser.findAll()
-        
+        const response = await queryGetAllScoresOfCategory.find()
+
         if (response.length !== 0) {
             response.forEach(score => {
-                scores.push(score.toJSON())
+                if (score.toJSON().UID != UID) {
+                    position++
+                } else {
+                    scores.push(score.toJSON())
+                    scores[0]['position'] = position
+                }
             })
         } else {
             return null

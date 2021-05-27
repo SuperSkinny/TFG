@@ -217,27 +217,37 @@ async function getBestThreeScoresOfACategory(category) {
     }
 
     return scores
-}
+} 
 
 /**
  * Dado un id de usuario obtiene todas sus puntuaciones
  * @param {String} UID 
+ * @param {String} category
  * @returns {Array}
  */
-async function getAllScoresOfUser(UID) {
+async function getScoreAndPositionOfUserByIdAndCategory(UID, category) {
     let scores = []
 
     const Score = Parse.Object.extend('Scores')
-    const queryGetAllScoresOfUser = new Parse.Query(Score)
+    const queryGetAllScoresOfCategory = new Parse.Query(Score)
 
-    queryGetAllScoresOfUser.equalTo('UID', UID)
+    queryGetAllScoresOfCategory.equalTo('category', category)
+    queryGetAllScoresOfCategory.descending('score')
+    queryGetAllScoresOfCategory.addAscending('average_time')
+    
+    var position = 1
 
     try {
-        const response = await queryGetAllScoresOfUser.findAll()
-        
+        const response = await queryGetAllScoresOfCategory.find()
+
         if (response.length !== 0) {
             response.forEach(score => {
-                scores.push(score.toJSON())
+                if (score.toJSON().UID != UID) {
+                    position++
+                } else {
+                    scores.push(score.toJSON())
+                    scores[0]['position'] = position
+                }
             })
         } else {
             return null
@@ -462,7 +472,7 @@ exports.changeUserPassword = changeUserPassword
 exports.changeUserPicture = changeUserPicture
 exports.newContact = newContact
 exports.getBestThreeScoresOfACategory = getBestThreeScoresOfACategory
-exports.getAllScoresOfUser = getAllScoresOfUser
+exports.getScoreAndPositionOfUserByIdAndCategory = getScoreAndPositionOfUserByIdAndCategory
 exports.setNewScore = setNewScore
 exports.getCategories = getCategories
 exports.getAllQuestionsByCategory = getAllQuestionsByCategory
