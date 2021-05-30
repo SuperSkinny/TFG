@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../assets/styles/styles.css'
 import { Modal } from 'react-bootstrap'
 import 'firebase/auth'
+import firebase1 from 'firebase'
 import { useFirebaseApp } from 'reactfire'
+
 
 
 function Registration(props) {
@@ -29,31 +32,37 @@ function Registration(props) {
                 
     }
 
+    const signInWithGoogle = async (e) =>{
+        const provider = new firebase1.auth.GoogleAuthProvider()
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
+
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
         e.target.className += " was-validated"
         console.log("details", details)       
-        
-
-        // if(details.email === ""){
-        //    errors.email= "Debes introducir un correo electrónico."
-        // }
-        // else if(!details.email.match(emailPattern)){
-        //     errors.email = "El formato del correo electrónico no es válido."
-        // }
-        // else{
-        //     errors.email = ""
-        // }
-
-        // if(details.pass === ""){
-        //     errors.pass = "Debes introducir una contraseña."
-        // }
-        // else if(!details.pass.match(passPattern)){
-        //     errors.pass = "Debe tener una longitudo entre 6 y 20 caracteres. Se admite cualquier carácter excepto espacios en blanco."
-        // }
-        // else{
-        //     errors.pass = ""
-        // }
+    
 
         if(details.pass2 === ""){
             errors.pass2 = "Por favor, repite la contraseña."
@@ -108,6 +117,13 @@ function Registration(props) {
                         >
                             Registro
                         </span>
+                    </div>
+                    <div className="container">
+                        <button 
+                            className="googleButton"
+                            onClick={signInWithGoogle}
+                        >
+                        </button>
                     </div>
                 </Modal.Title>
             </Modal.Header>

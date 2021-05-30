@@ -99,6 +99,20 @@ body {
   background-color: #C1AF87;
 }
 
+.googleButton {
+  
+  border: none;
+  padding: 23px 96px;
+  background: url('../img/btn_google_signin_light_normal_web.png') no-repeat;
+
+}
+.googleButton:focus, .googleButton:hover {
+  background: url('../img/btn_google_signin_light_focus_web.png') no-repeat;
+}
+.googleButton:active {
+  background: url('../img/btn_google_signin_light_pressed_web.png') no-repeat;
+}
+
 
 
 

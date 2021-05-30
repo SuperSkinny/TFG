@@ -2,12 +2,39 @@ import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  { Modal } from 'react-bootstrap';
 import 'firebase/auth'
+import firebase1 from 'firebase'
 import { useFirebaseApp, useUser } from 'reactfire'
 
 function LoginForm(props){
     const [details, setDetails] = useState({email: "", pass: ""});
     const [errors, setErrors] = useState();
     const firebase = useFirebaseApp()
+
+    const signInWithGoogle = async (e) =>{
+        const provider = new firebase1.auth.GoogleAuthProvider()
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
+
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
    
     const submitHandler = e => {
         e.preventDefault();
@@ -41,6 +68,13 @@ function LoginForm(props){
                     <div className="container">
                         <span className="generalTitle" style={ { fontSize: 40 } }>Iniciar sesión</span>
                         
+                    </div>
+                    <div className="container">
+                        <button 
+                            className="googleButton"
+                            onClick={signInWithGoogle}
+                        >
+                        </button>
                     </div>
                 </Modal.Title>
             </Modal.Header>
