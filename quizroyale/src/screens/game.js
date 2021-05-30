@@ -12,7 +12,7 @@ export default class Game extends Component {
         super(props);
         this.state = { 
             questions_answers: [],
-            points: 0,
+            // points: 0,
             gameStarted: false,
             gameEnded: false,
             spinner: true,
@@ -20,7 +20,6 @@ export default class Game extends Component {
     }
     
     async componentDidMount() {
-        console.log("cuando entras aquí?")
         this.setState({questions_answers: await model.getAllQuestionsAndAnswersByCategory(this.props.gameModeName)})
         this.setState({spinner: false})
     }
@@ -35,37 +34,39 @@ export default class Game extends Component {
         this.setState({gameStarted: true})
     }
 
-    handleResponse(question, currentPoints, lifeBar) {
+    handleResponse(question, currentPoints) {
         const { questions_answers } = this.state
+        // console.log('PUNTOS ACTUALES: ' + currentPoints)
+        // console.log('VIDA ACTUAL: ' + lifeBar)
         this.questions_answers = questions_answers.filter(deleteRandomQuestion => deleteRandomQuestion.question !== question)
-        console.log('Barra vida: ' + lifeBar)
+
         setTimeout(() => {
-            if (this.questions_answers.length === 0 || lifeBar <= 0) {
-                console.log('No vida')
-                this.setState({
-                    gameStarted: false,
-                    gameEnded: true,
-                })
+            if (this.questions_answers.length === 0) {
+                this.handleGameEnded(currentPoints)
             } else {
                 this.setState({
+                    // points: currentPoints,
                     questions_answers: this.questions_answers,
-                    points: currentPoints,
                 })
             }
         }, 2000)
     }
 
-    handleGameEnded() {
-        this.setState({gameEnded: true})
+    handleGameEnded(currentPoints) {
+        this.setState({
+            gameStarted: false,
+            gameEnded: true,
+            points: currentPoints
+        })
     }
-
-    
     
     render() {
-        const { onGameGoBack, gameModeName, points } = this.props;
-        const { questions_answers, gameStarted, gameEnded, spinner } = this.state;
+        const { onGameGoBack, gameModeName } = this.props;
+        const { questions_answers, points, gameStarted, gameEnded, spinner } = this.state;
 
-        console.log('Primer render')
+        console.log('PUNTOS: ' + this.state.points)
+
+        console.log('gameEnded: ' + gameEnded)
 
         const questionAndAnswers = this.getRandomQuestionAndAnswers(questions_answers)
         
@@ -81,7 +82,7 @@ export default class Game extends Component {
                 )}
                 { !gameStarted && !gameEnded && !!questions_answers.length && (
                     <LoadScreen
-                        handleGameStart={ () => this.handleGameStart()}
+                        handleGameStart={ () => this.handleGameStart() }
                     />
                 )}
                 { gameStarted && !gameEnded && (
@@ -94,8 +95,10 @@ export default class Game extends Component {
                         gameModeQuestion={questionAndAnswers}
                         // points={points}
                         // TODO: hay que resetear el juego aquí cuando salimos
+                        
                         onGameGoBack={onGameGoBack}
-                        onResponsePress={ (question, points, lifeBar) => this.handleResponse(question, points, lifeBar)}
+                        onResponsePress={ (question, currentPoints) => this.handleResponse(question, currentPoints) }
+                        onGameEnded={ (currentPoints) => this.handleGameEnded(currentPoints) }
                     />
                     </div>
                 )}
@@ -103,6 +106,7 @@ export default class Game extends Component {
                     <PostGame
                         gameModeName={gameModeName}
                         points={points}
+                        uid={this.props.uid}
                         onGameGoBack={onGameGoBack}
                     />
                 )}

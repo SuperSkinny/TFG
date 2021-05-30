@@ -11,7 +11,7 @@ export default class Tutorial extends Component {
       <div  style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>  
         <div style={ { display: "flex", flexDirection: "column", alignItems: 'center' }}>
           <span className="homeTitle" >
-            ¿Enserio?
+            ¿En serio?
           </span>
           <span style={ { fontSize: 20, color: "#4F4F4F", textAlign: "center"  } } >
             Solo tienes que leer la pregunta y elegir una de las tres opciones.

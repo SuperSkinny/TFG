@@ -37,6 +37,9 @@ const Navbar = props => {
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to={'/contact'}>Contacto</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to={'/postGame'}>Try</Link>
+              </li>
               {/* <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to={'../landing'} onClick={signOut}> Cerrar sesión </Link>
               </li> */}

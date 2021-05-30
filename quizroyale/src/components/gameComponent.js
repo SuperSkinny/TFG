@@ -8,6 +8,7 @@ export default class GameComponent extends Component {
             ifAnswer: false,
             points: 0,
             lifeBar: 100,
+            gameOver: false,
         }
       }
 
@@ -19,25 +20,28 @@ export default class GameComponent extends Component {
     };
 
     handleResponse(answer) {
-        const { onResponsePress, gameModeQuestion } = this.props
+        const { onResponsePress, gameModeQuestion, onGameEnded } = this.props
+        const { lifeBar, points } = this.state
         // TODO: Deberíamos hacer aquí el contador de preguntas para poder gestionar un error de estado de componente desmontado, también el condicional de la barra de vida
         // let questions = 20;
-        console.log('Aqui se resta vida o se suma puntos')
-        if (answer === true) {
-            this.setState({ 
-                ifAnswer: true,
-                points: this.state.points + 1,
-                disabledButton: true,
-            }, () => {setTimeout(() => this.handleRestart(), 2000)})
+        if ( lifeBar <= 25) {
+            onGameEnded(this.state.points)
         } else {
-            console.log("respuesta incorrecta")
-            this.setState({ 
-                ifAnswer: true,
-                disabledButton: true,
-                lifeBar: this.state.lifeBar - 25,
-            }, () => {setTimeout(() => this.handleRestart(), 2000)})
-        }
-        onResponsePress(gameModeQuestion.question, this.state.points, this.state.lifeBar)
+            if (answer === true) {
+                this.setState({ 
+                    ifAnswer: true,
+                    points: this.state.points + 1,
+                    disabledButton: true,
+                }, () => {setTimeout(() => this.handleRestart(), 2000)})
+            } else {
+                this.setState({ 
+                    ifAnswer: true,
+                    disabledButton: true,
+                    lifeBar: this.state.lifeBar - 25,
+                }, () => {setTimeout(() => this.handleRestart(), 2000)})
+            }
+            onResponsePress(gameModeQuestion.question, points)
+        }    
     }
 
     handleAnswerOne() {
@@ -70,7 +74,6 @@ export default class GameComponent extends Component {
     render() {
         const { gameModeQuestion, onGameGoBack } = this.props;
         
-        console.log(gameModeQuestion)
         if (!gameModeQuestion){
             return null;
         }

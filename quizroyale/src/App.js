@@ -16,6 +16,7 @@ import PreGame from './screens/preGame';
 import Landing from './screens/landing';
 import 'firebase/auth'
 import { useFirebaseApp, useUser } from 'reactfire'
+import PostGame from './screens/postGame';
 
 
 function App() {
@@ -83,6 +84,22 @@ function App() {
                                 <>
                                     <PreGame 
                                         user={user.data}
+                                    />
+                                </>
+                            )
+                        }
+                    </Route>
+                    <Route exact path={"/postGame"}>
+                        {!user.data ? (
+                                <Landing/>
+                            ) : (
+                                <>
+                                    <PostGame 
+                                        gameModeName={'Novato'}
+                                        points={3}
+                                        // uid={this.props.uid}
+                                        // onGameGoBack={onGameGoBack}
+                                        uid={user.data.uid}
                                     />
                                 </>
                             )

@@ -196,7 +196,6 @@ export const getBestThreeScoresOfACategory = async (category) => {
 
     queryGetAllScoresOfACategory.equalTo('category', category)
     queryGetAllScoresOfACategory.descending('score')
-    queryGetAllScoresOfACategory.addAscending('average_time')
 
     try {
         const response = await queryGetAllScoresOfACategory.find()
@@ -233,7 +232,6 @@ export const getBestThreeScoresOfACategory = async (category) => {
 
     queryGetAllScoresOfCategory.equalTo('category', category)
     queryGetAllScoresOfCategory.descending('score')
-    queryGetAllScoresOfCategory.addAscending('average_time')
     
     var position = 1
 
@@ -261,29 +259,29 @@ export const getBestThreeScoresOfACategory = async (category) => {
 
 /**
  * Dado un id de usuario y su nueva puntuacion y tiempo medio, sobrescribe las actuales en la categoria dada
- * @param {String} userId 
+ * @param {String} UID 
  * @param {Number} score 
- * @param {Number} averageTime 
  * @param {String} category 
  */
-export const setNewScore = (userId, score, averageTime, category) => {
-    const User = Parse.Object.extend('Users')
-    const userWithId = new User()
-    userWithId.id = userId
-
+export const setNewScore = (UID, score, name, category) => {
     const Score = Parse.Object.extend('Scores')
     const querySetNewScore = new Parse.Query(Score)
 
+    querySetNewScore.equalTo('UID', UID)
     querySetNewScore.equalTo('category', category)
-    querySetNewScore.equalTo('user_id', userWithId)
 
     querySetNewScore.first().then(function(userFound) {
         if (userFound) {
             userFound.set('score', score)
-            userFound.set('average_time', averageTime)
+            userFound.set('name', name)
             userFound.save()
         } else {
-            console.log('No se ha encontrado ningun usuario')
+            const newScore = new Score()
+            newScore.set('category', category)
+            newScore.set('score', score)
+            newScore.set('name', name)
+            newScore.set('UID', UID)
+            newScore.save()
         }
     }).catch(function(error) {
         console.log("Error: " + error.code + " " + error.message)  
