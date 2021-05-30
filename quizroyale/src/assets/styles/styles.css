@@ -287,6 +287,16 @@ body {
     color: White;
     background-color: #C1AF87;
   }
+
+  .countdown {
+    display: flex;
+    text-align: center;
+    font-size: 10em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
+  }
 }
 
 @media only screen and (max-width: 810px) {
@@ -457,6 +467,16 @@ body {
     color: White;
     background-color: #C1AF87;
   }
+
+  .countdown {
+    display: flex;
+    text-align: center;
+    font-size: 8em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -619,6 +639,16 @@ body {
   .playButton:hover {
     color: White;
     background-color: #C1AF87;
+  }
+
+  .countdown {
+    display: flex;
+    text-align: center;
+    font-size: 5em;
+    color: #A69965;
+    font-weight: bold;
+    line-height: 110%;
+    margin: 20px 10px 20px 10px;
   }
 
   /* FOOTER -------------------------------------- */ 
