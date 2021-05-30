@@ -81,7 +81,9 @@ function App() {
                                 <Landing/>
                             ) : (
                                 <>
-                                    <PreGame />
+                                    <PreGame 
+                                        user={user.data}
+                                    />
                                 </>
                             )
                         }

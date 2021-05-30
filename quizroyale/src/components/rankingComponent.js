@@ -25,9 +25,6 @@ export default class RankingComponent extends Component {
     render() {
         const { scores, scoreOfUser } = this.state
 
-        if (scoreOfUser.length !== 0)
-            console.log('score of user: ', scoreOfUser)
-
         return (
             <>
             {!!scores.length && (
@@ -79,19 +76,25 @@ export default class RankingComponent extends Component {
                     <div style={ { display: "flex", justifyContent: "center", alignItems: "center", height: 25 } }>
                         <span style={ { fontSize: 30 } }>···</span>
                     </div>
-                    <div className="row">
-                        <div className="divPosition">
-                        <span className="position">
-                            { scoreOfUser[0].position }
-                        </span>
+                    { !!scoreOfUser.length ? (
+                        <div className="row">
+                            <div className="divPosition">
+                                <span className="position">
+                                    { scoreOfUser[0].position }
+                                </span>
+                            </div>
+                            <span className="userName">
+                                { scoreOfUser[0].name }
+                            </span>
+                            <span className="userPoints">
+                                { scoreOfUser[0].score }
+                            </span>
                         </div>
-                        <span className="userName">
-                            { scoreOfUser[0].name }
-                        </span>
-                        <span className="userPoints">
-                            { scoreOfUser[0].score }
-                        </span>
-                    </div>
+                    ) : (
+                        <div className="row">
+                            No tienes puntuacion, ¡Ve y juega para conseguirla!
+                        </div>  
+                    )}
                 </div>  
             </div>
             )}
