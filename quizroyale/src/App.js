@@ -29,19 +29,15 @@ function App() {
             <div className="content">
                 <Switch>
                     <Route exact path={"/tutorial"}>
-                        {!user.data ? (
-                                <Landing/>
-                            ) : (
-                                <>
-                                    <Navbar />
-                                    <Tutorial />
-                                </>
-                            )
-                        }
+                        <Navbar />
+                        <Tutorial />
                     </Route>
                     <Route exact path={"/ranking"}>
                         {!user.data ? (
-                                <Landing/>
+                                <>
+                                    <Navbar />
+                                    <Landing/>
+                                </>
                             ) : (
                                 <>
                                     <Navbar />
@@ -53,19 +49,15 @@ function App() {
                         }
                     </Route>
                     <Route exact path={"/contact"}>
-                        {!user.data ? (
-                                <Landing/>
-                            ) : (
-                                <>
-                                    <Navbar />
-                                    <Contact />
-                                </>
-                            )
-                        }
+                        <Navbar />
+                        <Contact />
                     </Route>
                     <Route exact path={"/profile"} >
                         {!user.data ? (
+                            <>
+                                <Navbar />
                                 <Landing/>
+                            </>
                             ) : (
                                 <>
                                     <Navbar />
@@ -76,7 +68,10 @@ function App() {
                     </Route>
                     <Route exact path={"/preGame"}>
                         {!user.data ? (
+                            <>
+                                <Navbar />
                                 <Landing/>
+                            </>
                             ) : (
                                 <>
                                     <PreGame 
@@ -88,7 +83,10 @@ function App() {
                     </Route>
                     <Route exact path={"/postGame"}>
                         {!user.data ? (
+                            <>
+                                <Navbar />
                                 <Landing/>
+                            </>
                             ) : (
                                 <>
                                     <PostGame 
@@ -109,15 +107,8 @@ function App() {
                         <PostGame />
                     </Route> */}
                     <Route path={"/"} >
-                        {!user.data ? (
-                                <Landing/>
-                            ) : (
-                                <>
-                                    <Navbar />
-                                    <Home />
-                                </>
-                            )
-                        }
+                        <Navbar />
+                        <Home />
                     </Route>
                 </Switch>
             </div>
