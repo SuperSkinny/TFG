@@ -43,9 +43,23 @@ const Navbar = props => {
                     </ul>
                 </div>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <div className="signOutButton" style={{marginRight: 15}}>
-                        <Link aria-current="page" to={'../landing'} onClick={signOut} style={{color: "white", textDecoration: "none"}}> Cerrar sesión </Link>
-                    </div>
+                    {user !== null ? (<div className="signOutButton" 
+                                          style={{marginRight: 15}}
+                                        >
+                                          <Link aria-current="page" 
+                                                to={'../landing'} 
+                                                onClick={signOut} 
+                                                style={{color: "white", 
+                                                        textDecoration: "none"
+                                                      }}
+                                          > 
+                                            Cerrar sesión 
+                                          </Link>
+                                      </div>
+                                      ): ''
+
+                    }
+                    
                     <span style={{color: "grey"}}>{user !== null ? (user.email) : ''}</span>
                 </div>
             </div>
