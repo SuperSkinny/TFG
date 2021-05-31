@@ -25,10 +25,7 @@ function App() {
 
     return (
         <>
-
-        <Router >
-            {/* {withNavBar()} */}
-            
+        <Router >            
             <div className="content">
                 <Switch>
                     <Route exact path={"/tutorial"}>
@@ -126,11 +123,6 @@ function App() {
             </div>
             <Footer/>
         </Router>
-        
-        
-        
-           
-            
         </>
     );
 }

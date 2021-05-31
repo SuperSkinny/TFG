@@ -86,11 +86,6 @@ export default class Game extends Component {
                     />
                 )}
                 { gameStarted && !gameEnded && (
-                    <div>
-                    {/* <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
-                        <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
-                        <div className="cardResult" >{points}</div>
-                    </div> */}
                     <GameComponent
                         gameModeQuestion={questionAndAnswers}
                         // points={points}
@@ -100,7 +95,6 @@ export default class Game extends Component {
                         onResponsePress={ (question, currentPoints) => this.handleResponse(question, currentPoints) }
                         onGameEnded={ (currentPoints) => this.handleGameEnded(currentPoints) }
                     />
-                    </div>
                 )}
                 { !gameStarted && gameEnded && (
                     <PostGame

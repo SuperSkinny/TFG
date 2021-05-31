@@ -53,8 +53,6 @@ export default class PreGame extends Component {
                   onGameModeButtonPress={(gameModeName) => {this.handleGameScreen(gameModeName)}}
                 />
                 )}
-              
-              
             </div>
             <div>
               <span className="generalTitle" >
