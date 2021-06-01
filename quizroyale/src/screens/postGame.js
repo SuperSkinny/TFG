@@ -14,12 +14,19 @@ export default class PostGame extends Component {
         }
     }
 
-    async componentDidMount() {
-        this.setState({userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)})
+    async getUserScore() {
+        this.setState({
+            userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)
+        })
     }
 
-    changeValue(name) {
+    async componentDidMount() {
+        this.getUserScore()
+    }
+
+    async changeValue(name) {
         model.setNewScore(this.props.uid, this.props.points, name, this.props.gameModeName)
+        this.getUserScore()
     }
     
     render() {
@@ -37,10 +44,11 @@ export default class PostGame extends Component {
 
         return (
             <>
-            {!userScore.length || (userScore[0].score < points) ? (
+            {!userScore.length  || (userScore[0].score < points) ? (
                 <NameForm
                     points={points}
-                    changeValue={ this.changeValue.bind(this) }
+                    userScore={userScore}
+                    changeValue={ (name) => this.changeValue(name) }
                 />
             ) : (
                 <>
