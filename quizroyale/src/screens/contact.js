@@ -42,6 +42,21 @@ export default function Contact() {
 
     if(e.target.checkValidity()){
       model.newContact(details.name, details.email, details.issue, details.message)
+      let mailDetails = {
+        name: details.name,
+        email: details.email,
+        issue: details.issue,
+        message: details.message,
+      }
+      let response = await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(mailDetails),
+      });
+      let result = await response.json();
+      console.log(result)
     }
   }
 
@@ -60,7 +75,7 @@ export default function Contact() {
               <input 
                 type="text" 
                 className="form-control" 
-                id="nameInput" 
+                id="name" 
                 placeholder="Nombre"
                 required
                 onChange={nameCheckHandler}
@@ -73,7 +88,7 @@ export default function Contact() {
               <input 
                 type="email" 
                 className="form-control" 
-                id="emailInput" 
+                id="email" 
                 placeholder="Correo electrónico"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 required
