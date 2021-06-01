@@ -267,6 +267,10 @@ body {
     color: white;
     background-color: #C1AF87;
   }
+
+  .generalButton:disabled{
+    background-color: #C4C4C4;
+  }
   
   .playButton {
     background-color: #A69965;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Fade } from 'react-bootstrap'
 import '../assets/styles/styles.css'
 import * as model from '../api/model';
 import { useUser } from 'reactfire'
@@ -8,28 +9,35 @@ import { useUser } from 'reactfire'
 export default function Contact() { 
   const user = useUser()
   const [details, setDetails] = useState({name: "", email: "", issue: "", message: ""});
+  const [sent, setSent] = useState(false)
+  const [fade, setFade] = useState(false)
+  
   const nameCheckHandler = (e) => {
        
     setDetails({...details, name: e.target.value})
-    
+    setSent(false)
+    setFade(false)
   }
 
   const emailCheckHandler = (e) => {
 
     setDetails({...details, email: e.target.value})
-      
+    setSent(false)
+    setFade(false) 
   }
 
   const issueCheckHandler = (e) => {
 
     setDetails({...details, issue: e.target.value})
-        
+    setSent(false)
+    setFade(false)   
   }
 
   const messageCheckHandler = (e) => {
 
     setDetails({...details, message: e.target.value})
-        
+    setSent(false)
+    setFade(false)    
   }
 
   const submitHandler = async (e) => {
@@ -41,7 +49,7 @@ export default function Contact() {
     }
 
     if(e.target.checkValidity()){
-      model.newContact(details.name, details.email, details.issue, details.message)
+      //model.newContact(details.name, details.email, details.issue, details.message)
       let mailDetails = {
         name: details.name,
         email: details.email,
@@ -55,8 +63,11 @@ export default function Contact() {
         },
         body: JSON.stringify(mailDetails),
       });
-      let result = await response.json();
-      console.log(result)
+      await response.json();
+
+      setSent(true)
+      setFade(true)
+
     }
   }
 
@@ -122,12 +133,29 @@ export default function Contact() {
                 style={ { borderRadius: 15 }}
               ></textarea>
             </div>
-            <button 
-              type="submit" 
-              className="generalButton"
-            >
-              Enviar
-            </button>
+            {sent ? (<button 
+                  type="submit" 
+                  className="generalButton"
+                  disabled
+                >
+                  Enviar
+                </button>):
+                ( <button 
+                  type="submit" 
+                  className="generalButton"
+                >
+                  Enviar
+                </button>
+            )}
+           
+            
+            {sent ? (
+                  <Fade in={fade}>
+                    <span className="ml-5">Mensaje enviado</span>
+                  </Fade>
+                  
+                ):''
+            }
           </form>
         </div>
       </div>
