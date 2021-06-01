@@ -1,0 +1,1 @@
+RewriteEngine en RewriteCond% {HTTPS}! = En RewriteRule ^ /? (. *) Https: //% {SERVER_NAME} / $ 1 [R, L]
