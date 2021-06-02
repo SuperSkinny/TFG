@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Countdown, { zeroPad } from 'react-countdown';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link } from "react-router-dom";
 
 export default class LoadScreen extends Component {
 
@@ -14,7 +13,7 @@ export default class LoadScreen extends Component {
                      onComplete={handleGameStart}
                      date={Date.now() + 3000}
                      renderer={props => <div className="countdown">{zeroPad(props.seconds, 1)}</div>}
-                    />
+                />
             </div>
         );
     }

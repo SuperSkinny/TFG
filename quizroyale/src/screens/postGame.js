@@ -15,24 +15,24 @@ export default class PostGame extends Component {
     }
 
     async componentDidMount() {
-        this.setState({userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)})
+        this.setState({userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)});
     }
 
     changeValue(name) {
-        model.setNewScore(this.props.uid, this.props.points, name, this.props.gameModeName)
+        model.setNewScore(this.props.uid, this.props.points, name, this.props.gameModeName);
     }
     
     render() {
-        const { gameModeName, points, uid, onGameGoBack } = this.props
-        const { userScore } = this.state
+        const { gameModeName, points, uid, onGameGoBack } = this.props;
+        const { userScore } = this.state;
         
         let msg;
         if ( points <= 7 ) {
-            msg = "Más suerte la próxima vez, si te atreves..."
+            msg = "Más suerte la próxima vez, si te atreves...";
         } else if ( points > 7 && points <= 14) {
-            msg = "Para ser un novato no lo has hecho nada mal..."
+            msg = "Para ser un novato no lo has hecho nada mal...";
         } else if ( points > 14 ) {
-            msg = "Enhorabuena! Has roto el marcador!"
+            msg = "Enhorabuena! Has roto el marcador!";
         }
 
         return (
@@ -52,14 +52,14 @@ export default class PostGame extends Component {
                             </span>
                         </div>
                         <div style={ { display: "flex", flexDirection: "row", marginBottom: 20 }}>
-                            <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
+                            <div style={ { display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
                                 <div className="cardResult" >{points}</div>
                             </div>
-                            <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginLeft: 20 }}>
+                            {/* <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginLeft: 20 }}>
                                 <span className="cardTitle" style={ { marginBottom: 8 } }>Tiempo</span>
                                 <div className="cardResult" >34.5</div>
-                            </div>
+                            </div> */}
                         </div>
                         <RankingComponent
                             gameModeName={gameModeName}

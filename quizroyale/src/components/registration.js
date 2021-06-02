@@ -85,10 +85,10 @@ function Registration(props) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                if (errorCode == 'auth/weak-password') {
+                if (errorCode === 'auth/weak-password') {
                   errors.pass = 'The password is too weak.';
                 } 
-                else if (errorCode == 'auth/email-already-in-use'){
+                else if (errorCode === 'auth/email-already-in-use'){
                     alert('Este correo ha sido registrado con anterioridad. Inicia sesión')
                     props.onFail()
                 }

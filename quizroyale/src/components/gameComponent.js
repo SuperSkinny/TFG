@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import Countdown, { zeroPad } from 'react-countdown';
+// import Countdown from './countdown';
 
 export default class GameComponent extends Component {
     constructor(props) {
@@ -9,6 +11,7 @@ export default class GameComponent extends Component {
             points: 0,
             lifeBar: 100,
             gameOver: false,
+            // countdownStart: true,
         }
       }
 
@@ -16,6 +19,8 @@ export default class GameComponent extends Component {
         this.setState({ 
             ifAnswer: false,
             disabledButton: false,
+            // countdownStart: true,
+            // countdownStop: false,
         });
     };
 
@@ -23,7 +28,7 @@ export default class GameComponent extends Component {
         const { onResponsePress, gameModeQuestion, onGameEnded } = this.props
         const { lifeBar, points } = this.state
         // TODO: Deberíamos hacer aquí el contador de preguntas para poder gestionar un error de estado de componente desmontado, también el condicional de la barra de vida
-        // let questions = 20;
+        
         if ( lifeBar <= 25) {
             onGameEnded(this.state.points)
         } else {
@@ -32,12 +37,14 @@ export default class GameComponent extends Component {
                     ifAnswer: true,
                     points: this.state.points + 1,
                     disabledButton: true,
+                    // countdownStop: true,
                 }, () => {setTimeout(() => this.handleRestart(), 2000)})
             } else {
                 this.setState({ 
                     ifAnswer: true,
                     disabledButton: true,
                     lifeBar: this.state.lifeBar - 25,
+                    // countdownStop: true,
                 }, () => {setTimeout(() => this.handleRestart(), 2000)})
             }
             onResponsePress(gameModeQuestion.question, points)
@@ -68,8 +75,38 @@ export default class GameComponent extends Component {
             return "gameButtonCorrect"
         } else  {
             return "gameButtonFail"
-        } 
+        }
     }
+
+    // handleTimeOut() {
+    //     const { onResponsePress, gameModeQuestion, onGameEnded } = this.props;
+    //     const { lifeBar, points } = this.state;
+
+    //     if ( lifeBar <= 25) {
+    //         onGameEnded(this.state.points)
+    //     } else {
+    //         this.setState({ 
+    //             ifAnswer: true,
+    //             disabledButton: true,
+    //             lifeBar: this.state.lifeBar - 25,
+    //             countdownStop: true,
+    //         }, () => {setTimeout(() => this.handleRestart(), 2000)});
+    //         onResponsePress(gameModeQuestion.question, points);
+    //         console.log("Achooooo"+(() => Countdown.this.start()))
+    //     }
+    // }
+
+    // countDown = (countdownStart) => {
+    //     return (
+    //         <Countdown 
+    //             onComplete={() => this.handleTimeOut()}
+    //             autoStart={countdownStart}
+    //             date={Date.now() + 5000}
+    //             renderer={props => <div className="cardResult">{zeroPad(props.seconds, 1)}</div>}
+    //         />
+    //     )
+    // } 
+    
 
     render() {
         const { gameModeQuestion, onGameGoBack } = this.props;
@@ -84,6 +121,25 @@ export default class GameComponent extends Component {
                     <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
                     <div className="cardResult" >{this.state.points}</div>
                 </div>
+                {/* <div style={ { display: "flex", flexDirection: "row", marginBottom: 20 }}>
+                    <div style={ { display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <span className="cardTitle" style={ { marginBottom: 8 } }>Puntuación</span>
+                        <div className="cardResult" >{this.state.points}</div>
+                    </div>
+                    <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginLeft: 20 }}>
+                        <span className="cardTitle" style={ { marginBottom: 8 } }>Tiempo</span>
+                        <div>
+                            <countdownStop
+                                onComplete={() => this.handleTimeOut()}
+                                // autoStart={countdownStart}
+                                // onStop={countdownStop}
+                                date={Date.now() + 5000}
+                                renderer={props => <div className="cardResult">{zeroPad(props.seconds, 1)}</div>}
+                            />
+                            
+                        </div>
+                    </div>
+                </div> */}
                 <div>
                     <span className="generalTitle" >
                         {gameModeQuestion.question}
@@ -127,7 +183,6 @@ export default class GameComponent extends Component {
                         type="button" 
                         className="generalButton"
                         onClick={ () => {
-                            // TODO: hay que resetear el juego aquí cuando salimos
                             onGameGoBack()
                         }}
                     >
