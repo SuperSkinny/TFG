@@ -11,6 +11,7 @@ export default class GameComponent extends Component {
             points: 0,
             lifeBar: 100,
             gameOver: false,
+            questionCount: 0,
             // countdownStart: true,
         }
       }
@@ -27,8 +28,8 @@ export default class GameComponent extends Component {
     handleResponse(answer) {
         const { onResponsePress, gameModeQuestion, onGameEnded } = this.props
         const { lifeBar, points } = this.state
-        // TODO: Deberíamos hacer aquí el contador de preguntas para poder gestionar un error de estado de componente desmontado, también el condicional de la barra de vida
         
+        this.setState({questionCount: this.state.questionCount +1});
         if ( lifeBar <= 25) {
             onGameEnded(this.state.points)
         } else {
@@ -38,14 +39,22 @@ export default class GameComponent extends Component {
                     points: this.state.points + 1,
                     disabledButton: true,
                     // countdownStop: true,
-                }, () => {setTimeout(() => this.handleRestart(), 2000)})
+                }, () => {
+                    if (this.state.questionCount !== 20){
+                        setTimeout(() => this.handleRestart(), 2000)
+                    }
+                })
             } else {
                 this.setState({ 
                     ifAnswer: true,
                     disabledButton: true,
                     lifeBar: this.state.lifeBar - 25,
                     // countdownStop: true,
-                }, () => {setTimeout(() => this.handleRestart(), 2000)})
+                }, () => {
+                    if (this.state.questionCount !== 20){
+                        setTimeout(() => this.handleRestart(), 2000)
+                    }
+                })
             }
             onResponsePress(gameModeQuestion.question, points)
         }    
@@ -95,17 +104,6 @@ export default class GameComponent extends Component {
     //         console.log("Achooooo"+(() => Countdown.this.start()))
     //     }
     // }
-
-    // countDown = (countdownStart) => {
-    //     return (
-    //         <Countdown 
-    //             onComplete={() => this.handleTimeOut()}
-    //             autoStart={countdownStart}
-    //             date={Date.now() + 5000}
-    //             renderer={props => <div className="cardResult">{zeroPad(props.seconds, 1)}</div>}
-    //         />
-    //     )
-    // } 
     
 
     render() {

@@ -78,8 +78,6 @@ export default class PostGame extends Component {
                             type="button" 
                             className="generalButton"
                             onClick={ () => {
-                                // TODO: hay que resetear el juego aquí cuando salimos
-                                //console.log("SALIR A PREGAME")
                                 onGameGoBack()
                             }}
                         >

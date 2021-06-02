@@ -31,6 +31,10 @@ export default class PreGame extends Component {
         return texts[randomText]
     }
 
+    handleGoOut() {
+        this.setState({gameStarted: !this.state.gameStarted});
+    }
+
     render() {
         const { gameStarted, gameModeName } = this.state
         const gameMode = [ 
@@ -79,7 +83,7 @@ export default class PreGame extends Component {
                     gameModeName={gameModeName}
                     uid={this.props.user.uid}
                     // TODO: hay que resetear el juego aquí cuando salimos
-                    onGameGoBack={() => {this.setState({gameStarted: !gameStarted})}}
+                    onGameGoBack={() => this.handleGoOut()}
                 />
             )}
         </React.Fragment>
