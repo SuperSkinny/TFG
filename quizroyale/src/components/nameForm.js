@@ -14,7 +14,7 @@ export default class nameForm extends Component {
         return (
             <>
             {!userScore.length ? (
-                <div  style={ { display: "flex", justifyContent: 'center' }}>
+                <div className="columnContent">
                     <span className="generalTitle" >
                         ¡Te has abierto paso en el ranking mundial!
                     </span>
@@ -27,7 +27,7 @@ export default class nameForm extends Component {
                         Para continuar introduce tu nombre y hazte un hueco en la tabla de puntuaciones.
                     </span>
                     
-                    <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
+                    <div style={ { display: "flex", flexDirection: "column", alignItems: "center"}}>
                         <input className="cardResult" type="text" id="name" name="name" style={ { height: 40, width: 300, marginBottom: 20 }}/>
                         <button 
                             className="generalButton"
@@ -40,7 +40,7 @@ export default class nameForm extends Component {
                     </div>
                 </div>
             ) : (
-                <div  style={ { display: "flex", justifyContent: 'center' }}>                   
+                <div className="columnContent">                   
                         <span className="generalTitle" >
                             ¡Has superado tu puntuacion anterior!
                         </span>
@@ -52,7 +52,7 @@ export default class nameForm extends Component {
                         <span  style={ {display: "flex", fontSize: 20, color: "#4F4F4F", textAlign: "center", justifyContent: 'center', marginBottom: 20 } }>
                             Continua con tu nombre anterior.
                         </span>
-                        <button 
+                        <button style={{marginBottom:20}}
                             className="generalButton"
                             onClick={ () => {
                                 this.changeName(userScore[0].name)
@@ -64,7 +64,7 @@ export default class nameForm extends Component {
                             O introduce un nombre nuevo.
                         </span>
                         
-                        <div style={ { display: "flex", flexDirection: "column", alignItems: "center", marginRight: 20 }}>
+                        <div style={ { display: "flex", flexDirection: "column", alignItems: "center"}}>
                         <input className="cardResult" type="text" id="name" name="name" style={ { height: 40, width: 300, marginBottom: 20 }}/>
                         <button 
                             className="generalButton"
