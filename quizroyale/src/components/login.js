@@ -111,7 +111,6 @@ function LoginForm(props){
                                 </p>)
                                 : ("")}
                         </div>
-                        <p><small>Has olvidado la contraseña? Pues no pulses porque esto no hace nada todavía</small></p>
                         <input 
                             type="submit" 
                             className="generalButton" 
