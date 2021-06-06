@@ -56,7 +56,7 @@ export default function Contact() {
         issue: details.issue,
         message: details.message,
       }
-      let response = await fetch("http://localhost:5000/contact", {
+      let response = await fetch("https://quizroyale.es:5000/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",

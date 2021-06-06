@@ -14,17 +14,19 @@ export default class PostGame extends Component {
         }
     }
 
-    async getUserScore() {
-        this.setState({
-            userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)
-        })
+    getUserScore() {
+        setTimeout( async () =>
+            this.setState({
+                userScore: await model.getScoreAndPositionOfUserByIdAndCategory(this.props.uid, this.props.gameModeName)
+            })
+        , 1000)
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.getUserScore()
     }
 
-    async changeValue(name) {
+    changeValue(name) {
         model.setNewScore(this.props.uid, this.props.points, name, this.props.gameModeName)
         this.getUserScore()
     }

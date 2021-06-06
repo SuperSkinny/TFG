@@ -64,10 +64,6 @@ export default class Game extends Component {
         const { onGameGoBack, gameModeName } = this.props;
         const { questions_answers, points, gameStarted, gameEnded, spinner } = this.state;
 
-        console.log('PUNTOS: ' + this.state.points)
-
-        console.log('gameEnded: ' + gameEnded)
-
         const questionAndAnswers = this.getRandomQuestionAndAnswers(questions_answers)
         
         return (

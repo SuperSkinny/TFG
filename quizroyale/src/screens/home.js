@@ -18,10 +18,6 @@ export default class Home extends Component {
           type="button" 
           className="playButton"
           style={ {  marginTop: 25, marginBottom: 30, maxWidth: 150, textDecoration: "none" } }
-          // onClick={ () => {
-          //   onPress()
-          //   console.log("A JUGAR!")
-          // }}
         >
           Jugar
         </Link>

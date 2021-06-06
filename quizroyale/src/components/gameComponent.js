@@ -101,7 +101,6 @@ export default class GameComponent extends Component {
     //             countdownStop: true,
     //         }, () => {setTimeout(() => this.handleRestart(), 2000)});
     //         onResponsePress(gameModeQuestion.question, points);
-    //         console.log("Achooooo"+(() => Countdown.this.start()))
     //     }
     // }
     

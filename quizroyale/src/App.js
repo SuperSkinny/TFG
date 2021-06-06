@@ -81,25 +81,6 @@ function App() {
                             )
                         }
                     </Route>
-                    <Route exact path={"/postGame"}>
-                        {!user.data ? (
-                            <>
-                                <Navbar />
-                                <Landing/>
-                            </>
-                            ) : (
-                                <>
-                                    <PostGame 
-                                        gameModeName={'Novato'}
-                                        points={3}
-                                        // uid={this.props.uid}
-                                        // onGameGoBack={onGameGoBack}
-                                        uid={user.data.uid}
-                                    />
-                                </>
-                            )
-                        }
-                    </Route>
                     {/* <Route path={"/game"}>
                         <Game />
                     </Route>

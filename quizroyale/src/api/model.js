@@ -219,7 +219,7 @@ export const getBestThreeScoresOfACategory = async (category) => {
 }
 
 /**
- * Dado un id de usuario obtiene todas sus puntuaciones
+ * Dado un id de usuario y una categoria obtiene todas su puntuacion y posicion de dicha categoria
  * @param {String} UID 
  * @param {String} category
  * @returns {Array}
@@ -258,9 +258,10 @@ export const getBestThreeScoresOfACategory = async (category) => {
 }
 
 /**
- * Dado un id de usuario y su nueva puntuacion y tiempo medio, sobrescribe las actuales en la categoria dada
+ * Sobreescribe o añade una puntuacion y nombre dado un id de usuario y categoria
  * @param {String} UID 
- * @param {Number} score 
+ * @param {Number} score
+ * @param {String} name
  * @param {String} category 
  */
 export const setNewScore = (UID, score, name, category) => {
@@ -458,25 +459,8 @@ export const getAllQuestionsAndAnswersByCategory = async (category) => {
             answer2: answers[j][1],
             answer3: answers[j][2],
         }
-        // questionAndAnswers[questions[j]] = answers[j]
         questionsAndAnswers.push(questionAndAnswers)
     }
 
     return questionsAndAnswers
 }
-
-// exports.newUser = newUser
-// exports.getUserByEmailAndPassword = getUserByEmailAndPassword
-// exports.checkIfEmailExists = checkIfEmailExists
-// exports.changeUserEmail = changeUserEmail
-// exports.changeUserNickname = changeUserNickname
-// exports.changeUserPassword = changeUserPassword
-// exports.changeUserPicture = changeUserPicture
-// exports.newContact = newContact
-// exports.getBestThreeScoresOfACategory = getBestThreeScoresOfACategory
-// exports.getAllScoresOfUser = getAllScoresOfUser
-// exports.setNewScore = setNewScore
-// exports.getCategories = getCategories
-// exports.getAllQuestionsByCategory = getAllQuestionsByCategory
-// exports.getAllAnswersByQuestion = getAllAnswersByQuestion
-// exports.getAllQuestionsAndAnswersByCategory = getAllQuestionsAndAnswersByCategory

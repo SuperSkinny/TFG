@@ -60,8 +60,7 @@ function Registration(props) {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        e.target.className += " was-validated"
-        console.log("details", details)       
+        e.target.className += " was-validated"    
     
 
         if(details.pass2 === ""){
@@ -73,7 +72,6 @@ function Registration(props) {
         else{
             errors.pass2 = ""
         }
-        console.log("errors: ", errors)
 
         if(e.target.checkValidity()){
         
@@ -95,7 +93,6 @@ function Registration(props) {
                 else {
                   errors.email = errorMessage;
                 }
-                console.log(error);
               });
         }
     };

@@ -4,6 +4,13 @@ import '../assets/styles/styles.css'
 
 export default class nameForm extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { 
+            spinner: true,
+        }
+    }
+
     changeName(name) {
         const { changeValue } = this.props
         changeValue(name)
@@ -11,8 +18,16 @@ export default class nameForm extends Component {
     
     render() {
         const { points, userScore } = this.props
+        const { spinner } = this.state
         return (
             <>
+            {/* { spinner && (
+                <div className="content" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                    <div className="spinner-grow text-secondary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            )} */}
             {!userScore.length ? (
                 <div className="columnContent">
                     <span className="generalTitle" >
@@ -58,7 +73,7 @@ export default class nameForm extends Component {
                                 this.changeName(userScore[0].name)
                             }}
                         >
-                            {userScore[0].name} 
+                            {userScore[0].name}
                         </button>
                         <span  style={ {display: "flex", fontSize: 20, color: "#4F4F4F", textAlign: "center", justifyContent: 'center', marginBottom: 20 } }>
                             O introduce un nombre nuevo.
