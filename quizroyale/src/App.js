@@ -16,8 +16,6 @@ import PreGame from './screens/preGame';
 import Landing from './screens/landing';
 import 'firebase/auth'
 import { useFirebaseApp, useUser } from 'reactfire'
-import PostGame from './screens/postGame';
-
 
 function App() {
 
